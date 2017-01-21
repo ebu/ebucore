@@ -105,6 +105,7 @@
 		</annotation>
 		<sequence>
 			<element name="dummy" type="ebucore:titleType" minOccurs="0"/>
+			<element name="dummy2" type="ebucore:titleType" minOccurs="0"/>
 			
 			<element name="title" type="ebucore:titleType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
