@@ -108,6 +108,7 @@
 			<element name="dummy2" type="ebucore:titleType" minOccurs="0"/>
 			<element name="dummy3" type="ebucore:titleType" minOccurs="0"/>
 			<element name="dummy4" type="ebucore:titleType" minOccurs="0"/>
+			<element name="dummy5" type="ebucore:titleType" minOccurs="0"/>
 			
 			<element name="title" type="ebucore:titleType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
