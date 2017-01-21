@@ -104,6 +104,8 @@
 				the resource</documentation>
 		</annotation>
 		<sequence>
+			<element name="dummy" type="ebucore:titleType" minOccurs="0"/>
+			
 			<element name="title" type="ebucore:titleType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation>A Title is the ‘main’ name given to a resource e.g. a media item,
