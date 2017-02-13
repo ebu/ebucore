@@ -8,6 +8,7 @@ EBUCore is widely adopted and requires regular maintenance to address new requir
 The latest version of the specification is published here: https://tech.ebu.ch/docs/tech/tech3293.pdf.
 
 EBUCore also exists as an ontology https://www.ebu.ch/metadata/ontologies/ebucore/ebucore (documentation) and 
-https://www.ebu.ch/metadata/ontologies/ebucore/ebucore.rdf (rdf/xml ontology).
+https://www.ebu.ch/metadata/ontologies/ebucore/ebucore.rdf (rdf/xml ontology). The ontology will also be moved 
+to github with a new simpler approach for the documentation.
 
 
