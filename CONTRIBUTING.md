@@ -22,6 +22,8 @@ Although possible, it is NOT encouraged to make edits via the github web client 
 The web client will be used to manage commits, pull requests and comments.
 Edit shall be made using the github desktop application after you have cloned the repository.
 
+SCHEMA UPDATES
+
 1. Install https://desktop.github.com/. Best practice consists of creating a github repository locally.
 2. From the web client, clone the repository on your desktop.
 3. Go to Github desktop application. The repository is now accessible from your desktop. Open it.
@@ -41,5 +43,9 @@ Edit shall be made using the github desktop application after you have cloned th
 8. You can now go back to the Github web client where your commits will appear on line.
 9. You can now CREATE A PULL REQUEST. This will notify the community of your contribution and call for review.
    If the review is positive, or after comments ahve been addressed, the changes will be merged with the Master branch.
- 
+
+DOCUMENTATION UPDATES
+
+Please use the "track changes" mode when updating the documentation. This will help reviewer identify and review your edits.
+
 Thank you for your suggestions!
