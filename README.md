@@ -13,4 +13,4 @@ EBUCore also exists as an ontology https://www.ebu.ch/metadata/ontologies/ebucor
 https://www.ebu.ch/metadata/ontologies/ebucore/ebucore.rdf (rdf/xml ontology). The ontology will also be moved 
 to github with a new simpler approach for the documentation.
 
-
+Before doing anything, please read the editing guidelines in CONTRIBUTING.md.
