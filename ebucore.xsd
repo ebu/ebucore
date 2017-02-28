@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-	xmlns:ebucore="urn:ebu:metadata-schema:ebuCore_2016" xmlns:dc="http://purl.org/dc/elements/1.1/"
-	targetNamespace="urn:ebu:metadata-schema:ebuCore_2016" elementFormDefault="qualified">
+	xmlns:ebucore="urn:ebu:metadata-schema:ebuCore_2017" xmlns:dc="http://purl.org/dc/elements/1.1/"
+	targetNamespace="urn:ebu:metadata-schema:ebuCore_2017" elementFormDefault="qualified">
 	<import namespace="http://www.w3.org/XML/1998/namespace"
 		schemaLocation="https://www.ebu.ch/metadata/schemas/EBUCore/xml.xsd"/>
 	<import namespace="http://purl.org/dc/elements/1.1/"
@@ -16,48 +16,9 @@
 			point for browsing the documentation!</documentation>
 	</annotation>
 	<annotation>
-		<documentation> What is new in version 1.7 ?</documentation>
+		<documentation> What is new in version 1.8 ?</documentation>
 		<documentation> GENERAL ENRICHMENT </documentation>
-		<documentation> 1. audioDescriptionPresenceFlag attribute added to
-			audioFormat</documentation>
-		<documentation> 2. change periodName cardinality to unbounded to allow providing the name in
-			different languages</documentation>
-		<documentation> 3. in part, give choice between end time and duration</documentation>
-		<documentation> 4. add date archived</documentation>
-		<documentation> 5. add typeGroup to location/name</documentation>
-		<documentation> 6. add altitude to location</documentation>
-		<documentation> 7. change timecodeType to timecodeStringtype to define a timecode string
-			pattern. Backward compatible when validating instances</documentation>
-		<documentation> 8. redefine timecodeType as an extension of timecodeStringtype with drop
-			frame (flag), editRate + factorNumerator and factorDenominator to support a correcting
-			factor applying to an editRate from which a timecode is derived</documentation>
-		<documentation> 9. add contactDetails/additionalInformation + typeGroup</documentation>
-		<documentation> 10. add typeGroup to ebuCoreMain in prevision of IMF metadata
-			insertion</documentation>
-		<documentation> 11. change cardinality of contact/additionalInformation from "1" to
-			"0/unbounded"</documentation>
-		<documentation> 12. add additionalInformation element to location with cardinality
-			"0/unbounded"</documentation>
-		<documentation> ALIGN WITH EBUCore RDF </documentation>
-		<documentation> 1. add date ingested</documentation>
-		<documentation> EBUCORE ROOT PROPERTIES for EBUSPORT </documentation>
-		<!--NOT DONE in 1.6 as announced-->
-		<documentation> 1. Add Event start/end/description/name (e.g. key personal and career
-			events) in entity</documentation>
-		<documentation> FIMS MAPPING</documentation>
-		<documentation> 1. add relations like hasChild, isChildOf, hasParent, isParentOf, hasMaster,
-			isMasterOf</documentation>
-		<documentation> SMPTE MAPPING</documentation>
-		<documentation> 1. add "thesaurus" to the type, format and status groups</documentation>
-		<documentation> 2. add "editrate" to the fileInfo element group</documentation>
-		<documentation> 3. add "imageFormatProfileLevel" to imageFormatType</documentation>
-		<documentation> 4. add version, definition and presenceFlag to
-			extendedAudioFormat</documentation>
-		<documentation> CORRECTIONS</documentation>
-		<documentation> 1. affiliation type, start and end dates are redundant. remove end date and
-			rename startDate in period</documentation>
-
-
+		<documentation> Audio and Video Encoding Profiles and levels</documentation>
 	</annotation>
 
 	<element name="ebuCoreMain" type="ebucore:ebuCoreMainType"/>
@@ -3578,6 +3539,20 @@
 							</documentation>
 						</annotation>
 					</attributeGroup>
+					<attribute name="videoEncodingProfile" type="string">
+						<annotation>
+							<documentation>
+								To provide information on the encoding profile.
+							</documentation>
+						</annotation>
+					</attribute>
+					<attribute name="videoEncodingLevel" type="string">
+						<annotation>
+							<documentation>
+								To provide information on the encoding level.
+							</documentation>
+						</annotation>
+					</attribute>
 				</complexType>
 			</element>
 			<element name="codec" type="ebucore:codecType" minOccurs="0">
@@ -3758,6 +3733,21 @@
 							</documentation>
 						</annotation>
 					</attributeGroup>
+					<attribute name="audioEncodingProfile" type="string">
+						<annotation>
+							<documentation>
+								To provide information on the encoding profile.
+							</documentation>
+						</annotation>
+					</attribute>
+					<attribute name="audioEncodingLevel" type="string">
+						<annotation>
+							<documentation>
+								To provide information on the encoding level.
+							</documentation>
+						</annotation>
+					</attribute>
+					
 				</complexType>
 			</element>
 			<element name="codec" type="ebucore:codecType" minOccurs="0">
