@@ -2132,21 +2132,40 @@
 						<element name="extractionStartTime" type="ebucore:timecodeType"
 							minOccurs="0">
 							<annotation>
-								<documentation> The timecode at which extraction starts. This also
+								<documentation> The timecode at which extraction starts  expressed in timecode / fremes. This also
 									provides additional information on the timecode format.
 								</documentation>
 							</annotation>
 						</element>
 						<element name="extractionDuration" type="ebucore:timecodeType" minOccurs="0">
 							<annotation>
-								<documentation> The duration of the extraction. This also provides
+								<documentation> The duration of the extraction  expressed in timecode / fremes. This also provides
 									additional information on the timecode format. </documentation>
 							</annotation>
 						</element>
+						<element name="acquisitionFrameRate" type="ebucore:rationalType">
+							<annotation>
+								<documentation>
+									To provide information on the frame rate at which data is acquired.
+								</documentation>
+							</annotation>
+						</element>
 						<element name="parameterSegmentDataOutput"
-							type="ebucore:parameterSegmentDataOutputType" minOccurs="0"/>
+							type="ebucore:parameterSegmentDataOutputType" minOccurs="0">
+							<annotation>
+								<documentation>
+									To export acquisition data with a timline per parameter.
+								</documentation>
+							</annotation>
+						</element>
 						<element name="segmentParameterDataOutput"
-							type="ebucore:segmentParameterDataOutputType" minOccurs="0"/>
+							type="ebucore:segmentParameterDataOutputType" minOccurs="0">
+							<annotation>
+								<documentation>
+									To export acquisition data with a parameter per timeline.
+								</documentation>
+							</annotation>
+						</element>
 					</sequence>
 				</complexType>
 			</element>
@@ -5793,7 +5812,7 @@
 		</annotation>
 		<restriction base="string">
 			<pattern
-				value="(([0-1][0-9])|([2][0-3])):[0-5][0-9]:[0-5][0-9](([.,])|([:;]))[0-9]{2,5}"/>
+				value="(([0-1][0-9])|([2][0-3])):[0-5][0-9]:[0-5][0-9](([.,])|([:;]))[0-9]{2,6}"/>
 		</restriction>
 	</simpleType>
 
@@ -6324,19 +6343,21 @@
 				<complexType>
 					<simpleContent>
 						<extension base="ebucore:valueListType">
-							<attribute name="starTime" type="ebucore:timecodeStringType">
+							<attribute name="startTime" type="ebucore:timecodeStringType">
 								<annotation>
-									<documentation>The start time of the segment.</documentation>
+									<documentation>The start time of the segment expressed in timecode / fremes.</documentation>
 								</annotation>
 							</attribute>
 							<attribute name="endTime" type="ebucore:timecodeStringType">
 								<annotation>
-									<documentation>The end time of the segment.</documentation>
+									<documentation>The end time of the segment expressed in timecode / fremes.</documentation>
 								</annotation>
 							</attribute>
-							<attribute name="interval" type="ebucore:intervalType">
+							<attribute name="interval" type="integer">
 								<annotation>
-									<documentation>The time interval at which data is extracted.</documentation>
+									<documentation> The interval in frames (default "1" at which the parameter value
+										is extracted. Interval = '' or null means the parameter has a
+										constant value over the time segment. </documentation>
 								</annotation>
 							</attribute>
 						</extension>
@@ -6368,10 +6389,10 @@
 									<documentation> The name of the parameter. </documentation>
 								</annotation>
 							</attribute>
-							<attribute name="interval" type="ebucore:intervalType">
+							<attribute name="interval" type="integer">
 								<annotation>
-									<documentation> The time interval at which the parameter value
-										is extraction. interval = '' means the parameter has a
+									<documentation> The interval in frames (default "1" at which the parameter value
+										is extracted. Interval = '' or null means the parameter has a
 										constant value over the time segment. </documentation>
 								</annotation>
 							</attribute>
@@ -6380,14 +6401,14 @@
 				</complexType>
 			</element>
 		</sequence>
-		<attribute name="starTime" type="ebucore:timecodeStringType">
+		<attribute name="startTime" type="ebucore:timecodeStringType">
 			<annotation>
-				<documentation> The startTime of the segment. </documentation>
+				<documentation> The startTime of the segment expressed in timecode / fremes. </documentation>
 			</annotation>
 		</attribute>
 		<attribute name="endTime" type="ebucore:timecodeStringType">
 			<annotation>
-				<documentation> The endTime of the segment. </documentation>
+				<documentation> The endTime of the segment expressed in timecode / fremes. </documentation>
 			</annotation>
 		</attribute>
 	</complexType>
@@ -6400,16 +6421,6 @@
 		</annotation>
 		<list itemType="string"/>
 	</simpleType>
-
-	<simpleType name="intervalType">
-		<annotation>
-			<documentation> To define a time interval over three decimals. </documentation>
-		</annotation>
-		<restriction base="float">
-			<pattern value="[0-9].[0-9][0-9][0-9]"/>
-		</restriction>
-	</simpleType>
-
 
 	<!-- OTHERS -->
 
