@@ -18,7 +18,8 @@
 	<annotation>
 		<documentation> What is new in version 1.8 ?</documentation>
 		<documentation> GENERAL ENRICHMENT </documentation>
-		<documentation> Audio and Video Encoding Profiles and levels</documentation>
+		<documentation> New Audio and Video Encoding Profiles and levels</documentation>
+		<documentation> New AcquisitionData element for exporting extracting dynamic metadata</documentation>
 	</annotation>
 
 	<element name="ebuCoreMain" type="ebucore:ebuCoreMainType"/>
@@ -2117,6 +2118,57 @@
 						resource and its format. </documentation>
 				</annotation>
 			</element>
+			<element name="acquisitionData" minOccurs="0" maxOccurs="2">
+				<annotation>
+					<documentation> A element to allow the serialisation of dynamic acquisition
+						metadata. The user can serialise data in two forms: 1 -
+						<parameterSegmentDataOutput/>parameter per parameter, each with a timeline
+						of time segments along which the parameter value varies. 2 -
+						<segmentParameterDataOutput/>a series of time segments for which all values
+						are listed for a specifc parameter. </documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element name="extractionStartTime" type="ebucore:timecodeType"
+							minOccurs="0">
+							<annotation>
+								<documentation> The timecode at which extraction starts  expressed in timecode / fremes. This also
+									provides additional information on the timecode format.
+								</documentation>
+							</annotation>
+						</element>
+						<element name="extractionDuration" type="ebucore:timecodeType" minOccurs="0">
+							<annotation>
+								<documentation> The duration of the extraction  expressed in timecode / fremes. This also provides
+									additional information on the timecode format. </documentation>
+							</annotation>
+						</element>
+						<element name="acquisitionFrameRate" type="ebucore:rationalType">
+							<annotation>
+								<documentation>
+									To provide information on the frame rate at which data is acquired.
+								</documentation>
+							</annotation>
+						</element>
+						<element name="parameterSegmentDataOutput"
+							type="ebucore:parameterSegmentDataOutputType" minOccurs="0">
+							<annotation>
+								<documentation>
+									To export acquisition data with a timline per parameter.
+								</documentation>
+							</annotation>
+						</element>
+						<element name="segmentParameterDataOutput"
+							type="ebucore:segmentParameterDataOutputType" minOccurs="0">
+							<annotation>
+								<documentation>
+									To export acquisition data with a parameter per timeline.
+								</documentation>
+							</annotation>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
 			<element name="start" type="ebucore:timeType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation>The beginning point for playback of a time-based media item, such
@@ -3541,15 +3593,13 @@
 					</attributeGroup>
 					<attribute name="videoEncodingProfile" type="string">
 						<annotation>
-							<documentation>
-								To provide information on the encoding profile.
+							<documentation> To provide information on the encoding profile.
 							</documentation>
 						</annotation>
 					</attribute>
 					<attribute name="videoEncodingLevel" type="string">
 						<annotation>
-							<documentation>
-								To provide information on the encoding level.
+							<documentation> To provide information on the encoding level.
 							</documentation>
 						</annotation>
 					</attribute>
@@ -3735,19 +3785,17 @@
 					</attributeGroup>
 					<attribute name="audioEncodingProfile" type="string">
 						<annotation>
-							<documentation>
-								To provide information on the encoding profile.
+							<documentation> To provide information on the encoding profile.
 							</documentation>
 						</annotation>
 					</attribute>
 					<attribute name="audioEncodingLevel" type="string">
 						<annotation>
-							<documentation>
-								To provide information on the encoding level.
+							<documentation> To provide information on the encoding level.
 							</documentation>
 						</annotation>
 					</attribute>
-					
+
 				</complexType>
 			</element>
 			<element name="codec" type="ebucore:codecType" minOccurs="0">
@@ -5764,7 +5812,7 @@
 		</annotation>
 		<restriction base="string">
 			<pattern
-				value="(([0-1][0-9])|([2][0-3])):[0-5][0-9]:[0-5][0-9](([.,])|([:;]))[0-9]{2,5}"/>
+				value="(([0-1][0-9])|([2][0-3])):[0-5][0-9]:[0-5][0-9](([.,])|([:;]))[0-9]{2,6}"/>
 		</restriction>
 	</simpleType>
 
@@ -6236,6 +6284,145 @@
 			</extension>
 		</complexContent>
 	</complexType>
+
+	<!-- DYNAMIC METADATA -->
+
+
+	<complexType name="parameterSegmentDataOutputType">
+		<annotation>
+			<documentation> Defines the dynamic parameter/segment metadata extraction format. Each
+				parameter is addressed one by one. Value(s) are given in an associated timeline made
+				of aggregated time segments within which values can be listed at a given interval.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="parameter" type="ebucore:parameterSegmentType" minOccurs="0"
+				maxOccurs="unbounded">
+				<annotation>
+					<documentation> A list of parameters with their associated timelines, which
+						value(s) are listed optionally at a time interval. </documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="segmentParameterDataOutputType">
+		<annotation>
+			<documentation> Defines the dynamic segment/parameter metadata extraction format. A
+				series of time segments associated to a single parameter for which value(s) will be
+				listed optionally at a time interval. </documentation>
+		</annotation>
+		<sequence>
+			<element name="segment" type="ebucore:segmentParameterType" minOccurs="0"
+				maxOccurs="unbounded">
+				<annotation>
+					<documentation> A list of segments each associated to a single parameter, which
+						value(s) are listed optionally at a time interval. </documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="parameterSegmentType">
+		<annotation>
+			<documentation> A complexType to determine a dynamic parameter along an associated
+				timeline. Some parameters are constant over the extraction time period. in this case
+				only one segment appears with a simple or structured value. In this case
+				interval=''. </documentation>
+		</annotation>
+		<sequence>
+			<element name="segment" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation> To define a time segment by its startTime, endTime and
+						optionally a time interval at which the parameter value is extracted. The
+						parameter value(s) is given by the segment element. If interval != '', the
+						segment value is a list of "space" separated results. If interval = '', the
+						segment contains a single value, simple or structured. </documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="ebucore:valueListType">
+							<attribute name="startTime" type="ebucore:timecodeStringType">
+								<annotation>
+									<documentation>The start time of the segment expressed in timecode / fremes.</documentation>
+								</annotation>
+							</attribute>
+							<attribute name="endTime" type="ebucore:timecodeStringType">
+								<annotation>
+									<documentation>The end time of the segment expressed in timecode / fremes.</documentation>
+								</annotation>
+							</attribute>
+							<attribute name="interval" type="integer">
+								<annotation>
+									<documentation> The interval in frames (default "1" at which the parameter value
+										is extracted. Interval = '' or null means the parameter has a
+										constant value over the time segment. </documentation>
+								</annotation>
+							</attribute>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+		<attribute name="name" type="string"/>
+	</complexType>
+
+
+	<complexType name="segmentParameterType">
+		<annotation>
+			<documentation> A complexType to determine a time segment and its associated parameter
+				for which value(s) will be listed optionally at a time interval in the parameter
+				element. </documentation>
+		</annotation>
+		<sequence>
+			<element name="parameter" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation> To define a parameter which value(s) will be returned within the
+						time segment to which it belongs. </documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="ebucore:valueListType">
+							<attribute name="name" type="string">
+								<annotation>
+									<documentation> The name of the parameter. </documentation>
+								</annotation>
+							</attribute>
+							<attribute name="interval" type="integer">
+								<annotation>
+									<documentation> The interval in frames (default "1" at which the parameter value
+										is extracted. Interval = '' or null means the parameter has a
+										constant value over the time segment. </documentation>
+								</annotation>
+							</attribute>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+		<attribute name="startTime" type="ebucore:timecodeStringType">
+			<annotation>
+				<documentation> The startTime of the segment expressed in timecode / fremes. </documentation>
+			</annotation>
+		</attribute>
+		<attribute name="endTime" type="ebucore:timecodeStringType">
+			<annotation>
+				<documentation> The endTime of the segment expressed in timecode / fremes. </documentation>
+			</annotation>
+		</attribute>
+	</complexType>
+
+	<simpleType name="valueListType">
+		<annotation>
+			<documentation>
+				a common simple type to support an unbounded space separated list of values as strings.
+			</documentation>
+		</annotation>
+		<list itemType="string"/>
+	</simpleType>
+
+	<!-- OTHERS -->
 
 	<element name="comment">
 		<annotation>
