@@ -6365,7 +6365,11 @@
 				</complexType>
 			</element>
 		</sequence>
-		<attribute name="name" type="string"/>
+        <attribute name="name" type="string">
+            <annotation>
+                <documentation> The name of the parameter. </documentation>
+            </annotation>
+        </attribute>
         <attribute name="unit" type="string">
             <annotation>
                 <documentation> An attribute to specify the unit in which the width is
