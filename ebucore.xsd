@@ -6460,6 +6460,12 @@
 			</element>
 		</sequence>
 		<attribute name="name" type="string"/>
+        <attribute name="unit" type="string">
+            <annotation>
+                <documentation> An attribute to specify the unit in which the width is
+                    expressed. </documentation>
+            </annotation>
+        </attribute>
 	</complexType>
 
 
@@ -6489,6 +6495,12 @@
 										parameter value is extracted. Interval = '' or null means
 										the parameter has a constant value over the time segment.
 									</documentation>
+                            <attribute name="unit" type="string">
+                                <annotation>
+                                    <documentation> An attribute to specify the unit in which the width is
+                                        expressed. </documentation>
+                                </annotation>
+                            </attribute>
 								</annotation>
 							</attribute>
 						</extension>

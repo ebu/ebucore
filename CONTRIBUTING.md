@@ -27,11 +27,13 @@ SCHEMA UPDATES
 1. Install https://desktop.github.com/. Best practice consists of creating a github repository locally.
 2. From the web client, clone the repository on your desktop.
 3. Go to Github desktop application. The repository is now accessible from your desktop. Open it.
-4. Edit and VALIDATE your changes using an xml/xsd editor. You can work from the instance of the cloned 
+4. You should regularly sync with the online github to ensure that your contribution/commit is as close as possible to the current master.  
+   Being too far "behind" may generate hard to resolve inconsistencies and conflicts.
+5. Edit and VALIDATE your changes using an xml/xsd editor. You can work from the instance of the cloned 
    document or copy and paste a new version of the document under the local repository. 
    You can open the files with your editor directly from the file system. Changes will be managed automatically.
    Finish your edits and save the file.
-5. Back in the Github desktop application, click on "changes" (middle top of the main page) and your modifications will appear.
+6. Back in the Github desktop application, click on "changes" (middle top of the main page) and your modifications will appear.
    CREATE a new branch by clicking on the fork logo at the top 
    left corner of the main window. Avoid commiting to the Master branch.
    Name the branch (either a short name summarising the edits or e.g. identifying yourself).
