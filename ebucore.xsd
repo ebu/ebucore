@@ -19,7 +19,14 @@
 		<documentation> What is new in version 1.8 ?</documentation>
 		<documentation> GENERAL ENRICHMENT </documentation>
 		<documentation> New Audio and Video Encoding Profiles and levels</documentation>
-		<documentation> New AcquisitionData element for exporting extracting dynamic metadata</documentation>
+		<documentation> New AcquisitionData element for exporting extracting dynamic
+			metadata</documentation>
+		<documentation> AUDIO DATA MODEL - ALIGNMENT WITH ITU</documentation>
+		<documentation> Update of objectDivergence and Zone under audioBlockFormat</documentation>
+		<documentation> Update of audioPackFormat</documentation>
+		<documentation> Change pre-existing audioFormatExtendedVersion attribute to "version".
+			Attribute name changed by ITU</documentation>
+		<documentation> refined definitions</documentation>
 	</annotation>
 
 	<element name="ebuCoreMain" type="ebucore:ebuCoreMainType"/>
@@ -50,7 +57,7 @@
 				<documentation> The name of the schema for e.g. OAI management. </documentation>
 			</annotation>
 		</attribute>
-		<attribute name="version" default="1.7">
+		<attribute name="version" default="1.8">
 			<annotation>
 				<documentation> The version of the schema for e.g. OAI management. </documentation>
 			</annotation>
@@ -2132,38 +2139,36 @@
 						<element name="extractionStartTime" type="ebucore:timecodeType"
 							minOccurs="0">
 							<annotation>
-								<documentation> The timecode at which extraction starts  expressed in timecode / fremes. This also
-									provides additional information on the timecode format.
-								</documentation>
+								<documentation> The timecode at which extraction starts expressed in
+									timecode / fremes. This also provides additional information on
+									the timecode format. </documentation>
 							</annotation>
 						</element>
 						<element name="extractionDuration" type="ebucore:timecodeType" minOccurs="0">
 							<annotation>
-								<documentation> The duration of the extraction  expressed in timecode / fremes. This also provides
-									additional information on the timecode format. </documentation>
+								<documentation> The duration of the extraction expressed in timecode
+									/ fremes. This also provides additional information on the
+									timecode format. </documentation>
 							</annotation>
 						</element>
 						<element name="acquisitionFrameRate" type="ebucore:rationalType">
 							<annotation>
-								<documentation>
-									To provide information on the frame rate at which data is acquired.
-								</documentation>
+								<documentation> To provide information on the frame rate at which
+									data is acquired. </documentation>
 							</annotation>
 						</element>
 						<element name="parameterSegmentDataOutput"
 							type="ebucore:parameterSegmentDataOutputType" minOccurs="0">
 							<annotation>
-								<documentation>
-									To export acquisition data with a timline per parameter.
-								</documentation>
+								<documentation> To export acquisition data with a timline per
+									parameter. </documentation>
 							</annotation>
 						</element>
 						<element name="segmentParameterDataOutput"
 							type="ebucore:segmentParameterDataOutputType" minOccurs="0">
 							<annotation>
-								<documentation>
-									To export acquisition data with a parameter per timeline.
-								</documentation>
+								<documentation> To export acquisition data with a parameter per
+									timeline. </documentation>
 							</annotation>
 						</element>
 					</sequence>
@@ -4688,10 +4693,10 @@
 					data</documentation>
 			</annotation>
 		</attribute>
-		<attribute name="audioFormatExtendedVersion" type="string">
+		<attribute name="version" type="string">
 			<annotation>
-				<documentation>To provide a version of the extended audio format
-					data</documentation>
+				<documentation>To provide a version of the extended audio format data in
+					use</documentation>
 			</annotation>
 		</attribute>
 	</complexType>
@@ -5165,14 +5170,47 @@
 	</element>
 	<complexType name="audioPackFormatType">
 		<sequence>
-			<element name="audioChannelFormatIDRef" type="IDREF" minOccurs="0" maxOccurs="unbounded">
+			<element name="encodePackFormatIDRef" type="IDREF" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
-					<documentation> A set of references to audioChannels. </documentation>
+					<documentation> Reference to an encoding matrix audioPackFormat from a decoding
+						matrix. </documentation>
 				</annotation>
 			</element>
-			<element name="audioPackFormatIDRef" type="IDREF" minOccurs="0" maxOccurs="unbounded">
+			<element name="decodePackFormatIDRef" type="IDREF" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
-					<documentation> A set of references to audio packs. </documentation>
+					<documentation> Reference to a decoding matrix audioPackFormat from an encoding
+						matrix. </documentation>
+				</annotation>
+			</element>
+			<element name="inputPackFormatIDRef" type="IDREF" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation> Reference to a channel-based (DirectSpeakers) input
+						audioPackFormat. </documentation>
+				</annotation>
+			</element>
+			<element name="outputPackFormatIDRef" type="IDREF"  minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation> Reference to a channel-based (DirectSpeakers) matrix decoded
+						audioPackFormat. </documentation>
+				</annotation>
+			</element>
+			<element name="normalization" type="string" minOccurs="0">
+				<annotation>
+					<documentation> Indicates the normalization scheme of the HOA content (N3D,
+						SN3D, FuMa). </documentation>
+				</annotation>
+			</element>
+			<element name="nfcRefDist" type="integer" minOccurs="0">
+				<annotation>
+					<documentation> Indicates the reference distance of the loudspeaker setup for
+						near-field compensation (NFC). If no nfcRefDist is defined or the value is
+						0, NFC is not necessary. </documentation>
+				</annotation>
+			</element>
+			<element name="screenRef" type="boolean" minOccurs="0">
+				<annotation>
+					<documentation> Indicates whether the content is screen-related (flag is equal
+						to 1) or not (flag is equal to 0) </documentation>
 				</annotation>
 			</element>
 		</sequence>
@@ -5389,8 +5427,8 @@
 			</element>
 			<element name="screenRef" minOccurs="0" maxOccurs="1" type="boolean">
 				<annotation>
-					<documentation>Set to true if the object is related to the screen, false if
-						not.</documentation>
+					<documentation>Indicates whether the content is screen-related (flag is equal to
+						1) or not (flag is equal to 0).</documentation>
 				</annotation>
 			</element>
 			<element name="importance" minOccurs="0" maxOccurs="1" type="int">
@@ -5412,6 +5450,28 @@
 			<element name="order" minOccurs="0" maxOccurs="1" type="int">
 				<annotation>
 					<documentation>Order for the ambisonic component.</documentation>
+				</annotation>
+			</element>
+
+			<!-- EXTENSIONS 2017_05_15 - SOURCE ITU -->
+			<element name="normalization" type="string" minOccurs="0">
+				<annotation>
+					<documentation> Indicates the normalization scheme of the HOA content (N3D,
+						SN3D, FuMa). </documentation>
+				</annotation>
+			</element>
+			<element name="nfcRefDist" type="integer" minOccurs="0">
+				<annotation>
+					<documentation> Indicates the reference distance of the loudspeaker setup for
+						near-field compensation (NFC). If no nfcRefDist is defined or the value is
+						0, NFC is not necessary. </documentation>
+				</annotation>
+			</element>
+			<element name="outputChannelIDRef" type="IDREF">
+				<annotation>
+					<documentation> For defining a decoding or direct matrix, this is the
+						DirectSpeakers type output audioChannelFormat that defines the channel being
+						decoded to. </documentation>
 				</annotation>
 			</element>
 		</sequence>
@@ -5505,24 +5565,36 @@
 			<extension base="IDREF">
 				<attribute name="gain" type="float">
 					<annotation>
-						<documentation>Coefficient value. Literal fixed float.</documentation>
+						<documentation>Multiplication factor of another channel. Constant value.
+						</documentation>
 					</annotation>
 				</attribute>
 				<attribute name="gainVar" type="string">
 					<annotation>
-						<documentation>Coefficient value. Variable letter, so renderer can decide
-							gain.</documentation>
+						<documentation>Multiplication factor of another channel.
+							Variable.</documentation>
 					</annotation>
 				</attribute>
 				<attribute name="phase" type="float">
 					<annotation>
-						<documentation>Phase shift value. Literal fixed float.</documentation>
+						<documentation>Phase shift of another channel. Constant
+							value.</documentation>
 					</annotation>
 				</attribute>
 				<attribute name="phaseVar" type="string">
 					<annotation>
-						<documentation>Phase shift value. Variable letter, so renderer can decide
-							shift.</documentation>
+						<documentation>Phase shift of another channel. Variable.</documentation>
+					</annotation>
+				</attribute>
+				<attribute name="delay" type="string">
+					<annotation>
+						<documentation>Time delay of another channel. Constant
+							value.</documentation>
+					</annotation>
+				</attribute>
+				<attribute name="delayVar" type="string">
+					<annotation>
+						<documentation>Time delay of another channel. Variable.</documentation>
 					</annotation>
 				</attribute>
 			</extension>
@@ -5534,8 +5606,23 @@
 			<extension base="float">
 				<attribute name="azimuthRange" type="float">
 					<annotation>
-						<documentation>Set the azimuth angle from the actual object's position to
-							the two virtual positions each side of it.</documentation>
+						<documentation>Adjusts the balance between the object’s specified position
+							and two other positions specified by the azimuthRange value (symmetrical
+							on both sides of the object at the object’s position +/– azimuthRange).
+							A value of 0 for the objectDivergence means no divergence.
+						</documentation>
+					</annotation>
+				</attribute>
+
+				<!-- EXTENSIONS 2017_05_15 - SOURCE ITU -->
+
+				<attribute name="positionRange" type="float">
+					<annotation>
+						<documentation> Adjusts the balance between the object’s specified position
+							and two other positions specified by the positionRange value
+							(symmetrical on both sides of the object at the object’s position +/–
+							positionRange along the X-axis). A value of 0 for the objectDivergence
+							means no divergence. </documentation>
 					</annotation>
 				</attribute>
 			</extension>
@@ -5588,6 +5675,10 @@
 				<attribute name="maxY" type="float"/>
 				<attribute name="minZ" type="float"/>
 				<attribute name="maxZ" type="float"/>
+				<attribute name="minElevation" type="float"/>
+				<attribute name="maxElevation" type="float"/>
+				<attribute name="minAzimuth" type="float"/>
+				<attribute name="maxAzimuth" type="float"/>
 			</extension>
 		</simpleContent>
 	</complexType>
@@ -6345,19 +6436,22 @@
 						<extension base="ebucore:valueListType">
 							<attribute name="startTime" type="ebucore:timecodeStringType">
 								<annotation>
-									<documentation>The start time of the segment expressed in timecode / fremes.</documentation>
+									<documentation>The start time of the segment expressed in
+										timecode / fremes.</documentation>
 								</annotation>
 							</attribute>
 							<attribute name="endTime" type="ebucore:timecodeStringType">
 								<annotation>
-									<documentation>The end time of the segment expressed in timecode / fremes.</documentation>
+									<documentation>The end time of the segment expressed in timecode
+										/ fremes.</documentation>
 								</annotation>
 							</attribute>
 							<attribute name="interval" type="integer">
 								<annotation>
-									<documentation> The interval in frames (default "1" at which the parameter value
-										is extracted. Interval = '' or null means the parameter has a
-										constant value over the time segment. </documentation>
+									<documentation> The interval in frames (default "1" at which the
+										parameter value is extracted. Interval = '' or null means
+										the parameter has a constant value over the time segment.
+									</documentation>
 								</annotation>
 							</attribute>
 						</extension>
@@ -6365,11 +6459,7 @@
 				</complexType>
 			</element>
 		</sequence>
-        <attribute name="name" type="string">
-            <annotation>
-                <documentation> The name of the parameter. </documentation>
-            </annotation>
-        </attribute>
+		<attribute name="name" type="string"/>
         <attribute name="unit" type="string">
             <annotation>
                 <documentation> An attribute to specify the unit in which the width is
@@ -6399,17 +6489,18 @@
 									<documentation> The name of the parameter. </documentation>
 								</annotation>
 							</attribute>
+							<attribute name="interval" type="integer">
+								<annotation>
+									<documentation> The interval in frames (default "1" at which the
+										parameter value is extracted. Interval = '' or null means
+										the parameter has a constant value over the time segment.
+									</documentation>
                             <attribute name="unit" type="string">
                                 <annotation>
                                     <documentation> An attribute to specify the unit in which the width is
                                         expressed. </documentation>
                                 </annotation>
                             </attribute>
-							<attribute name="interval" type="integer">
-								<annotation>
-									<documentation> The interval in frames (default "1" at which the parameter value
-										is extracted. Interval = '' or null means the parameter has a
-										constant value over the time segment. </documentation>
 								</annotation>
 							</attribute>
 						</extension>
@@ -6419,21 +6510,22 @@
 		</sequence>
 		<attribute name="startTime" type="ebucore:timecodeStringType">
 			<annotation>
-				<documentation> The startTime of the segment expressed in timecode / fremes. </documentation>
+				<documentation> The startTime of the segment expressed in timecode / fremes.
+				</documentation>
 			</annotation>
 		</attribute>
 		<attribute name="endTime" type="ebucore:timecodeStringType">
 			<annotation>
-				<documentation> The endTime of the segment expressed in timecode / fremes. </documentation>
+				<documentation> The endTime of the segment expressed in timecode / fremes.
+				</documentation>
 			</annotation>
 		</attribute>
 	</complexType>
 
 	<simpleType name="valueListType">
 		<annotation>
-			<documentation>
-				a common simple type to support an unbounded space separated list of values as strings.
-			</documentation>
+			<documentation> a common simple type to support an unbounded space separated list of
+				values as strings. </documentation>
 		</annotation>
 		<list itemType="string"/>
 	</simpleType>
