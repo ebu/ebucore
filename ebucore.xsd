@@ -2140,14 +2140,14 @@
 							minOccurs="0">
 							<annotation>
 								<documentation> The timecode at which extraction starts expressed in
-									timecode / fremes. This also provides additional information on
+									timecode / frames. This also provides additional information on
 									the timecode format. </documentation>
 							</annotation>
 						</element>
 						<element name="extractionDuration" type="ebucore:timecodeType" minOccurs="0">
 							<annotation>
 								<documentation> The duration of the extraction expressed in timecode
-									/ fremes. This also provides additional information on the
+									/ frames. This also provides additional information on the
 									timecode format. </documentation>
 							</annotation>
 						</element>
@@ -6437,13 +6437,13 @@
 							<attribute name="startTime" type="ebucore:timecodeStringType">
 								<annotation>
 									<documentation>The start time of the segment expressed in
-										timecode / fremes.</documentation>
+										timecode / frames.</documentation>
 								</annotation>
 							</attribute>
 							<attribute name="endTime" type="ebucore:timecodeStringType">
 								<annotation>
 									<documentation>The end time of the segment expressed in timecode
-										/ fremes.</documentation>
+										/ frames.</documentation>
 								</annotation>
 							</attribute>
 							<attribute name="interval" type="integer">
@@ -6510,13 +6510,13 @@
 		</sequence>
 		<attribute name="startTime" type="ebucore:timecodeStringType">
 			<annotation>
-				<documentation> The startTime of the segment expressed in timecode / fremes.
+				<documentation> The startTime of the segment expressed in timecode / frames.
 				</documentation>
 			</annotation>
 		</attribute>
 		<attribute name="endTime" type="ebucore:timecodeStringType">
 			<annotation>
-				<documentation> The endTime of the segment expressed in timecode / fremes.
+				<documentation> The endTime of the segment expressed in timecode / frames.
 				</documentation>
 			</annotation>
 		</attribute>
