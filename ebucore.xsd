@@ -6459,6 +6459,12 @@
 									</documentation>
 								</annotation>
 							</attribute>
+							<attribute name="unit" type="string">
+								<annotation>
+									<documentation> An attribute to specify the unit in which the interval is
+										expressed. </documentation>
+								</annotation>
+							</attribute>
 						</extension>
 					</simpleContent>
 				</complexType>
@@ -6498,7 +6504,7 @@
 							</attribute>
                             <attribute name="unit" type="string">
                                 <annotation>
-                                    <documentation> An attribute to specify the unit in which the width is
+                                    <documentation> An attribute to specify the unit in which the interval is
                                         expressed. </documentation>
                                 </annotation>
                             </attribute>
