@@ -286,8 +286,8 @@
 						item has its own separate metadata record. Relation is used to provide a
 						name, an identification number or ID, or a locator where the related item
 						can be found. The type of relation is defined a term like in the
-						https://www.ebu.ch/metadata/cs/ebu_HowRelatedCS.xml controlled
-						vocabulary. </documentation>
+						https://www.ebu.ch/metadata/cs/ebu_HowRelatedCS.xml controlled vocabulary.
+					</documentation>
 				</annotation>
 			</element>
 			<element name="isRelatedTo" type="ebucore:relationType" minOccurs="0"
@@ -642,6 +642,13 @@
 					</complexContent>
 				</complexType>
 			</element>
+			<element name="textLine" type="ebucore:textLineType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation> To provide text associated with a content, a scene or a part.
+						Additional information can be provided on the source of the text as well as
+						a relation to a contributor. </documentation>
+				</annotation>
+			</element>
 			<element name="part" type="ebucore:partType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation>To identify parts/segments/fragments within the resource. See
@@ -651,6 +658,44 @@
 		</sequence>
 	</complexType>
 
+	<complexType name="textLineType">
+		<sequence>
+			<element name="text" type="string">
+				<annotation>
+					<documentation> The text content.</documentation>
+				</annotation>
+			</element>
+			<element name="relatedAgent" type="ebucore:entityType"/>
+		</sequence>
+		<attribute name="textLineId" type="string">
+			<annotation>
+				<documentation>
+					An Id attributed to the text line
+				</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="order" type="string">
+			<annotation>
+				<documentation>
+					The order in which text appears in the content/part/scene.
+				</documentation>
+			</annotation>
+		</attribute>
+		<attribute ref="xml:lang">
+			<annotation>
+				<documentation>
+					The language used for the text line
+				</documentation>
+			</annotation>
+		</attribute>
+		<attributeGroup ref="ebucore:typeGroup">
+			<annotation>
+				<documentation>
+					To define the type / source of text e.g. speech to text
+				</documentation>
+			</annotation>
+		</attributeGroup>
+	</complexType>
 	<complexType name="artefactType">
 		<annotation>
 			<documentation> A complexType to describe artefacts.</documentation>
@@ -856,8 +901,6 @@
 							</annotation>
 						</element>
 					</choice>
-					<element name="textLine" type="ebucore:textLineType" minOccurs="0"
-						maxOccurs="unbounded"/>
 				</sequence>
 				<attribute name="partId" type="NMTOKEN">
 					<annotation>
@@ -897,19 +940,6 @@
 		</complexContent>
 	</complexType>
 
-	<complexType name="textLineType">
-		<annotation>
-			<documentation> To provide timed text </documentation>
-		</annotation>
-		<sequence>
-			<element name="textLineContent" type="string"/>
-			<element name="textLineSource" type="string"/>
-			<element name="textLineOrder" type="integer"/>
-			<element name="relatedCharacter" type="ebucore:entityType"/>
-			<element name="relatedPerson" type="ebucore:entityType"/>
-		</sequence>
-		<attribute ref="xml:lang"/>
-	</complexType>
 
 	<complexType name="titleType">
 		<annotation>
