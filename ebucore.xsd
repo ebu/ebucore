@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema"
-	xmlns:ebucore="urn:ebu:metadata-schema:ebuCore_2017" xmlns:dc="http://purl.org/dc/elements/1.1/"
-	targetNamespace="urn:ebu:metadata-schema:ebuCore_2017" elementFormDefault="qualified">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ebucore="urn:ebu:metadata-schema:ebuCore"
+	xmlns:dc="http://purl.org/dc/elements/1.1/" targetNamespace="urn:ebu:metadata-schema:ebuCore"
+	elementFormDefault="qualified" version="1.8">
 	<import namespace="http://www.w3.org/XML/1998/namespace"
 		schemaLocation="https://www.ebu.ch/metadata/schemas/EBUCore/xml.xsd"/>
 	<import namespace="http://purl.org/dc/elements/1.1/"
@@ -21,16 +21,18 @@
 		<documentation> New Audio and Video Encoding Profiles and levels</documentation>
 		<documentation> New AcquisitionData element for exporting extracting dynamic
 			metadata</documentation>
+		<documentation> Alignment with EBUCore RDF: Artefact, Props, TextLine, etc.</documentation>
 		<documentation> AUDIO DATA MODEL - ALIGNMENT WITH ITU</documentation>
 		<documentation> Update of objectDivergence and Zone under audioBlockFormat</documentation>
 		<documentation> Update of audioPackFormat</documentation>
 		<documentation> Change pre-existing audioFormatExtendedVersion attribute to "version".
 			Attribute name changed by ITU</documentation>
 		<documentation> refined definitions</documentation>
+		<documentation> New writingLibraryName and writingLibraryVersion to provide a name and
+			version of a tool used to generate data. </documentation>
 	</annotation>
 
 	<element name="ebuCoreMain" type="ebucore:ebuCoreMainType"/>
-
 	<complexType name="ebuCoreMainType">
 		<annotation>
 			<documentation>The root element of EBUCore.</documentation>
@@ -92,6 +94,18 @@
 					metadata information in the document, which can be superceded each time an
 					language attribute or element is available a different levels of description
 					granularity </documentation>
+			</annotation>
+		</attribute>
+		<attribute name="writingLibraryName" type="string">
+			<annotation>
+				<documentation> To provide information on the name of a tool used to generate data
+				</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="writingLibraryVersion" type="string">
+			<annotation>
+				<documentation> To provide information on the version of a tool used to generate
+					data </documentation>
 			</annotation>
 		</attribute>
 		<attributeGroup ref="ebucore:typeGroup">
@@ -266,14 +280,14 @@
 				<annotation>
 					<documentation> Recommended best practice is to reference the resource (to which
 						the current resource under description is related) by means of a string or
-						number conforming to a formal identification system. Relation is used to
-						show the relation in content to another resource. For example, "IsPartOf" is
-						used to show the relation between a part of a radio programme and the whole
-						programme or between a track and a record album. A resource can be
-						identified by its title, or an identifier (possibly a URI). The related item
-						has its own separate metadata record. Relation is used to provide a name, an
-						identification number or ID, or a locator where the related item can be
-						found.</documentation>
+						number conforming to a formal identification system. The Relation element is
+						used to show express a custom relation to another resource. A resource can
+						be identified by its title, or an identifier (possibly a URI). The related
+						item has its own separate metadata record. Relation is used to provide a
+						name, an identification number or ID, or a locator where the related item
+						can be found. The type of relation is defined a term like in the
+						https://www.ebu.ch/metadata/cs/ebu_HowRelatedCS.xml controlled
+						vocabulary. </documentation>
 				</annotation>
 			</element>
 			<element name="isRelatedTo" type="ebucore:relationType" minOccurs="0"
@@ -599,6 +613,35 @@
 						resource.</documentation>
 				</annotation>
 			</element>
+			<element name="artefact" type="ebucore:artefactType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation> To identify and describe artefacts present in a media resource
+						or part of a media resource. </documentation>
+				</annotation>
+			</element>
+			<element name="props" type="ebucore:propsType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation> To identify and describe props present in a media resource or
+						part of a media resource. </documentation>
+				</annotation>
+			</element>
+			<element name="costume" type="ebucore:costumeType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation> To identify and describe costume and wardrobe items present in a
+						media resource or part of a media resource. </documentation>
+				</annotation>
+			</element>
+			<element name="food" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation> To identify and describe food or derived products present in a
+						media resource or part of a media resource. </documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="ebucore:artefactType"> </extension>
+					</complexContent>
+				</complexType>
+			</element>
 			<element name="part" type="ebucore:partType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation>To identify parts/segments/fragments within the resource. See
@@ -607,6 +650,174 @@
 			</element>
 		</sequence>
 	</complexType>
+
+	<complexType name="artefactType">
+		<annotation>
+			<documentation> A complexType to describe artefacts.</documentation>
+		</annotation>
+		<sequence>
+			<element name="artefactName" type="ebucore:elementType" minOccurs="0"
+				maxOccurs="unbounded"/>
+			<element name="artefactModel" type="string" minOccurs="0"/>
+			<element name="artefactDescription" type="ebucore:elementType" minOccurs="0"
+				maxOccurs="unbounded"/>
+			<element name="artefactBrand" minOccurs="0">
+				<complexType>
+					<simpleContent>
+						<extension base="string">
+							<attributeGroup ref="ebucore:typeGroup"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="artefacttype" minOccurs="0">
+				<complexType>
+					<simpleContent>
+						<extension base="string">
+							<attributeGroup ref="ebucore:typeGroup"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="artefactColour" type="string" minOccurs="0"/>
+			<element name="artefactReference" type="string" minOccurs="0"/>
+			<element name="artefactPrice" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element name="value" type="float"/>
+						<element name="currency">
+							<complexType>
+								<attributeGroup ref="ebucore:typeGroup"/>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="artefactWebsite" type="anyURI" minOccurs="0"/>
+			<element name="artefactDateOfPurchase" type="date"/>
+			<element name="artefactDateOfSell" type="date" minOccurs="0"/>
+			<element name="artefactDateOfCreation" type="date" minOccurs="0"/>
+			<element name="artefactDateOfAcquisition" type="date" minOccurs="0"/>
+			<element name="artefactDateOfDestruction" type="date" minOccurs="0"/>
+			<element name="artefactAvailability" type="boolean" minOccurs="0"/>
+			<element name="artefactLocation" type="string" minOccurs="0"/>
+			<element name="artefactUsageHistory" type="ebucore:elementType" minOccurs="0"
+				maxOccurs="unbounded"/>
+			<element name="artefactStyle" type="ebucore:elementType" minOccurs="0"/>
+			<element name="artefactPeriod" minOccurs="0">
+				<complexType>
+					<attributeGroup ref="ebucore:dateGroup"/>
+				</complexType>
+			</element>
+			<element name="relatedAgent" type="ebucore:entityType" minOccurs="0"
+				maxOccurs="unbounded"/>
+			<element name="supplier" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="retailer" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="buyer" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="creator" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="maker" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="owner" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="contact" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="artefactid" type="string">
+			<annotation>
+				<documentation>The id attributed to an artefact.</documentation>
+			</annotation>
+		</attribute>
+	</complexType>
+
+	<complexType name="propsType">
+		<annotation>
+			<documentation> A complexType to describe props (artefacts used during the production of
+				a media resource).</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="ebucore:artefactType"> </extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="costumeType">
+		<annotation>
+			<documentation> A complexType to describe props (artefacts used during the production of
+				a media resource).</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="ebucore:artefactType">
+				<sequence>
+					<element name="costumeSizeInformation" minOccurs="0">
+						<complexType>
+							<sequence>
+								<element name="costumeSizeCategory" minOccurs="0">
+									<complexType>
+										<attributeGroup ref="ebucore:typeGroup"/>
+									</complexType>
+								</element>
+								<element name="costumeSize" type="float"/>
+								<element name="geographicalArea" minOccurs="0">
+									<complexType>
+										<attributeGroup ref="ebucore:typeGroup"/>
+									</complexType>
+								</element>
+							</sequence>
+						</complexType>
+					</element>
+					<element name="costumeGender" minOccurs="0">
+						<complexType>
+							<attributeGroup ref="ebucore:typeGroup"/>
+						</complexType>
+					</element>
+					<element name="costumeTexture" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<attributeGroup ref="ebucore:typeGroup"/>
+						</complexType>
+					</element>
+					<element name="linkToLogo" type="anyURI" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="linkToSticker" type="anyURI" minOccurs="0" maxOccurs="unbounded"
+					/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="foodType">
+		<annotation>
+			<documentation> A complexType to describe food and derived products shown in a media
+				resource.</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="ebucore:artefactType">
+				<sequence>
+					<element name="foodStyle" minOccurs="0">
+						<complexType>
+							<attributeGroup ref="ebucore:typeGroup"/>
+						</complexType>
+					</element>
+					<element name="foodCategory" minOccurs="0">
+						<complexType>
+							<attributeGroup ref="ebucore:typeGroup"/>
+						</complexType>
+					</element>
+					<element name="cuisineOrigin" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<attributeGroup ref="ebucore:typeGroup"/>
+						</complexType>
+					</element>
+					<element name="cuisineStyle" minOccurs="0">
+						<complexType>
+							<attributeGroup ref="ebucore:typeGroup"/>
+						</complexType>
+					</element>
+					<element name="dishName" type="string" minOccurs="0">
+						<!-- use text element with lang -->
+					</element>
+					<element name="dishDescription" type="ebucore:elementType" minOccurs="0"> </element>
+					<element name="foodIngredient" type="ebucore:elementType" minOccurs="0"> </element>
+
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
 
 	<complexType name="partType">
 		<annotation>
@@ -645,6 +856,8 @@
 							</annotation>
 						</element>
 					</choice>
+					<element name="textLine" type="ebucore:textLineType" minOccurs="0"
+						maxOccurs="unbounded"/>
 				</sequence>
 				<attribute name="partId" type="NMTOKEN">
 					<annotation>
@@ -682,6 +895,20 @@
 				</attributeGroup>
 			</extension>
 		</complexContent>
+	</complexType>
+
+	<complexType name="textLineType">
+		<annotation>
+			<documentation> To provide timed text </documentation>
+		</annotation>
+		<sequence>
+			<element name="textLineContent" type="string"/>
+			<element name="textLineSource" type="string"/>
+			<element name="textLineOrder" type="integer"/>
+			<element name="relatedCharacter" type="ebucore:entityType"/>
+			<element name="relatedPerson" type="ebucore:entityType"/>
+		</sequence>
+		<attribute ref="xml:lang"/>
 	</complexType>
 
 	<complexType name="titleType">
@@ -1615,7 +1842,6 @@
 			</annotation>
 		</attribute>
 	</complexType>
-
 	<complexType name="dateType">
 		<annotation>
 			<documentation>Dates associated with events occurring during the life of the resource.
@@ -2305,7 +2531,6 @@
 			</annotation>
 		</attributeGroup>
 	</complexType>
-
 	<complexType name="containerFormatType">
 		<annotation>
 			<documentation>To provide information on the wrapper format in complement to the stream
@@ -2509,7 +2734,6 @@
 			</annotation>
 		</attribute>
 	</complexType>
-
 	<attributeGroup name="dateGroup">
 		<attribute name="startYear" type="gYear">
 			<annotation>
@@ -3017,9 +3241,7 @@
 	</complexType>
 	<complexType name="affiliationType">
 		<annotation>
-			<documentation>
-				A complexType to describe an affiliation.
-			</documentation>
+			<documentation> A complexType to describe an affiliation. </documentation>
 		</annotation>
 		<sequence>
 			<element name="organisation" type="ebucore:organisationDetailsType"/>
@@ -3249,7 +3471,6 @@
 			</annotation>
 		</attribute>
 	</complexType>
-
 	<attributeGroup name="typeGroup">
 		<attribute name="typeLabel" type="string">
 			<annotation>
@@ -3805,7 +4026,6 @@
 							</documentation>
 						</annotation>
 					</attribute>
-
 				</complexType>
 			</element>
 			<element name="codec" type="ebucore:codecType" minOccurs="0">
@@ -4614,11 +4834,9 @@
 			</element>
 		</sequence>
 	</group>
-
 	<!-- ################ -->
 	<!-- AUDIO FORMAT EXTENDED -->
 	<!-- ################ -->
-
 	<complexType name="audioFormatExtendedType">
 		<annotation>
 			<documentation>A container with all definitions related to the audioContents and
@@ -4700,14 +4918,12 @@
 		</attribute>
 		<attribute name="version" type="string">
 			<annotation>
-				<documentation>To provide a version of the extended audio format data in
-					use</documentation>
+				<documentation>To provide a version of the extended audio format data
+				</documentation>
 			</annotation>
 		</attribute>
 	</complexType>
-
 	<!-- AUDIO PROGRAMME -->
-
 	<element name="audioProgramme" type="ebucore:audioProgrammeType">
 		<annotation>
 			<documentation> A set of one or more audioContent that derive from the same material,
@@ -4808,7 +5024,6 @@
 			</annotation>
 		</attribute>
 	</complexType>
-
 	<complexType name="audioProgrammeReferenceScreenType">
 		<sequence>
 			<element name="aspectRatio" type="float" minOccurs="0" maxOccurs="1">
@@ -4832,7 +5047,6 @@
 			</element>
 		</sequence>
 	</complexType>
-
 	<complexType name="screenCentrePositionType">
 		<simpleContent>
 			<extension base="float">
@@ -4869,7 +5083,6 @@
 			</extension>
 		</simpleContent>
 	</complexType>
-
 	<complexType name="screenWidthType">
 		<simpleContent>
 			<extension base="float">
@@ -4886,9 +5099,7 @@
 			</extension>
 		</simpleContent>
 	</complexType>
-
 	<!-- AUDIO CONTENT -->
-
 	<element name="audioContent" type="ebucore:audioContentType">
 		<annotation>
 			<documentation>An audioContent element defines one component of a programme (e.g.
@@ -4897,7 +5108,6 @@
 				loudness parameters. </documentation>
 		</annotation>
 	</element>
-
 	<complexType name="audioContentType">
 		<sequence>
 			<element name="audioObjectIDRef" type="IDREF" minOccurs="0" maxOccurs="unbounded">
@@ -4934,36 +5144,59 @@
 			</annotation>
 		</attribute>
 	</complexType>
-
 	<complexType name="dialogueType">
 		<simpleContent>
 			<extension base="int">
-				<attribute name="nonDialogueContentKind" type="int">
+				<attribute name="nonDialogueContentKind">
 					<annotation>
 						<documentation>Numerical ID for the kind of non-dialogue content: 0 -
 							undefined 1 - music 2 - effect </documentation>
 					</annotation>
+					<simpleType>
+						<restriction base="int">
+							<enumeration value="0"/>
+							<enumeration value="1"/>
+							<enumeration value="2"/>
+						</restriction>
+					</simpleType>
 				</attribute>
-				<attribute name="dialogueContentKind" type="int">
+				<attribute name="dialogueContentKind">
 					<annotation>
 						<documentation>Numerical ID for the kind of dialogue content: 0 - undefined
 							1 - (storyline) dialogue 2 - voiceover 3 - spoken subtitle 4 - audio
 							description/visually impaired 5 - commentary 6 - emergency
 						</documentation>
 					</annotation>
+					<simpleType>
+						<restriction base="int">
+							<enumeration value="0"/>
+							<enumeration value="1"/>
+							<enumeration value="2"/>
+							<enumeration value="3"/>
+							<enumeration value="4"/>
+							<enumeration value="5"/>
+							<enumeration value="6"/>
+						</restriction>
+					</simpleType>
 				</attribute>
-				<attribute name="mixedContentKind" type="int">
+				<attribute name="mixedContentKind">
 					<annotation>
 						<documentation>Numerical ID for the kind of mixed content: 0 - undefined 1 -
 							complete main 2 - mixed 3 - hearing impaired </documentation>
 					</annotation>
+					<simpleType>
+						<restriction base="int">
+							<enumeration value="0"/>
+							<enumeration value="1"/>
+							<enumeration value="2"/>
+							<enumeration value="3"/>
+						</restriction>
+					</simpleType>
 				</attribute>
 			</extension>
 		</simpleContent>
 	</complexType>
-
 	<!-- AUDIO OBJECT -->
-
 	<element name="audioObject" type="ebucore:audioObjectType">
 		<annotation>
 			<documentation>Establish the relationship between the content using track UIDs and the
@@ -5055,17 +5288,30 @@
 					timecodes. </documentation>
 			</annotation>
 		</attribute>
-		<attribute name="dialogue" type="int" default="0">
+		<attribute name="dialogue" default="0">
 			<annotation>
 				<documentation>1 if object is dialogue, 0 if not, 2 if mixed. Default =
 					0.</documentation>
 			</annotation>
+			<simpleType>
+				<restriction base="int">
+					<enumeration value="0"/>
+					<enumeration value="1"/>
+					<enumeration value="2"/>
+				</restriction>
+			</simpleType>
 		</attribute>
-		<attribute name="importance" type="int">
+		<attribute name="importance">
 			<annotation>
 				<documentation>Importance of an object. Allows a render to discard an object below a
 					certain level of importance. 10 is most, 0 least. Default = 10.</documentation>
 			</annotation>
+			<simpleType>
+				<restriction base="int">
+					<minInclusive value="0"/>
+					<maxInclusive value="10"/>
+				</restriction>
+			</simpleType>
 		</attribute>
 		<attribute name="interact" type="boolean">
 			<annotation>
@@ -5079,7 +5325,6 @@
 			</annotation>
 		</attribute>
 	</complexType>
-
 	<complexType name="audioObjectInteractionType">
 		<sequence>
 			<element name="gainInteractionRange" minOccurs="0" maxOccurs="2"
@@ -5115,7 +5360,6 @@
 			</annotation>
 		</attribute>
 	</complexType>
-
 	<complexType name="gainInteractionRangeType">
 		<simpleContent>
 			<extension base="float">
@@ -5131,7 +5375,6 @@
 			</extension>
 		</simpleContent>
 	</complexType>
-
 	<complexType name="positionInteractionRangeType">
 		<simpleContent>
 			<extension base="float">
@@ -5151,7 +5394,6 @@
 			</extension>
 		</simpleContent>
 	</complexType>
-
 	<!-- AUDIO PACK -->
 	<element name="audioPackFormat" type="ebucore:audioPackFormatType">
 		<annotation>
@@ -5175,55 +5417,78 @@
 	</element>
 	<complexType name="audioPackFormatType">
 		<sequence>
-			<element name="encodePackFormatIDRef" type="IDREF" minOccurs="0" maxOccurs="unbounded">
+			<element name="audioChannelFormatIDRef" type="IDREF" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
-					<documentation> Reference to an encoding matrix audioPackFormat from a decoding
-						matrix. </documentation>
+					<documentation> A set of references to audioChannels. </documentation>
 				</annotation>
 			</element>
-			<element name="decodePackFormatIDRef" type="IDREF" minOccurs="0" maxOccurs="unbounded">
+			<element name="audioPackFormatIDRef" type="IDREF" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
-					<documentation> Reference to a decoding matrix audioPackFormat from an encoding
-						matrix. </documentation>
+					<documentation> A set of references to audio packs. </documentation>
 				</annotation>
 			</element>
-			<element name="inputPackFormatIDRef" type="IDREF" minOccurs="0" maxOccurs="unbounded">
-				<annotation>
-					<documentation> Reference to a channel-based (DirectSpeakers) input
-						audioPackFormat. </documentation>
-				</annotation>
-			</element>
-			<element name="outputPackFormatIDRef" type="IDREF"  minOccurs="0" maxOccurs="unbounded">
-				<annotation>
-					<documentation> Reference to a channel-based (DirectSpeakers) matrix decoded
-						audioPackFormat. </documentation>
-				</annotation>
-			</element>
-			<element name="normalization" type="string" minOccurs="0">
-				<annotation>
-					<documentation> Indicates the normalization scheme of the HOA content (N3D,
-						SN3D, FuMa). </documentation>
-				</annotation>
-			</element>
-			<element name="nfcRefDist" type="integer" minOccurs="0">
-				<annotation>
-					<documentation> Indicates the reference distance of the loudspeaker setup for
-						near-field compensation (NFC). If no nfcRefDist is defined or the value is
-						0, NFC is not necessary. </documentation>
-				</annotation>
-			</element>
-			<element name="screenRef" type="boolean" minOccurs="0">
-				<annotation>
-					<documentation> Indicates whether the content is screen-related (flag is equal
-						to 1) or not (flag is equal to 0) </documentation>
-				</annotation>
-			</element>
+			<choice>
+				<sequence>
+					<annotation>
+						<documentation> if audioPackFormat.typeDefinition=="Matrix" </documentation>
+					</annotation>
+					<!-- EXTENSIONS 2017_05_15 - SOURCE ITU -->
+					<element name="encodePackFormatIDRef" type="IDREF" minOccurs="0"
+						maxOccurs="unbounded">
+						<annotation>
+							<documentation> Reference to an encoding matrix audioPackFormat from a
+								decoding matrix. </documentation>
+						</annotation>
+					</element>
+					<element name="decodePackFormatIDRef" type="IDREF" minOccurs="0"
+						maxOccurs="unbounded">
+						<annotation>
+							<documentation> Reference to a decoding matrix audioPackFormat from an
+								encoding matrix. </documentation>
+						</annotation>
+					</element>
+					<element name="inputPackFormatIDRef" type="IDREF" minOccurs="0"
+						maxOccurs="unbounded">
+						<annotation>
+							<documentation> Reference to a channel-based (DirectSpeakers) input
+								audioPackFormat. </documentation>
+						</annotation>
+					</element>
+					<element name="outputPackFormatIDRef" type="IDREF" minOccurs="0"
+						maxOccurs="unbounded">
+						<annotation>
+							<documentation> Reference to a channel-based (DirectSpeakers) matrix
+								decoded audioPackFormat. </documentation>
+						</annotation>
+					</element>
+				</sequence>
+				<sequence>
+					<annotation>
+						<documentation> if audioPackFormat.typeDefinition=="HOA" </documentation>
+					</annotation>
+					<!-- EXTENSIONS 2017_05_15 - SOURCE ITU -->
+					<element name="normalization" type="string" minOccurs="0">
+						<annotation>
+							<documentation> Indicates the normalization scheme of the HOA content
+								(N3D, SN3D, FuMa). </documentation>
+						</annotation>
+					</element>
+					<element name="nfcRefDist" type="integer" minOccurs="0">
+						<annotation>
+							<documentation> Indicates the reference distance of the loudspeaker
+								setup for near-field compensation (NFC). If no nfcRefDist is defined
+								or the value is 0, NFC is not necessary. </documentation>
+						</annotation>
+					</element>
+					<element name="screenRef" type="boolean" minOccurs="0">
+						<annotation>
+							<documentation> Indicates whether the content is screen-related (flag is
+								equal to 1) or not (flag is equal to 0) </documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</choice>
 		</sequence>
-		<attribute name="absoluteDistance" type="float">
-			<annotation>
-				<documentation>The absolute distance in metres.</documentation>
-			</annotation>
-		</attribute>
 		<attribute name="audioPackFormatID" type="ID">
 			<annotation>
 				<documentation>A unique ID for an audio pack.</documentation>
@@ -5234,12 +5499,60 @@
 				<documentation>A unique human readable name for an audio pack.</documentation>
 			</annotation>
 		</attribute>
-		<attributeGroup ref="ebucore:typeGroup">
+		<attribute name="typeLabel">
 			<annotation>
-				<documentation>To provide optional information on the type of the audio
-					pack.</documentation>
+				<documentation> Free text to define the type of the associated element.
+				</documentation>
 			</annotation>
-		</attributeGroup>
+			<simpleType>
+				<restriction base="string">
+					<pattern value="\d{4}"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="typeDefinition">
+			<annotation>
+				<documentation> Free text to provide a definition for the type. </documentation>
+			</annotation>
+			<simpleType>
+				<restriction base="string">
+					<enumeration value="DirectSpeakers"/>
+					<enumeration value="Matrix"/>
+					<enumeration value="Objects"/>
+					<enumeration value="HOA"/>
+					<enumeration value="Binaural"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="typeLink" type="anyURI">
+			<annotation>
+				<documentation> A URI to link e.g. to a type in a classification scheme.
+				</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="typeSource" type="string">
+			<annotation>
+				<documentation> To identify a source of attribution. </documentation>
+			</annotation>
+		</attribute>
+		<attribute name="typeNamespace" type="string"/>
+		<attribute name="typeLanguage" type="language">
+			<annotation>
+				<documentation> To define the language in which the type information is provided.
+				</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="typeThesaurus" type="string">
+			<annotation>
+				<documentation> To define the controlled vocabulary where this term is coming from.
+				</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="absoluteDistance" type="float">
+			<annotation>
+				<documentation>The absolute distance in metres.</documentation>
+			</annotation>
+		</attribute>
 		<attribute name="importance" type="int">
 			<annotation>
 				<documentation>Importance of an audio pack. Allows a render to discard an audio pack
@@ -5247,7 +5560,6 @@
 			</annotation>
 		</attribute>
 	</complexType>
-
 	<!-- AUDIO CHANNEL -->
 	<element name="audioChannelFormat" type="ebucore:audioChannelFormatType">
 		<annotation>
@@ -5295,14 +5607,56 @@
 				<documentation>A unique ID for the audio channel</documentation>
 			</annotation>
 		</attribute>
-		<attributeGroup ref="ebucore:typeGroup">
+		<attribute name="typeLabel">
 			<annotation>
-				<documentation>The type of audio channel, whether directSpeakers, Ambisonic, HOA,
-					objects, Matrix. </documentation>
+				<documentation> Free text to define the type of the associated element.
+				</documentation>
 			</annotation>
-		</attributeGroup>
+			<simpleType>
+				<restriction base="string">
+					<pattern value="\d{4}"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="typeDefinition">
+			<annotation>
+				<documentation> Free text to provide a definition for the type. </documentation>
+			</annotation>
+			<simpleType>
+				<restriction base="string">
+					<enumeration value="DirectSpeakers"/>
+					<enumeration value="Matrix"/>
+					<enumeration value="Objects"/>
+					<enumeration value="HOA"/>
+					<enumeration value="Binaural"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="typeLink" type="anyURI">
+			<annotation>
+				<documentation> A URI to link e.g. to a type in a classification scheme.
+				</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="typeSource" type="string">
+			<annotation>
+				<documentation> To identify a source of attribution. </documentation>
+			</annotation>
+		</attribute>
+		<attribute name="typeNamespace" type="string"/>
+		<attribute name="typeLanguage" type="language">
+			<annotation>
+				<documentation> To define the language in which the type information is provided.
+				</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="typeThesaurus" type="string">
+			<annotation>
+				<documentation> To define the controlled vocabulary where this term is coming from.
+				</documentation>
+			</annotation>
+		</attribute>
 	</complexType>
-
 	<element name="frequency">
 		<annotation>
 			<documentation> A frequency expressed in "Hz" defining a value associated to a type e.g.
@@ -5311,14 +5665,19 @@
 		<complexType>
 			<simpleContent>
 				<extension base="int">
-					<attributeGroup ref="ebucore:typeGroup"/>
+					<attribute name="typeLabel">
+						<simpleType>
+							<restriction base="string">
+								<enumeration value="lowPass"/>
+								<enumeration value="highPass"/>
+							</restriction>
+						</simpleType>
+					</attribute>
 				</extension>
 			</simpleContent>
 		</complexType>
 	</element>
-
 	<!-- AUDIO BLOCK -->
-
 	<element name="audioBlockFormat" type="ebucore:audioBlockFormatType">
 		<annotation>
 			<documentation>An audioBlockFormat represents a single sequence of audio samples with
@@ -5337,149 +5696,190 @@
 				0005. </documentation>
 		</annotation>
 	</element>
-
 	<complexType name="audioBlockFormatType">
-		<sequence minOccurs="0" maxOccurs="unbounded">
-			<element name="speakerLabel" minOccurs="0" maxOccurs="unbounded" type="string">
+		<choice>
+			<sequence>
 				<annotation>
-					<documentation>A label to indicate which loudspeaker should be used (e.g.
-						M+30).</documentation>
+					<documentation>If audioChannelFormat.typeDefinition == "DirectSpeakers", use
+						speakerLabel and position</documentation>
+					<documentation>If audioChannelFormat.typeDefinition == "Matrix" / encoding or
+						decoding / use outputChannelIdref and matrix </documentation>
+					<documentation>If audioChannelFormat.typeDefinition == "Matrix" / direct / use
+						speakerLabel and matrix </documentation>
 				</annotation>
-			</element>
-			<element name="position" minOccurs="0" maxOccurs="unbounded" type="ebucore:positionType">
+				<element ref="ebucore:speakerLabel" maxOccurs="unbounded">
+					<annotation>
+						<documentation>A label to indicate which loudspeaker should be used (e.g.
+							M+30).</documentation>
+					</annotation>
+				</element>
+				<element ref="ebucore:position" minOccurs="0" maxOccurs="3">
+					<annotation>
+						<documentation>A set of user defined parameters to define a location in
+							space.</documentation>
+					</annotation>
+				</element>
+				<element ref="ebucore:matrix" minOccurs="0">
+					<annotation>
+						<documentation>A set of coefficients that refer to other channels to define
+							a matrix.</documentation>
+					</annotation>
+				</element>
+				<!-- EXTENSIONS 2017_05_15 - SOURCE ITU -->
+				<element name="outputChannelIDRef" type="IDREF">
+					<annotation>
+						<documentation> For defining a decoding or direct matrix, this is the
+							DirectSpeakers type output audioChannelFormat that defines the channel
+							being decoded to. </documentation>
+					</annotation>
+				</element>
+			</sequence>
+			<sequence>
+				<choice>
+					<sequence>
+						<annotation>
+							<documentation>If audioChannelFormat.typeDefinition ==
+								"Objects"</documentation>
+						</annotation>
+						<element name="cartesian" type="boolean" minOccurs="0">
+							<annotation>
+								<documentation>Set to true if cartesian coordinates used, false
+									(default) for spherical.</documentation>
+							</annotation>
+						</element>
+						<element name="gain" type="float" default="1.0" minOccurs="0">
+							<annotation>
+								<documentation>Set a multiplication factor for the audio samples in
+									the block.</documentation>
+							</annotation>
+						</element>
+						<element name="diffuse" default="0" minOccurs="0">
+							<annotation>
+								<documentation>Set to 1 if diffuse, 0 if direct.</documentation>
+							</annotation>
+							<simpleType>
+								<restriction base="int">
+									<enumeration value="0"/>
+									<enumeration value="1"/>
+								</restriction>
+							</simpleType>
+						</element>
+						<element name="width" type="float" default="0.0" minOccurs="0">
+							<annotation>
+								<documentation>Width of object in degrees along azimuth axis if
+									using polar coordinates, and in the X-axis if using Cartesian
+									coordinates.</documentation>
+							</annotation>
+						</element>
+						<element name="height" type="float" default="0.0" minOccurs="0">
+							<annotation>
+								<documentation>Height of object in degrees along elevation axis if
+									using polar coordinates, and in the Z-axis if using Cartesian
+									coordinates.</documentation>
+							</annotation>
+						</element>
+						<element name="depth" type="float" default="0.0" minOccurs="0">
+							<annotation>
+								<documentation>Depth of object along distance line as a normalised
+									distance if using polar coordinates, and in the Y-axis if using
+									Cartesian coordinates</documentation>
+							</annotation>
+						</element>
+						<element name="channelLock" type="ebucore:channelLockType" minOccurs="0">
+							<annotation>
+								<documentation>If set to 1 a renderer can lock the object to the
+									nearest channel or speaker, rather than normal rendering. The
+									optional maxDistance attribute defines the radius of a sphere
+									around the object’s position. If one or more speakers exist in
+									the defined sphere or on its surface, the object snaps to the
+									nearest speaker. If maxDistance is undefined, a default value of
+									infinity is assumed, meaning that the object should snap to the
+									nearest of all speakers</documentation>
+							</annotation>
+						</element>
+						<element name="objectDivergence" type="ebucore:objectDivergenceType"
+							minOccurs="0">
+							<annotation>
+								<documentation>Sets the divergence of an object where 0.0 means all
+									sound in the direction of the object and 1.0 means all sound
+									from the virtual objects placed at an angle set by the
+									azimuthRange attribute value.</documentation>
+							</annotation>
+						</element>
+						<element name="jumpPosition" type="ebucore:jumpPositionType" minOccurs="0">
+							<annotation>
+								<documentation>If set to 1 the position will be interpolated over a
+									period set by the attribute interpolationLength. If set to 0
+									then interpolation will take the entire length of the block. An
+									interpolationLength value of zero will mean the object jumps
+									without interpolation.</documentation>
+							</annotation>
+						</element>
+						<element name="zoneExclusion" type="ebucore:zoneExclusionType" minOccurs="0">
+							<annotation>
+								<documentation>Allows 3D zones to be exluded from rendering. So any
+									speakers that exist within the excluded zone will not be
+									used.</documentation>
+							</annotation>
+						</element>
+						<element name="importance" type="int" minOccurs="0">
+							<annotation>
+								<documentation>A value from 0 to 10 (most) to indicate the
+									importance of the object.</documentation>
+							</annotation>
+						</element>
+					</sequence>
+					<sequence>
+						<annotation>
+							<documentation>If audioChannelFormat.typeDefinition ==
+								"HOA"</documentation>
+						</annotation>
+						<element name="degree" type="int" minOccurs="0">
+							<annotation>
+								<documentation>Degree for the ambisonic component.</documentation>
+							</annotation>
+						</element>
+						<element name="order" type="int" minOccurs="0">
+							<annotation>
+								<documentation>Order for the ambisonic component.</documentation>
+							</annotation>
+						</element>
+						<element name="equation" type="string" minOccurs="0">
+							<annotation>
+								<documentation>Equation of the ambisonic component.</documentation>
+							</annotation>
+						</element>
+						<!-- EXTENSIONS 2017_05_15 - SOURCE ITU -->
+						<element name="nfcRefDist" type="integer" minOccurs="0">
+							<annotation>
+								<documentation> Indicates the reference distance of the loudspeaker
+									setup for near-field compensation (NFC). If no nfcRefDist is
+									defined or the value is 0, NFC is not necessary.
+								</documentation>
+							</annotation>
+						</element>
+						<element name="normalization" type="string" minOccurs="0">
+							<annotation>
+								<documentation> Indicates the normalization scheme of the HOA
+									content (N3D, SN3D, FuMa). </documentation>
+							</annotation>
+						</element>
+					</sequence>
+				</choice>
+				<element name="screenRef" type="boolean" minOccurs="0">
+					<annotation>
+						<documentation>Set to true if the object is related to the screen, false if
+							not.</documentation>
+					</annotation>
+				</element>
+			</sequence>
+			<sequence>
 				<annotation>
-					<documentation>A set of user defined parameters to define a location in
-						space.</documentation>
+					<documentation>If audioChannelFormat.typeDefinition ==
+						"Binaural"</documentation>
 				</annotation>
-			</element>
-			<element name="matrix" minOccurs="0" maxOccurs="1" type="ebucore:matrixType">
-				<annotation>
-					<documentation>A set of coefficients that refer to other channels to define a
-						matrix.</documentation>
-				</annotation>
-			</element>
-			<element name="cartesian" minOccurs="0" maxOccurs="1" type="boolean">
-				<annotation>
-					<documentation>Set to true if cartesian coordinates used, false (default) for
-						spherical.</documentation>
-				</annotation>
-			</element>
-			<element name="gain" minOccurs="0" maxOccurs="1" type="float">
-				<annotation>
-					<documentation>Set a gain value for the audio samples in the
-						block.</documentation>
-				</annotation>
-			</element>
-			<element name="diffuse" minOccurs="0" maxOccurs="1" type="float">
-				<annotation>
-					<documentation>Set to 1 if diffuse, 0 if direct.</documentation>
-				</annotation>
-			</element>
-			<element name="width" minOccurs="0" maxOccurs="1" type="float">
-				<annotation>
-					<documentation>Width of object in degrees along azimuth axis if using polar
-						coordinates, and in the X-axis if using Cartesian
-						coordinates.</documentation>
-				</annotation>
-			</element>
-			<element name="height" minOccurs="0" maxOccurs="1" type="float">
-				<annotation>
-					<documentation>Height of object in degrees along elevation axis if using polar
-						coordinates, and in the Z-axis if using Cartesian
-						coordinates.</documentation>
-				</annotation>
-			</element>
-			<element name="depth" minOccurs="0" maxOccurs="1" type="float">
-				<annotation>
-					<documentation>Depth of object along distance line as a normalised distance if
-						using polar coordinates, and in the Y-axis if using Cartesian
-						coordinates</documentation>
-				</annotation>
-			</element>
-			<element name="channelLock" minOccurs="0" maxOccurs="1" type="ebucore:channelLockType">
-				<annotation>
-					<documentation>If set to 1 a renderer can lock the object to the nearest channel
-						or speaker, rather than normal rendering. The optional maxDistance attribute
-						defines the radius of a sphere around the object’s position. If one or more
-						speakers exist in the defined sphere or on its surface, the object snaps to
-						the nearest speaker. If maxDistance is undefined, a default value of
-						infinity is assumed, meaning that the object should snap to the nearest of
-						all speakers</documentation>
-				</annotation>
-			</element>
-			<element name="objectDivergence" minOccurs="0" maxOccurs="1"
-				type="ebucore:objectDivergenceType">
-				<annotation>
-					<documentation>Sets the divergence of an object where 0.0 means all sound in the
-						direction of the object and 1.0 means all sound from the virtual objects
-						placed at an angle set by the azimuthRange attribute value.</documentation>
-				</annotation>
-			</element>
-			<element name="jumpPosition" minOccurs="0" maxOccurs="1" type="ebucore:jumpPositionType">
-				<annotation>
-					<documentation>If set to 1 the position will be interpolated over a period set
-						by the attribute interpolationLength. If set to 0 then interpolation will
-						take the entire length of the block. An interpolationLength value of zero
-						will mean the object jumps without interpolation.</documentation>
-				</annotation>
-			</element>
-			<element name="zoneExclusion" minOccurs="0" maxOccurs="1"
-				type="ebucore:zoneExclusionType">
-				<annotation>
-					<documentation>Allows 3D zones to be exluded from rendering. So any speakers
-						that exist within the excluded zone will not be used.</documentation>
-				</annotation>
-			</element>
-			<element name="screenRef" minOccurs="0" maxOccurs="1" type="boolean">
-				<annotation>
-					<documentation>Indicates whether the content is screen-related (flag is equal to
-						1) or not (flag is equal to 0).</documentation>
-				</annotation>
-			</element>
-			<element name="importance" minOccurs="0" maxOccurs="1" type="int">
-				<annotation>
-					<documentation>A value from 0 to 10 (most) to indicate the importance of the
-						object.</documentation>
-				</annotation>
-			</element>
-			<element name="equation" minOccurs="0" maxOccurs="1" type="string">
-				<annotation>
-					<documentation>Equation of the ambisonic component.</documentation>
-				</annotation>
-			</element>
-			<element name="degree" minOccurs="0" maxOccurs="1" type="int">
-				<annotation>
-					<documentation>Degree for the ambisonic component.</documentation>
-				</annotation>
-			</element>
-			<element name="order" minOccurs="0" maxOccurs="1" type="int">
-				<annotation>
-					<documentation>Order for the ambisonic component.</documentation>
-				</annotation>
-			</element>
-
-			<!-- EXTENSIONS 2017_05_15 - SOURCE ITU -->
-			<element name="normalization" type="string" minOccurs="0">
-				<annotation>
-					<documentation> Indicates the normalization scheme of the HOA content (N3D,
-						SN3D, FuMa). </documentation>
-				</annotation>
-			</element>
-			<element name="nfcRefDist" type="integer" minOccurs="0">
-				<annotation>
-					<documentation> Indicates the reference distance of the loudspeaker setup for
-						near-field compensation (NFC). If no nfcRefDist is defined or the value is
-						0, NFC is not necessary. </documentation>
-				</annotation>
-			</element>
-			<element name="outputChannelIDRef" type="IDREF">
-				<annotation>
-					<documentation> For defining a decoding or direct matrix, this is the
-						DirectSpeakers type output audioChannelFormat that defines the channel being
-						decoded to. </documentation>
-				</annotation>
-			</element>
-		</sequence>
+			</sequence>
+		</choice>
 		<attribute name="audioBlockFormatID" type="ID">
 			<annotation>
 				<documentation> A unique ID for the audio block. </documentation>
@@ -5525,34 +5925,58 @@
 			</annotation>
 		</attribute>
 	</complexType>
-
-	<!-- audioBlockFormat types -->
-
+	<!-- audioBlockFormat elements and types -->
+	<element name="speakerLabel" type="string"/>
+	<element name="matrix" type="ebucore:matrixType"/>
+	<element name="position" type="ebucore:positionType"/>
 	<complexType name="positionType">
 		<simpleContent>
 			<extension base="float">
-				<attribute name="coordinate" type="string">
+				<attribute name="coordinate">
 					<annotation>
 						<documentation>The axis used, either azimuth, elevation or distance (for
 							polar); or X, Y or Z (for Cartesian)</documentation>
 					</annotation>
+					<simpleType>
+						<restriction base="string">
+							<enumeration value="azimuth"/>
+							<enumeration value="elevation"/>
+							<enumeration value="distance"/>
+							<enumeration value="X"/>
+							<enumeration value="Y"/>
+							<enumeration value="Z"/>
+						</restriction>
+					</simpleType>
 				</attribute>
-				<attribute name="bound" type="string">
+				<attribute name="bound">
 					<annotation>
 						<documentation>Set to "min" or "max" to set the bound of the
 							position.</documentation>
 					</annotation>
+					<simpleType>
+						<restriction base="string">
+							<enumeration value="min"/>
+							<enumeration value="max"/>
+						</restriction>
+					</simpleType>
 				</attribute>
-				<attribute name="screenEdgeLock" type="string">
+				<attribute name="screenEdgeLock">
 					<annotation>
 						<documentation>Set to "left", "right", "top" or "bottom" to indicate which
 							edge of the screen to lock the position to.</documentation>
 					</annotation>
+					<simpleType>
+						<restriction base="string">
+							<enumeration value="left"/>
+							<enumeration value="right"/>
+							<enumeration value="top"/>
+							<enumeration value="bottom"/>
+						</restriction>
+					</simpleType>
 				</attribute>
 			</extension>
 		</simpleContent>
 	</complexType>
-
 	<complexType name="matrixType">
 		<sequence>
 			<element name="coefficient" type="ebucore:coefficientType" minOccurs="1"
@@ -5564,7 +5988,6 @@
 			</element>
 		</sequence>
 	</complexType>
-
 	<complexType name="coefficientType">
 		<simpleContent>
 			<extension base="IDREF">
@@ -5591,6 +6014,7 @@
 						<documentation>Phase shift of another channel. Variable.</documentation>
 					</annotation>
 				</attribute>
+				<!-- EXTENSIONS 2017_05_15 - SOURCE ITU -->
 				<attribute name="delay" type="string">
 					<annotation>
 						<documentation>Time delay of another channel. Constant
@@ -5605,7 +6029,6 @@
 			</extension>
 		</simpleContent>
 	</complexType>
-
 	<complexType name="objectDivergenceType">
 		<simpleContent>
 			<extension base="float">
@@ -5618,9 +6041,7 @@
 						</documentation>
 					</annotation>
 				</attribute>
-
 				<!-- EXTENSIONS 2017_05_15 - SOURCE ITU -->
-
 				<attribute name="positionRange" type="float">
 					<annotation>
 						<documentation> Adjusts the balance between the object’s specified position
@@ -5633,7 +6054,6 @@
 			</extension>
 		</simpleContent>
 	</complexType>
-
 	<complexType name="channelLockType">
 		<simpleContent>
 			<extension base="boolean">
@@ -5646,7 +6066,6 @@
 			</extension>
 		</simpleContent>
 	</complexType>
-
 	<complexType name="jumpPositionType">
 		<simpleContent>
 			<extension base="boolean">
@@ -5658,7 +6077,6 @@
 			</extension>
 		</simpleContent>
 	</complexType>
-
 	<complexType name="zoneExclusionType">
 		<sequence>
 			<element name="zone" minOccurs="1" maxOccurs="unbounded" type="ebucore:zoneType">
@@ -5670,7 +6088,6 @@
 			</element>
 		</sequence>
 	</complexType>
-
 	<complexType name="zoneType">
 		<simpleContent>
 			<extension base="string">
@@ -5680,6 +6097,7 @@
 				<attribute name="maxY" type="float"/>
 				<attribute name="minZ" type="float"/>
 				<attribute name="maxZ" type="float"/>
+				<!-- EXTENSIONS 2017_05_15 - SOURCE ITU -->
 				<attribute name="minElevation" type="float"/>
 				<attribute name="maxElevation" type="float"/>
 				<attribute name="minAzimuth" type="float"/>
@@ -5687,10 +6105,7 @@
 			</extension>
 		</simpleContent>
 	</complexType>
-
 	<!-- AUDIO STREAM -->
-
-
 	<element name="audioStreamFormat" type="ebucore:audioStreamFormatType">
 		<annotation>
 			<documentation xml:lang="en">A combination of tracks (or one track) required to
@@ -5737,9 +6152,7 @@
 			</annotation>
 		</attributeGroup>
 	</complexType>
-
 	<!-- AUDIO TRACK -->
-
 	<element name="audioTrackFormat" type="ebucore:audioTrackFormatType">
 		<annotation>
 			<documentation xml:lang="en">An audioTrack object defines a component of an audioStream.
@@ -5770,12 +6183,8 @@
 		</attribute>
 		<attributeGroup ref="ebucore:formatGroup"/>
 	</complexType>
-
-
 	<!-- AUDIO TRACK UID -->
-
 	<element name="audioTrackUID" type="ebucore:audioTrackUIDType"/>
-
 	<complexType name="audioTrackUIDType">
 		<sequence>
 			<element name="audioMXFLookUp" type="ebucore:audioMXFLookUpType" minOccurs="0"
@@ -5811,7 +6220,6 @@
 			</annotation>
 		</attribute>
 	</complexType>
-
 	<complexType name="audioMXFLookUpType">
 		<annotation>
 			<documentation>A set of references to lookup MXF essence IDs.</documentation>
@@ -5834,7 +6242,6 @@
 			</element>
 		</sequence>
 	</complexType>
-
 	<simpleType name="PackageIDType">
 		<annotation>
 			<documentation> The pattern for providing package IDs. </documentation>
@@ -5843,7 +6250,6 @@
 			<pattern value="urn:smpte:umid:([0-9a-fA-F]{8}\.){7}[0-9a-fA-F]{8}"/>
 		</restriction>
 	</simpleType>
-
 	<complexType name="loudnessMetadataType">
 		<annotation>
 			<documentation> A set of loudness parameters </documentation>
@@ -5851,32 +6257,33 @@
 		<sequence>
 			<element name="integratedLoudness" type="float" minOccurs="0">
 				<annotation>
-					<documentation> Integrated loudness value. </documentation>
+					<documentation> Integrated loudness value in LUFS (Loudness Unit Full Scale).
+					</documentation>
 				</annotation>
 			</element>
 			<element name="loudnessRange" type="float" minOccurs="0">
 				<annotation>
-					<documentation> Loudness range. </documentation>
+					<documentation> Loudness range in LU (Loudness Unit). </documentation>
 				</annotation>
 			</element>
 			<element name="maxTruePeak" type="float" minOccurs="0">
 				<annotation>
-					<documentation> Maximum true peak. </documentation>
+					<documentation> Maximum true peak in dBTP (decibel True Peak. </documentation>
 				</annotation>
 			</element>
 			<element name="maxMomentary" type="float" minOccurs="0">
 				<annotation>
-					<documentation> Maximum momentary loudness. </documentation>
+					<documentation> Maximum momentary loudness in LU. </documentation>
 				</annotation>
 			</element>
 			<element name="maxShortTerm" type="float" minOccurs="0">
 				<annotation>
-					<documentation> Maximum short term loudness. </documentation>
+					<documentation> Maximum short term loudness in LU. </documentation>
 				</annotation>
 			</element>
 			<element name="dialogLoudness" type="float" minOccurs="0">
 				<annotation>
-					<documentation> Dialogue loudness. </documentation>
+					<documentation> Dialogue loudness in LU. </documentation>
 				</annotation>
 			</element>
 		</sequence>
@@ -5898,9 +6305,7 @@
 			</annotation>
 		</attribute>
 	</complexType>
-
 	<!-- GENERAL TYPES -->
-
 	<simpleType name="timecodeStringType">
 		<annotation>
 			<documentation>The pattern to express the time using timecode compliant with SMPTE
@@ -5930,9 +6335,6 @@
 			</extension>
 		</simpleContent>
 	</complexType>
-
-
-
 	<!-- ############################## -->
 	<!-- TECHNICAL ATTRIBUTES GROUP       -->
 	<!-- ############################## -->
@@ -6031,7 +6433,6 @@
 			</element>
 		</sequence>
 	</group>
-
 	<!-- ######################################### -->
 	<!-- SMPTE S377 SIMPLE DATA TYPES  -->
 	<!-- ######################################## -->
@@ -6248,11 +6649,9 @@
 			</extension>
 		</simpleContent>
 	</complexType>
-
 	<!-- ######################################### -->
 	<!-- EBU SIMPLE DATA TYPES  -->
 	<!-- ######################################## -->
-
 	<complexType name="rationalType">
 		<annotation>
 			<documentation> A complex Type defining the structure of a technical attribute ot type
@@ -6276,7 +6675,6 @@
 			</extension>
 		</simpleContent>
 	</complexType>
-
 	<complexType name="aspectRatioType">
 		<annotation>
 			<documentation>A string to define e.g. the ratio of the picture (the width by the
@@ -6300,7 +6698,6 @@
 			</annotation>
 		</attributeGroup>
 	</complexType>
-
 	<complexType name="technicalAttributeRationalType">
 		<annotation>
 			<documentation> A complex Type defining the structure of a technical attribute ot type
@@ -6333,7 +6730,6 @@
 			</extension>
 		</simpleContent>
 	</complexType>
-
 	<complexType name="versionType">
 		<annotation>
 			<documentation> A complex type to define a version associated with the type of version
@@ -6349,7 +6745,6 @@
 			</extension>
 		</complexContent>
 	</complexType>
-
 	<complexType name="elementType">
 		<complexContent>
 			<extension base="dc:elementType">
@@ -6380,10 +6775,7 @@
 			</extension>
 		</complexContent>
 	</complexType>
-
 	<!-- DYNAMIC METADATA -->
-
-
 	<complexType name="parameterSegmentDataOutputType">
 		<annotation>
 			<documentation> Defines the dynamic parameter/segment metadata extraction format. Each
@@ -6461,8 +6853,8 @@
 							</attribute>
 							<attribute name="unit" type="string">
 								<annotation>
-									<documentation> An attribute to specify the unit in which the interval is
-										expressed. </documentation>
+									<documentation> An attribute to specify the unit in which the
+										interval is expressed. </documentation>
 								</annotation>
 							</attribute>
 						</extension>
@@ -6472,8 +6864,6 @@
 		</sequence>
 		<attribute name="name" type="string"/>
 	</complexType>
-
-
 	<complexType name="segmentParameterType">
 		<annotation>
 			<documentation> A complexType to determine a time segment and its associated parameter
@@ -6502,12 +6892,12 @@
 									</documentation>
 								</annotation>
 							</attribute>
-                            <attribute name="unit" type="string">
-                                <annotation>
-                                    <documentation> An attribute to specify the unit in which the interval is
-                                        expressed. </documentation>
-                                </annotation>
-                            </attribute>
+							<attribute name="unit" type="string">
+								<annotation>
+									<documentation> An attribute to specify the unit in which the
+										interval is expressed. </documentation>
+								</annotation>
+							</attribute>
 						</extension>
 					</simpleContent>
 				</complexType>
@@ -6526,7 +6916,6 @@
 			</annotation>
 		</attribute>
 	</complexType>
-
 	<simpleType name="valueListType">
 		<annotation>
 			<documentation> a common simple type to support an unbounded space separated list of
@@ -6534,9 +6923,7 @@
 		</annotation>
 		<list itemType="string"/>
 	</simpleType>
-
 	<!-- OTHERS -->
-
 	<element name="comment">
 		<annotation>
 			<documentation> To provide additional contextual information. </documentation>
