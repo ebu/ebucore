@@ -3,9 +3,9 @@
 	xmlns:dc="http://purl.org/dc/elements/1.1/" targetNamespace="urn:ebu:metadata-schema:ebuCore"
 	elementFormDefault="qualified" version="1.8">
 	<import namespace="http://www.w3.org/XML/1998/namespace"
-		schemaLocation="https://www.ebu.ch/metadata/schemas/EBUCore/xml.xsd"/>
+		schemaLocation="http://www.w3.org/2001/xml.xsd"/>
 	<import namespace="http://purl.org/dc/elements/1.1/"
-		schemaLocation="https://www.ebu.ch/metadata/schemas/EBUCore/simpledc20021212.xsd"/>
+		schemaLocation="http://dublincore.org/schemas/xmls/simpledc20021212.xsd"/>
 	<annotation>
 		<documentation> The following Creative Commons Rights apply to the use of this EBU resource:
 			http://creativecommons.org/licenses/by-nc-sa/3.0/ Owner: EBU Technical Department
@@ -30,6 +30,7 @@
 		<documentation> refined definitions</documentation>
 		<documentation> New writingLibraryName and writingLibraryVersion to provide a name and
 			version of a tool used to generate data. </documentation>
+		<documentation> Changed import declarations for xml.xsd and simpledc now pointing at respective source locations. </documentation>
 	</annotation>
 
 	<element name="ebuCoreMain" type="ebucore:ebuCoreMainType"/>
@@ -853,8 +854,7 @@
 						</complexType>
 					</element>
 					<element name="dishName" type="string" minOccurs="0">
-						<!-- use text element with lang -->
-					</element>
+						<!-- use text element with lang --> </element>
 					<element name="dishDescription" type="ebucore:elementType" minOccurs="0"> </element>
 					<element name="foodIngredient" type="ebucore:elementType" minOccurs="0"> </element>
 
@@ -5151,7 +5151,7 @@
 					</documentation>
 				</annotation>
 			</element>
-			<element name="dialogue" type="ebucore:dialogueType">
+			<element name="dialogue" type="ebucore:dialogueType" minOccurs="0">
 				<annotation>
 					<documentation>A set of values to categorise the presence of dialogue and its
 						type.</documentation>
@@ -5731,11 +5731,11 @@
 			<sequence>
 				<annotation>
 					<documentation>If audioChannelFormat.typeDefinition == "DirectSpeakers", use
-						speakerLabel and position</documentation>
+						speakerLabel and position, Do not use outputChannelIDRef.</documentation>
 					<documentation>If audioChannelFormat.typeDefinition == "Matrix" / encoding or
-						decoding / use outputChannelIdref and matrix </documentation>
+						decoding / use outputChannelIdref, matrix and outputChannelIdRef </documentation>
 					<documentation>If audioChannelFormat.typeDefinition == "Matrix" / direct / use
-						speakerLabel and matrix </documentation>
+						speakerLabel, matrix and outputChannelIdRef </documentation>
 				</annotation>
 				<element ref="ebucore:speakerLabel" maxOccurs="unbounded">
 					<annotation>
@@ -5756,7 +5756,7 @@
 					</annotation>
 				</element>
 				<!-- EXTENSIONS 2017_05_15 - SOURCE ITU -->
-				<element name="outputChannelIDRef" type="IDREF">
+				<element name="outputChannelIDRef" type="IDREF" minOccurs="0">
 					<annotation>
 						<documentation> For defining a decoding or direct matrix, this is the
 							DirectSpeakers type output audioChannelFormat that defines the channel
@@ -5777,6 +5777,12 @@
 									(default) for spherical.</documentation>
 							</annotation>
 						</element>
+						<element ref="ebucore:position" minOccurs="0" maxOccurs="3">
+							<annotation>
+								<documentation>A set of user defined parameters to define a location in
+									space.</documentation>
+							</annotation>
+						</element>
 						<element name="gain" type="float" default="1.0" minOccurs="0">
 							<annotation>
 								<documentation>Set a multiplication factor for the audio samples in
@@ -5788,9 +5794,11 @@
 								<documentation>Set to 1 if diffuse, 0 if direct.</documentation>
 							</annotation>
 							<simpleType>
-								<restriction base="int">
-									<enumeration value="0"/>
-									<enumeration value="1"/>
+								<restriction base="decimal">
+									<totalDigits value="2"/>
+									<fractionDigits value="1"/>
+									<maxInclusive value="1.0"/>
+									<minInclusive value="0.0"/>
 								</restriction>
 							</simpleType>
 						</element>
