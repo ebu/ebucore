@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ebucore="urn:ebu:metadata-schema:ebuCore"
-	xmlns:dc="http://purl.org/dc/elements/1.1/" targetNamespace="urn:ebu:metadata-schema:ebuCore"
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ebucore="urn:ebu:metadata-schema:ebucore"
+	xmlns:dc="http://purl.org/dc/elements/1.1/" targetNamespace="urn:ebu:metadata-schema:ebucore"
 	elementFormDefault="qualified" version="1.8">
 	<import namespace="http://www.w3.org/XML/1998/namespace"
 		schemaLocation="http://www.w3.org/2001/xml.xsd"/>
@@ -21,7 +21,11 @@
 		<documentation> New Audio and Video Encoding Profiles and levels</documentation>
 		<documentation> New AcquisitionData element for exporting extracting dynamic
 			metadata</documentation>
-		<documentation> Alignment with EBUCore RDF: Artefact, Props, TextLine, etc.</documentation>
+		<documentation> Alignment with EBUCore RDF: artefact, props, costumes, food, textLine, emotions, actions, etc.</documentation>
+		<documentation> New writingLibraryName and writingLibraryVersion to provide a name and
+			version of a tool used to generate data. </documentation>
+		<documentation> Changed import declarations for xml.xsd and simpledc now pointing at respective source locations. </documentation>
+		<documentation> new static HDR metadata in videoFormat - aligned with movie labs' common metadata definitions and SMPTE ST2086. See masteredColorVolume and LightLevel.</documentation>
 		<documentation> AUDIO DATA MODEL - ALIGNMENT WITH ITU</documentation>
 		<documentation> Update of objectDivergence and Zone under audioBlockFormat</documentation>
 		<documentation> Update of audioPackFormat</documentation>
@@ -650,6 +654,16 @@
 						a relation to a contributor. </documentation>
 				</annotation>
 			</element>
+			<element name="emotion" type="ebucore:emotionType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation> To identify emotions associated with a person or character within a scene or a part. </documentation>
+				</annotation>
+			</element>
+			<element name="action" type="ebucore:actionType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation> To identify actions associated with a person or character within a scene or a part. </documentation>
+				</annotation>
+			</element>
 			<element name="part" type="ebucore:partType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation>To identify parts/segments/fragments within the resource. See
@@ -659,6 +673,68 @@
 		</sequence>
 	</complexType>
 
+	<complexType name="emotionType">
+		<sequence>
+			<annotation>
+				<documentation>
+					To describe an emotion and establish a link to a person/character.
+				</documentation>
+			</annotation>
+			<element name="relatedAgent" type="ebucore:entityType">
+				<annotation>
+					<documentation>
+						To identify the person/character associated with the emotion.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="timestamp" type="ebucore:timeType">
+				<annotation>
+					<documentation>
+						A timestamp to precisely define a time point when the emotion was expressed..
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+		<attributeGroup ref="ebucore:typeGroup">
+			<annotation>
+				<documentation>
+					To identify the type of emotion.
+				</documentation>
+			</annotation>
+		</attributeGroup>
+	</complexType>
+
+	<complexType name="actionType">
+		<sequence>
+			<annotation>
+				<documentation>
+					To describe an action and establish a link to a person/character.
+				</documentation>
+			</annotation>
+			<element name="relatedAgent" type="ebucore:entityType">
+				<annotation>
+					<documentation>
+						To identify the person/character associated with the ACtion.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="timestamp" type="ebucore:timeType">
+				<annotation>
+					<documentation>
+						A timestamp to precisely define a time point when the action happened..
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+		<attributeGroup ref="ebucore:typeGroup">
+			<annotation>
+				<documentation>
+					To identify the type of action.
+				</documentation>
+			</annotation>
+		</attributeGroup>
+	</complexType>
+	
 	<complexType name="textLineType">
 		<sequence>
 			<element name="text" type="string">
@@ -667,6 +743,13 @@
 				</annotation>
 			</element>
 			<element name="relatedAgent" type="ebucore:entityType"/>
+			<element name="timestamp" type="ebucore:timeType">
+				<annotation>
+					<documentation>
+						A timestamp to precisely define a time point when the text was used.
+					</documentation>
+				</annotation>
+			</element>
 		</sequence>
 		<attribute name="textLineId" type="string">
 			<annotation>
@@ -764,6 +847,13 @@
 			<element name="maker" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
 			<element name="owner" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
 			<element name="contact" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="timestamp" type="ebucore:timeType">
+				<annotation>
+					<documentation>
+						A timestamp to precisely define a time point when the artefact is used..
+					</documentation>
+				</annotation>
+			</element>
 		</sequence>
 		<attribute name="artefactid" type="string">
 			<annotation>
@@ -3968,9 +4058,33 @@
 						rendering </documentation>
 				</annotation>
 			</element>
+			<element name="flag_360" type="boolean" minOccurs="0">
+				<annotation>
+					<documentation> A flag to indicate if the visual content is 360°. </documentation>
+				</annotation>
+			</element>
+			<element name="flag_multiview" type="boolean" minOccurs="0">
+				<annotation>
+					<documentation> A flag to indicate if the visual content is multi-view. </documentation>
+				</annotation>
+			</element>
 			<element name="filter" type="ebucore:filterType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation> To identify a filter e.g. a noise filter. </documentation>
+				</annotation>
+			</element>
+			<element name="masteredColorVolume" type="ebucore:digitalAssetColorVolumeType" minOccurs="0">
+				<annotation>
+					<documentation>
+						HDR (High Dynamic Range) static metadata.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="lightLevel" type="ebucore:digitalAssetVideoPictureLightLevelType" minOccurs="0">
+				<annotation>
+					<documentation>
+						To indicate the light level. Aligned wit MovieLabs' common metadata set.
+					</documentation>
 				</annotation>
 			</element>
 			<group ref="ebucore:technicalAttributes">
@@ -4027,6 +4141,97 @@
 			</annotation>
 		</attribute>
 	</complexType>
+	
+	<complexType name="digitalAssetColorVolumeType">
+		<annotation>
+			<documentation>HDR (High Dynamic Range) static metadata. Naming similar to MovieLabs' common metadata set and SMPTE 2086.</documentation>
+		</annotation>
+		<sequence>
+			<element name="primaryRChromaticity" type="ebucore:digitalAssetChromaticityType"/>
+			<element name="primaryGChromaticity" type="ebucore:digitalAssetChromaticityType"/>
+			<element name="primaryBChromaticity" type="ebucore:digitalAssetChromaticityType"/>
+			<element name="whitePointChromaticity" type="ebucore:digitalAssetChromaticityType"/>
+			<element name="luminanceMin">
+				<annotation>
+					<documentation>
+						Minimum luminance is expressed in cd/m2.
+					</documentation>
+				</annotation>
+				<simpleType>
+					<restriction base="decimal">
+						<totalDigits value="5"/>
+						<fractionDigits value="4"/>
+						<maxInclusive value="5.0000"/>
+						<minInclusive value="0.0001"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="luminanceMax">
+				<annotation>
+					<documentation>
+						Maximum luminance is expressed in cd/m2.
+					</documentation>
+				</annotation>
+				<simpleType>
+					<restriction base="decimal">
+						<totalDigits value="7"/>
+						<fractionDigits value="2"/>
+						<maxInclusive value="10000.00"/>
+						<minInclusive value="5.00"/>
+					</restriction>
+				</simpleType>
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="digitalAssetChromaticityType">
+		<sequence>
+			<element name="ChromaticityCIEx">
+				<simpleType>
+					<restriction base="decimal">
+						<totalDigits value="5"/>
+						<fractionDigits value="4"/>
+						<maxInclusive value="0.7400"/>
+						<minInclusive value="0.0001"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="ChromaticityCIEy">
+				<simpleType>
+					<restriction base="decimal">
+						<totalDigits value="5"/>
+						<fractionDigits value="4"/>
+						<maxInclusive value="0.7400"/>
+						<minInclusive value="0.0001"/>
+					</restriction>
+				</simpleType>
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="digitalAssetVideoPictureLightLevelType">
+		<sequence>
+			<element name="ContentMax" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<simpleContent>
+						<extension base="nonNegativeInteger">
+							<attribute name="interpretation" type="string"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="FrameAverageMax" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<simpleContent>
+						<extension base="nonNegativeInteger">
+							<attribute name="interpretation" type="string"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+
 	<complexType name="audioFormatType">
 		<annotation>
 			<documentation> To provide a set of audio technical characteristics. </documentation>
