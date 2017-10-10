@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ebucore="urn:ebu:metadata-schema:ebuCore"
-	xmlns:dc="http://purl.org/dc/elements/1.1/" targetNamespace="urn:ebu:metadata-schema:ebuCore"
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ebucore="urn:ebu:metadata-schema:ebucore"
+	xmlns:dc="http://purl.org/dc/elements/1.1/" targetNamespace="urn:ebu:metadata-schema:ebucore"
 	elementFormDefault="qualified" version="1.8">
 	<import namespace="http://www.w3.org/XML/1998/namespace"
 		schemaLocation="http://www.w3.org/2001/xml.xsd"/>
@@ -25,7 +25,7 @@
 		<documentation> New writingLibraryName and writingLibraryVersion to provide a name and
 			version of a tool used to generate data. </documentation>
 		<documentation> Changed import declarations for xml.xsd and simpledc now pointing at respective source locations. </documentation>
-		<documentation> new static HDR metadata in videoFormat - aligned with movie labs' common metadata definitions, Blu-Ray and SMPTE. See masteredColorVolume and lightLevel.</documentation>
+		<documentation> new static HDR metadata in videoFormat - aligned with movie labs' common metadata definitions and SMPTE ST2086. See masteredColorVolume and LightLevel.</documentation>
 		<documentation> AUDIO DATA MODEL - ALIGNMENT WITH ITU</documentation>
 		<documentation> Update of objectDivergence and Zone under audioBlockFormat</documentation>
 		<documentation> Update of audioPackFormat</documentation>
