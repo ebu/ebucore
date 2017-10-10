@@ -32,9 +32,6 @@
 		<documentation> Change pre-existing audioFormatExtendedVersion attribute to "version".
 			Attribute name changed by ITU</documentation>
 		<documentation> refined definitions</documentation>
-		<documentation> New writingLibraryName and writingLibraryVersion to provide a name and
-			version of a tool used to generate data. </documentation>
-		<documentation> Changed import declarations for xml.xsd and simpledc now pointing at respective source locations. </documentation>
 	</annotation>
 
 	<element name="ebuCoreMain" type="ebucore:ebuCoreMainType"/>
