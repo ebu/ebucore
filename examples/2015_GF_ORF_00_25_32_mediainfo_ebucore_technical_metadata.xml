@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated at 2017-12-19T09:24:38Z by MediaInfoLib - v17.10 -->
+<ebucore:ebuCoreMain xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ebucore="urn:ebu:metadata-schema:ebucore" xmlns:xalan="http://xml.apache.org/xalan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:ebu:metadata-schema:ebucore https://www.ebu.ch/metadata/schemas/EBUCore/20171009/ebucore.xsd" version="1.8" writingLibraryName="MediaInfoLib" writingLibraryVersion="17.10" dateLastModified="2017-12-19" timeLastModified="09:24:38Z">
+	<ebucore:coreMetadata>
+		<ebucore:format>
+			<ebucore:videoFormat videoFormatName="AVC">
+				<ebucore:width unit="pixel">1280</ebucore:width>
+				<ebucore:height unit="pixel">720</ebucore:height>
+				<ebucore:frameRate>25</ebucore:frameRate>
+				<ebucore:aspectRatio typeLabel="display">
+					<ebucore:factorNumerator>16</ebucore:factorNumerator>
+					<ebucore:factorDenominator>9</ebucore:factorDenominator>
+				</ebucore:aspectRatio>
+				<ebucore:videoEncoding typeLabel="High@L3.1" />
+				<ebucore:codec>
+					<ebucore:codecIdentifier>
+						<dc:identifier>avc1</dc:identifier>
+					</ebucore:codecIdentifier>
+				</ebucore:codec>
+				<ebucore:bitRate>4945544</ebucore:bitRate>
+				<ebucore:bitRateMax>4999936</ebucore:bitRateMax>
+				<ebucore:bitRateMode>variable</ebucore:bitRateMode>
+				<ebucore:scanningFormat>progressive</ebucore:scanningFormat>
+				<ebucore:videoTrack trackId="1" />
+				<ebucore:technicalAttributeString typeLabel="Standard">PAL</ebucore:technicalAttributeString>
+				<ebucore:technicalAttributeString typeLabel="ColorSpace">YUV</ebucore:technicalAttributeString>
+				<ebucore:technicalAttributeString typeLabel="ChromaSubsampling">4:2:0</ebucore:technicalAttributeString>
+				<ebucore:technicalAttributeString typeLabel="colour_primaries">BT.709</ebucore:technicalAttributeString>
+				<ebucore:technicalAttributeString typeLabel="transfer_characteristics">BT.709</ebucore:technicalAttributeString>
+				<ebucore:technicalAttributeString typeLabel="matrix_coefficients">BT.709</ebucore:technicalAttributeString>
+				<ebucore:technicalAttributeString typeLabel="colour_range">Limited</ebucore:technicalAttributeString>
+				<ebucore:technicalAttributeInteger typeLabel="StreamSize" unit="byte">123638609</ebucore:technicalAttributeInteger>
+				<ebucore:technicalAttributeInteger typeLabel="BitDepth" unit="bit">8</ebucore:technicalAttributeInteger>
+				<ebucore:technicalAttributeBoolean typeLabel="CABAC">true</ebucore:technicalAttributeBoolean>
+				<ebucore:technicalAttributeBoolean typeLabel="MBAFF">false</ebucore:technicalAttributeBoolean>
+			</ebucore:videoFormat>
+			<ebucore:audioFormat audioFormatName="AAC">
+				<ebucore:audioEncoding typeLabel="LC" />
+				<ebucore:codec>
+					<ebucore:codecIdentifier>
+						<dc:identifier>mp4a-40-2</dc:identifier>
+					</ebucore:codecIdentifier>
+				</ebucore:codec>
+				<ebucore:samplingRate>48000</ebucore:samplingRate>
+				<ebucore:bitRate>317375</ebucore:bitRate>
+				<ebucore:bitRateMax>439500</ebucore:bitRateMax>
+				<ebucore:bitRateMode>variable</ebucore:bitRateMode>
+				<ebucore:audioTrack trackId="2" trackLanguage="en" />
+				<ebucore:channels>2</ebucore:channels>
+				<ebucore:technicalAttributeString typeLabel="ChannelPositions">Front: L R</ebucore:technicalAttributeString>
+				<ebucore:technicalAttributeString typeLabel="ChannelLayout">L R</ebucore:technicalAttributeString>
+				<ebucore:technicalAttributeInteger typeLabel="StreamSize" unit="byte">7934554</ebucore:technicalAttributeInteger>
+			</ebucore:audioFormat>
+			<ebucore:containerFormat containerFormatName="MPEG-4">
+				<ebucore:containerEncoding formatLabel="MPEG-4" />
+				<ebucore:codec>
+					<ebucore:codecIdentifier>
+						<dc:identifier>mp42</dc:identifier>
+					</ebucore:codecIdentifier>
+				</ebucore:codec>
+				<ebucore:technicalAttributeString typeLabel="FormatProfile">Base Media / Version 2</ebucore:technicalAttributeString>
+			</ebucore:containerFormat>
+			<ebucore:duration>
+				<ebucore:normalPlayTime>PT3M20.000S</ebucore:normalPlayTime>
+			</ebucore:duration>
+			<ebucore:fileSize>131678854</ebucore:fileSize>
+			<ebucore:fileName>2015_GF_ORF_00_25_32_conv.mp4</ebucore:fileName>
+			<ebucore:locator>D:\Users\Evain\Documents\ESC_2015_all_metadata_and_content\2015_GF_ORF_00_25_32_conv.mp4</ebucore:locator>
+			<ebucore:technicalAttributeInteger typeLabel="OverallBitRate" unit="bps">5267154</ebucore:technicalAttributeInteger>
+			<ebucore:dateCreated startDate="2017-02-06" startTime="11:12:38Z" />
+			<ebucore:dateModified startDate="2017-02-06" startTime="11:12:39Z" />
+		</ebucore:format>
+	</ebucore:coreMetadata>
+</ebucore:ebuCoreMain>

@@ -1,0 +1,49 @@
+{
+  "@context": {
+    "dc": "http://purl.org/dc/elements/1.1/",
+    "default": "urn:ebu:metadata-schema:ebuCore_2012",
+    "ebu": "http://ebu.org/nar-extensions/",
+    "ebucore": "http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#",
+    "esc": "http://www.eurovision.com#",
+    "fims": "http://fims.tv#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "xsi": "http://www.w3.org/2001/XMLSchema-instance"
+  },
+  "@graph": [
+    {
+      "@id": "http://repository-server/BMContent/2083_00_25_32",
+      "@type": "ebucore:BMContentPart",
+      "ebucore:durationTimecode": "00:03:10:00",
+      "ebucore:hasRelatedResource": {
+        "@id": "http://repository-server/BMEssence/2083_00_25_32"
+      },
+      "ebucore:identifier": "033896ec-24d2-4785-82a7-fd3b686078c0",
+      "ebucore:startTimecode": "00:25:32:00",
+      "esc:isPerformer": {
+        "@id": "esc2015_p:2"
+      },
+      "esc:about": "\n                <p>Lisa Angell grew up with a dream of becoming a singer. One day, the young singer took a decision to live from music, performing in piano bars across the French Riviera. Afterwards she recorded her single <em>Des Ann&eacute;es Apr&egrave;s</em> written by Didier Barbelivien (2001). In 2009 invited by the magician Dani Lary on his show, Lisa met Patrick S&eacute;bastien, a very popular showman who produced and wrote songs for her first album <em>Les Divines</em> (2011).</p><p>Lisa's second album <em>Des Mots&hellip;</em> (2013) was introduced by the single <em>Je Saurai T&rsquo;aimer</em>, a cover of the song by Melanie Cohl which itself is the French adaptation of <em>The Power Of Love</em> by Celine Dion. In the same year, Lisa joined the recurring singers of the show <em>Les Chansons D&rsquo;abord</em>, hosted by Natasha St-Pier on France 3.</p><p>Before paying tribute to the songstresses from the 30s, 40s and 50s with her third album<em> Frou-Frou</em> (2014), Lisa and Tony Carreira duetted the song <em>L&rsquo;oiseau Et L&rsquo;enfant</em> for his album.</p><h3 class=\"article-split\">Things you should know about Lisa Angell</h3><p><strong>Three most impressive facts about Lisa Angell</strong></p><ul><li>At the age of eight, Lisa went with her parents to a piano bar, where she was offered to sing in front of public - Lisa's dream came true! The little girl performed <em>O Sole Mio</em>.</li><li>When Lisa Angell went to Moscow to perform at a private party, she discovered that she was going to sing at the Luzhniki Stadium, in front of nearly 50,000 people!</li><li>The proposal to record her first album changed Lisa&rsquo;s plans to leave France and to settle in China.</li></ul><p><strong>Lisa&rsquo;s lucky routine before she goes on stage</strong></p><p>When her daughter is with her, Lisa kisses her on her forehead and the child kisses her back. If Lisa&rsquo;s daughter is not backstage, Lisa has a picture of her. In Vienna, Lisa Angell will sing for her daughter.</p><p><strong>Why is the Eurovision Song Contest important for Lisa?</strong></p><p>The Eurovision Song Contest was always Lisa' dream. When she was a little girl, she used to sing in front of TV for her family, pretending to be a star. In the age of 11, she sang <em>L'oiseau Et L'Enfant</em> (the French winning entry in the 1977 Eurovision Song Contest) during her first regional song contest.</p>\n            ",
+      "esc:lyrics": [
+        {
+          "@language": "en",
+          "@value": "\n                All that remains to me are tears<br />These few notes that come from long ago<br />And the song of our prayers<br />Our hearts that hope<br />And the emptiness under my steps<br /><br />All that remains to me are ashes<br />Of my village plunged into silence<br />I am but a wound <br />A heart without an armour<br />How do I survive after this<br /><br />But I am here, I don’t forget<br />In my village swept away by history<br />And I live here, don’t you forget<br />Erased from maps and memories<br /><br />I remember the laughter of children<br />The voices of men when they left for the field<br />The harvest festivals<br />The smell in the houses<br />The bursts of love and joy<br /><br />But I am here, I don’t forget<br />In my village swept away by history<br /><br />When they arrived<br />Hidden behind their weapons<br />They were thousands<br />They laughed at our tears<br /><br />They wished to destroy<br />Our beliefs and our souls<br />With words of hatred<br />That we did not know<br /><br />I am here tonight<br />In the middle of these ruins<br />To talk to you about hope<br />And to sing life<br />And I swear<br />When the blood will dry<br />That I will rebuild my city<br />More beautiful than before<br /><br />But don’t forget\n            "
+        },
+        "\n                Il ne me reste que des larmes<br />Ces quelques notes venues d'autrefois<br />Et le chant de nos prières<br />Nos cœurs qui espèrent<br />Et le vide sous mes pas<br /><br />Il ne me reste que les cendres <br />De mon village plongé dans le silence <br />Je ne suis qu'une blessure<br />Un cœur sans armure<br />Comment survivre après ça. <br /><br />Mais je suis là, je n’oublie pas<br />Dans mon village balayé par l’histoire<br />Et je vis là, n’oubliez pas<br />Effacé des cartes et des mémoires<br /><br />Je me souviens du rire des enfants<br />La voix des hommes quand ils partaient au champ<br />Les fêtes des moissons<br />L’odeur dans les maisons<br />Les éclats d’amour et de joie<br /><br />Mais je suis là, n’oubliez pas<br />Effacé des cartes et des mémoires<br /><br />Quand ils sont arrivés<br />Cachés derrière leurs armes<br />Ils étaient des milliers<br />Ils riaient de nos larmes<br /><br />Ils ont voulu détruire<br />Nos croyances et nos âmes<br />Avec des mots de haine<br />Que l'on n'connaissait pas.<br /><br />Je suis ici ce soir<br />Au milieu de ces ruines<br />Pour vous parler d'espoir<br />Et vous chanter la vie<br />Et je fais le serment<br />Quand séchera le sang<br />De reconstruire ma ville<br />Bien plus belle qu'avant.<br /><br />Mais n’oubliez pas.\n            "
+      ],
+      "esc:points": "\n                4\n            ",
+      "esc:preface": "\n                <p>Gifted with a powerful voice, Lisa Angell is extremely \"proud and happy\" to represent her country in Vienna. On stage, the French participant will perform <em>N'oubliez Pas</em> - a song of \"hope and peace, of courage and solidarity\".</p>\n            ",
+      "esc:rank": "\n                25\n            ",
+      "esc:runningOrder": "\n                2\n            ",
+      "esc:song": "\n                N'oubliez Pas\n            ",
+      "rdfs:label": [
+        "part definition",
+        "N'oubliez Pas",
+        "descriptive metadata"
+      ]
+    }
+  ]
+}    
