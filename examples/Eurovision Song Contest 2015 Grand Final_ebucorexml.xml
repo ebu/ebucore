@@ -1,0 +1,230 @@
+<ebucore:ebuCoreMain schema="ebucore.xsd" version="1.8" xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:ebucore="urn:ebu:metadata-schema:ebucore">
+  <!-- AN EBUCORE EXAMPLE WITH GENERIC DESCRIPTIVE METADATA, TECHNICAL METADATA IN THE FORMAT ELEMENT AND PARTS/SEGMENTS -->
+  <ebucore:coreMetadata>
+    <ebucore:title>
+      <dc:title>Eurovision Song Contest 2015 Grand Final</dc:title>
+    </ebucore:title>
+    <ebucore:alternativeTitle typeLabel="SubType">
+      <dc:title>ESC</dc:title>
+    </ebucore:alternativeTitle>
+    <ebucore:alternativeTitle typeLabel="Type">
+      <dc:title>final</dc:title>
+    </ebucore:alternativeTitle>
+    <ebucore:description typeLabel="Order OK">
+      <dc:description><![CDATA[1]]></dc:description>
+    </ebucore:description>
+    <ebucore:description typeLabel="Results Known">
+      <dc:description><![CDATA[1]]></dc:description>
+    </ebucore:description>
+    <ebucore:description typeLabel="Scoreboard Note">
+      <dc:description><![CDATA[]]></dc:description>
+    </ebucore:description>
+    <ebucore:description typeLabel="Voting Rules">
+      <dc:description><![CDATA[Televoters and a professional jury in each country have a 50% stake in the outcome. The votes are revealed by spokespeople from all participating countries.]]></dc:description>
+    </ebucore:description>
+    <ebucore:description typeLabel="Running Order">
+      <dc:description><![CDATA[1]]></dc:description>
+    </ebucore:description>
+    <ebucore:description typeLabel="Is Winner">
+      <dc:description><![CDATA[0]]></dc:description>
+    </ebucore:description>
+    <ebucore:description typeLabel="Rank">
+      <dc:description><![CDATA[14]]></dc:description>
+    </ebucore:description>
+    <ebucore:description typeLabel="Points">
+      <dc:description><![CDATA[39]]></dc:description>
+    </ebucore:description>
+    <ebucore:date>
+      <dc:date>2015-05-23T21:00:00</dc:date>
+    </ebucore:date>
+    
+    
+    <!-- TECHNICAL METADATA -->
+    
+    <ebucore:format>
+      <ebucore:videoFormat>
+        <ebucore:videoEncoding typeLabel="XDCAM HD422 100mbit HD"/>
+        <ebucore:comment/>
+      </ebucore:videoFormat>
+      <ebucore:audioFormat>
+        <ebucore:audioEncoding typeLabel="PCM 16bit 48khz"/>
+        <ebucore:comment/>
+      </ebucore:audioFormat>
+      <ebucore:containerFormat containerFormatName="mxf"/>
+      <ebucore:start>
+        <ebucore:timecode>00:00:00:00</ebucore:timecode>
+      </ebucore:start>
+      <ebucore:end>
+        <ebucore:timecode>03:59:10:00</ebucore:timecode>
+      </ebucore:end>
+      <ebucore:duration>
+        <ebucore:timecode>03:59:10:00</ebucore:timecode>
+      </ebucore:duration>
+      <ebucore:fileSize>134207334187</ebucore:fileSize>
+      <ebucore:fileName>2015_GF_ORF.mxf</ebucore:fileName>
+      <ebucore:locator>Video/Archive/2015/GF/ORF/</ebucore:locator>
+    </ebucore:format>
+    <ebucore:identifier typeLabel="">
+      <dc:identifier>2083</dc:identifier>
+    </ebucore:identifier>
+    <ebucore:identifier typeLabel="YouTube">
+      <dc:identifier/>
+    </ebucore:identifier>
+    <ebucore:relation typeLabel="Programme Book Link">
+      <dc:relation/>
+    </ebucore:relation>
+    <ebucore:relation typeLabel="Link">
+      <dc:relation>http://www.Eurovision.tv/page/contest-details?event=2083</dc:relation>
+    </ebucore:relation>
+    
+    
+    <!-- PART/SEGMENT -->
+    
+    
+    <ebucore:part partId="33153" partName="Performance">
+      <ebucore:description typeLabel="About">
+        <dc:description><![CDATA[<p>Marjetka graduated at the Ljubljana Academy of Music, and now teaches budding vocalists at her musical workshops. Raay is one of the most prolific music producers in Slovenia, and has been increasingly active abroad in recent years. </p>
+<p>Raay has been the most played Slovene songwriter on annual airplay charts. He has designed Maraaya's music style, which is usually described as "indie pop". </p>
+<a rel="embedded" class="embedded-player" href="http://www.youtube.com/watch?v=culH9Oy_zhU">Watch video on YouTube</a>
+
+<p>"What's with the headphones?" is the most common question regarding Maraaya. Marjetka started to use her studio headphones on stage since she wanted to evoke the same emotions she felt in the studio while recording. The headphones became their trademark.</p>
+<h3 class="article-split">Things you should know about Maraaya</h3>
+<p><strong>1. What are the three most interesting aspects about your entry ?</strong></p>
+<p>Firstly, the type of music - indie-pop that is in the past years more common when we talk about charts and radio hits rather than Eurovision entries. Secondly - distinctive vocal and interpretation in singers own way are something that goes well with this kind of music and we are flattered by people liking our entry. And the third is probably the strong emotion we want to give to people through our song. It's for all lonely, happy or broken hearts.<br /><br /><strong>2. What are the three most impressive facts about you?</strong></p>
+<p>We are definitely Eurovision zombies of 2015 due to two small children, career, work and combining everything together<br /><br /><strong>3. Do you have a (lucky) routine before you go on stage?</strong></p>
+<p>Marjetka: It's more of a routine to get into my world. After putting on both - the in-ear and the big headphones, I travel into my own small world of feelings and pure emotion and I try to stay calm and focused.<br /><br />Raay: I have fun with backing team (backing vocals, violinist - or other people if we talk wider than the Eurovision Song Contest - joking around and of course doublechecking everything before going on stage.<br /><br /><strong>4. Why is the Eurovision Song Contest important for you?</strong></p>
+<p>We are not the crazy fans of the Eurovision Song Contest, but we appreciate how wide it became in past years. It offers everything - from music to messages and stories. For us is the window to Europe, it's an experience we will tell our grandchildren</p>]]></dc:description>
+      </ebucore:description>
+      <ebucore:description typeLabel="Lyrics in Phonetics">
+        <dc:description><![CDATA[]]></dc:description>
+      </ebucore:description>
+      <ebucore:description typeLabel="Lyrics in French">
+        <dc:description><![CDATA[Quand tu es au plus bas<br />
+Et tu ne sais plus où te réfugier...<br />
+Quand tu es au plus bas<br />
+Tu sais bien que je suis là pour toi...<br />
+<br />
+Tu es venu dans ma vie quand je étais toute perdue<br />
+Chauffer mon cœur quand je grelottais de froid<br />
+Nous nous sommes laissé aller<br />
+Ça va, on remonte la pente<br />
+<br />
+Et maintenant que c'est ton tour, tu veux le cacher<br />
+Tu l'as déjà nié mille et mille fois<br />
+Tu n'as rien à craindre<br />
+Tu n'as pas à te battre<br />
+<br />
+Quand tu es au plus bas<br />
+Au trente-sixième dessous <br />
+Quand tu es au plus bas<br />
+Tu sais bien que je suis là pour toi<br />
+<br />
+Car je sais bien, chéri<br />
+La douleur que tu ne montres jamais<br />
+Quand tu es au plus bas<br />
+Laisse-moi guérir ton âme torturée<br />
+<br />
+Tu es venu dans ma vie quand je étais toute perdue<br />
+Chauffer mon cœur quand je grelottais de froid<br />
+Nous nous sommes laissé aller<br />
+Ça va, on remonte la pente<br />
+<br />
+Tu as relâché ma douleur, laisse-moi la reprendre <br />
+Laisse-la devant la porte, on finira par réussir<br />
+Tu n'as pas à te cacher<br />
+Je suis à tes côtés<br />
+<br />
+Tout le monde le voit en noir et blanc<br />
+Tu vois bien que ce n'est pas ça, mais ça ira<br />
+Laisse-moi donc t'ouvrir les yeux<br />
+<br />
+Quand tu es au plus bas...]]></dc:description>
+      </ebucore:description>
+      <ebucore:description typeLabel="Lyrics in English">
+        <dc:description><![CDATA[]]></dc:description>
+      </ebucore:description>
+      <ebucore:description typeLabel="Lyrics">
+        <dc:description><![CDATA[When you're down down low<br />
+And there's no place you can go...<br />
+When you're down down low<br />
+You know that I am here for you...<br />
+<br />
+You came into my life when I was broken<br />
+You heated up my heart when it was frozen<br />
+And we got the flow<br />
+Now it's up we go<br />
+<br />
+And now thast it's your turn you wanna hide it<br />
+A million times already you've denied it<br />
+You don't have to fear<br />
+You don't have to fight<br />
+<br />
+When you're down down low<br />
+Sinking in the undertow<br />
+When you're down down low<br />
+You know that I am here for you<br />
+<br />
+Cause I know know baby<br />
+All the hurt you never show<br />
+When you're down down low<br />
+You gotta let me heal your aching soul<br />
+<br />
+You came into my life when I was broken<br />
+You heated up my heart when it was frozen<br />
+And we got the flow<br />
+Now it's up we go<br />
+<br />
+Cause you released my pain now let me take it<br />
+Just leave it at the door and we can make it<br />
+You don't have to hide<br />
+I am by your side<br />
+<br />
+Everybody else sees in black and white<br />
+You look at wrong and make it right<br />
+Can't I open your eyes<br />
+<br />
+When you're down down low...]]></dc:description>
+      </ebucore:description>
+      <ebucore:description typeLabel="Preface">
+        <dc:description><![CDATA[<p>Maraaya are Marjetka and Raay. The name is a combination of their names. They are married and are parents of two boys. Marjetka and Raay formed Maraaya last year, when they released their first single<em> Lovin' Me</em> which was a big success in Slovenia and in some music charts abroad. </p>]]></dc:description>
+      </ebucore:description>
+      <ebucore:description typeLabel="Song">
+        <dc:description><![CDATA[Here For You]]></dc:description>
+      </ebucore:description>
+      <ebucore:identifier typeLabel="CHAOS Reference">
+        <dc:identifier>90fe0b36-27b9-485a-8cf1-5ed5b6bc4fee</dc:identifier>
+      </ebucore:identifier>
+      <ebucore:identifier typeLabel="YouTube">
+        <dc:identifier>-oOQKYopwJ4</dc:identifier>
+      </ebucore:identifier>
+      <ebucore:identifier typeLabel="CHAOS Reference | H.264 8mbit HD">
+        <dc:identifier>4d10b34b-137e-4bc9-9090-28104847f4af</dc:identifier>
+      </ebucore:identifier>
+      <ebucore:identifier typeLabel="CHAOS Reference | XDCAM HD422 100mbit HD">
+        <dc:identifier>6a52d618-d2a4-465c-b4c5-205f9e56176a</dc:identifier>
+      </ebucore:identifier>
+      <ebucore:relation typeLabel="Video of the performance">
+        <dc:relation/>
+      </ebucore:relation>
+      <ebucore:relation typeLabel="Preview">
+        <dc:relation/>
+      </ebucore:relation>
+      <ebucore:partStartTime>
+        <ebucore:timecode>00:21:27:00</ebucore:timecode>
+      </ebucore:partStartTime>
+      <ebucore:partDuration>
+        <ebucore:timecode>00:03:10:00</ebucore:timecode>
+      </ebucore:partDuration>
+    </ebucore:part>
+    
+    
+    <!-- ............ -->
+    <!-- MORE PARTS / EDITORIAL SEGMENTS .................................................. -->
+    <!-- PARTS SEGMENTS CAN COME AS INDEPENDENT XML FILE ebuCoreMain/coreMetadata/part with their respective descriptive metadata.
+      Technical metadata can be provided in each part in particular if the format is different -->
+  
+  
+  
+  </ebucore:coreMetadata>
+</ebucore:ebuCoreMain>

@@ -1,0 +1,60 @@
+<rdf:RDF xmlns:ebucore="http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#" xmlns:mediaInfo="https://mediaarea.net#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+	<!-- EXAMPLE MAPPING OF EBUCORE MEDIAINFO TECHNICAL XML METADATA INTO RDF -->
+
+    <ebucore:BMEssence rdf:about="http://repository-server/BMEssence/2083_00_25_32">		
+        <ebucore:hasVideoFormat>AVC</ebucore:hasVideoFormat>	
+        <ebucore:frameWidth>720</ebucore:frameWidth>	
+        <ebucore:frameHeight>720</ebucore:frameHeight>	
+        <ebucore:frameRate>25</ebucore:frameRate>	
+        <ebucore:aspectRatio>16:9</ebucore:aspectRatio>	
+        <ebucore:hasVideoEncodingFormat>High@L3.1</ebucore:hasVideoEncodingFormat>	
+        <ebucore:hasVideoCodec>avc1</ebucore:hasVideoCodec>	
+        <ebucore:videoBitRate>4945544</ebucore:videoBitRate>	
+        <ebucore:videoBitRateMax>4999936</ebucore:videoBitRateMax>	
+        <ebucore:videoBitRateMode>variable</ebucore:videoBitRateMode>	
+        <ebucore:scanningFormat>progressive</ebucore:scanningFormat>	
+        <ebucore:hasVideoTrack>	
+           <ebucore:VideoTrack>
+               <ebucore:trackNumber>1</ebucore:trackNumber>                    
+           </ebucore:VideoTrack>
+        </ebucore:hasVideoTrack> 	
+        <mediaInfo:Standard>PAL</mediaInfo:Standard>	
+        <mediaInfo:ColorSpace>YUV</mediaInfo:ColorSpace>	
+        <mediaInfo:ChromaSubSampling>4:2:0</mediaInfo:ChromaSubSampling>	
+        <mediaInfo:colour_primaries>BT.709</mediaInfo:colour_primaries>	
+        <mediaInfo:transfer_characteristics>BT.709</mediaInfo:transfer_characteristics>	
+        <mediaInfo:matrix_coefficients>BT.709</mediaInfo:matrix_coefficients>	
+        <mediaInfo:colour_range>Limited</mediaInfo:colour_range>	
+        <mediaInfo:VideoStreamSize>123638609</mediaInfo:VideoStreamSize>	
+        <mediaInfo:BitDepth>8</mediaInfo:BitDepth>	
+        <mediaInfo:CABAC>true</mediaInfo:CABAC>	
+        <mediaInfo:MBAFF>false</mediaInfo:MBAFF>	
+        <ebucore:hasAudioFormat>AAC</ebucore:hasAudioFormat>	
+        <ebucore:hasAudioEncodingFormat>LC</ebucore:hasAudioEncodingFormat>	
+        <ebucore:hasAudioCodec>40</ebucore:hasAudioCodec>	
+        <ebucore:sampleRate>48000</ebucore:sampleRate>	
+        <ebucore:audioBitRate>317375</ebucore:audioBitRate>	
+        <ebucore:audioBitRateMax>439500</ebucore:audioBitRateMax>	
+        <ebucore:audioBitRateMode>variable</ebucore:audioBitRateMode>	
+        <ebucore:hasAudioTrack>
+                 <ebucore:AudioTrack>
+                     <ebucore:trackId>2</ebucore:trackId>
+                     <ebucore:hasLanguage>en</ebucore:hasLanguage>
+                 </ebucore:AudioTrack>
+        </ebucore:hasAudioTrack> 	
+        <ebucore:audioChannelNumber>2</ebucore:audioChannelNumber>	
+        <mediaInfo:ChannelPositions>Front: L R</mediaInfo:ChannelPositions>	
+        <mediaInfo:ChannelLayout>L R</mediaInfo:ChannelLayout>	
+        <mediaInfo:AudioStreamSize>123638609</mediaInfo:AudioStreamSize>	
+        <ebucore:hasContainerFormat>MP4</ebucore:hasContainerFormat>	
+        <ebucore:hasContainerCodec>mp42</ebucore:hasContainerCodec>	
+        <ebucore:durationNormalPlayTime>PT3M20.000S</ebucore:durationNormalPlayTime>	
+        <ebucore:fileSize>131678854</ebucore:fileSize>	
+        <ebucore:filename>2015_GF_ORF_00_25_32_conv.mp4</ebucore:filename>
+        <ebucore:locator>D:\Users\evain\Documents\ESC 2015 all metadata and content\2015_GF_ORF_00_25_32_conv.mp4</ebucore:locator>	
+        <ebucore:bitRateOverall>5267154</ebucore:bitRateOverall>	
+        <ebucore:dateCreated>2017-02-06</ebucore:dateCreated>	
+        <ebucore:dateModified>2017-02-06</ebucore:dateModified>	
+   </ebucore:BMEssence>		
+</rdf:RDF>                                                                                         

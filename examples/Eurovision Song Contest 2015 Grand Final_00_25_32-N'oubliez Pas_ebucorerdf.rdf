@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:ebucore="http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#" xmlns:fims="http://fims.tv#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:ebu="http://ebu.org/nar-extensions/" xmlns:esc="http://www.eurovision.com#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:default="urn:ebu:metadata-schema:ebuCore_2012" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <rdf:Description rdf:about="http://repository-server/BMContent/2083_00_25_32">
+      <rdf:type rdf:resource="http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#BMContentPart"/>
+      <rdfs:label>N'oubliez Pas</rdfs:label>
+      <ebucore:startTimecode>00:25:32:00</ebucore:startTimecode>
+      <ebucore:durationTimecode>00:03:10:00</ebucore:durationTimecode>
+      <esc:runningOrder>2</esc:runningOrder>
+      <esc:isPerformer rdf:resource="http://www.eurovision.com/2015/performer#2"/>
+      <esc:rank>25</esc:rank>
+      <esc:points>4</esc:points>
+      <esc:about>
+         &lt;p&gt;Lisa Angell grew up with a dream of becoming a singer. One day, the young singer took a decision to live from music, performing in piano bars across the French Riviera. Afterwards she recorded her single &lt;em&gt;Des Ann&amp;eacute;es Apr&amp;egrave;s&lt;/em&gt; written by Didier Barbelivien (2001). In 2009 invited by the magician Dani Lary on his show, Lisa met Patrick S&amp;eacute;bastien, a very popular showman who produced and wrote songs for her first album &lt;em&gt;Les Divines&lt;/em&gt; (2011).&lt;/p&gt;
+         &lt;p&gt;Lisa's second album &lt;em&gt;Des Mots&amp;hellip;&lt;/em&gt; (2013) was introduced by the single &lt;em&gt;Je Saurai T&amp;rsquo;aimer&lt;/em&gt;, a cover of the song by Melanie Cohl which itself is the French adaptation of &lt;em&gt;The Power Of Love&lt;/em&gt; by Celine Dion. In the same year, Lisa joined the recurring singers of the show &lt;em&gt;Les Chansons D&amp;rsquo;abord&lt;/em&gt;, hosted by Natasha St-Pier on France 3.&lt;/p&gt;
+         &lt;p&gt;Before paying tribute to the songstresses from the 30s, 40s and 50s with her third album&lt;em&gt; Frou-Frou&lt;/em&gt; (2014), Lisa and Tony Carreira duetted the song &lt;em&gt;L&amp;rsquo;oiseau Et L&amp;rsquo;enfant&lt;/em&gt; for his album.&lt;/p&gt;
+         &lt;h3 class="article-split"&gt;Things you should know about Lisa Angell&lt;/h3&gt;
+         &lt;p&gt;&lt;strong&gt;Three most impressive facts about Lisa Angell&lt;/strong&gt;&lt;/p&gt;
+         &lt;ul&gt;
+         &lt;li&gt;At the age of eight, Lisa went with her parents to a piano bar, where she was offered to sing in front of public - Lisa's dream came true! The little girl performed &lt;em&gt;O Sole Mio&lt;/em&gt;.&lt;/li&gt;
+         &lt;li&gt;When Lisa Angell went to Moscow to perform at a private party, she discovered that she was going to sing at the Luzhniki Stadium, in front of nearly 50,000 people!&lt;/li&gt;
+         &lt;li&gt;The proposal to record her first album changed Lisa&amp;rsquo;s plans to leave France and to settle in China.&lt;/li&gt;
+         &lt;/ul&gt;
+         &lt;p&gt;&lt;strong&gt;Lisa&amp;rsquo;s lucky routine before she goes on stage&lt;/strong&gt;&lt;/p&gt;
+         &lt;p&gt;When her daughter is with her, Lisa kisses her on her forehead and the child kisses her back. If Lisa&amp;rsquo;s daughter is not backstage, Lisa has a picture of her. In Vienna, Lisa Angell will sing for her daughter.&lt;/p&gt;
+         &lt;p&gt;&lt;strong&gt;Why is the Eurovision Song Contest important for Lisa?&lt;/strong&gt;&lt;/p&gt;
+         &lt;p&gt;The Eurovision Song Contest was always Lisa' dream. When she was a little girl, she used to sing in front of TV for her family, pretending to be a star. In the age of 11, she sang &lt;em&gt;L'oiseau Et L'Enfant&lt;/em&gt; (the French winning entry in the 1977 Eurovision Song Contest) during her first regional song contest.&lt;/p&gt;
+      </esc:about>
+      <esc:lyrics xml:lang="en">
+         All that remains to me are tears&lt;br /&gt;
+         These few notes that come from long ago&lt;br /&gt;
+         And the song of our prayers&lt;br /&gt;
+         Our hearts that hope&lt;br /&gt;
+         And the emptiness under my steps&lt;br /&gt;
+         &lt;br /&gt;
+         All that remains to me are ashes&lt;br /&gt;
+         Of my village plunged into silence&lt;br /&gt;
+         I am but a wound &lt;br /&gt;
+         A heart without an armour&lt;br /&gt;
+         How do I survive after this&lt;br /&gt;
+         &lt;br /&gt;
+         But I am here, I don’t forget&lt;br /&gt;
+         In my village swept away by history&lt;br /&gt;
+         And I live here, don’t you forget&lt;br /&gt;
+         Erased from maps and memories&lt;br /&gt;
+         &lt;br /&gt;
+         I remember the laughter of children&lt;br /&gt;
+         The voices of men when they left for the field&lt;br /&gt;
+         The harvest festivals&lt;br /&gt;
+         The smell in the houses&lt;br /&gt;
+         The bursts of love and joy&lt;br /&gt;
+         &lt;br /&gt;
+         But I am here, I don’t forget&lt;br /&gt;
+         In my village swept away by history&lt;br /&gt;
+         &lt;br /&gt;
+         When they arrived&lt;br /&gt;
+         Hidden behind their weapons&lt;br /&gt;
+         They were thousands&lt;br /&gt;
+         They laughed at our tears&lt;br /&gt;
+         &lt;br /&gt;
+         They wished to destroy&lt;br /&gt;
+         Our beliefs and our souls&lt;br /&gt;
+         With words of hatred&lt;br /&gt;
+         That we did not know&lt;br /&gt;
+         &lt;br /&gt;
+         I am here tonight&lt;br /&gt;
+         In the middle of these ruins&lt;br /&gt;
+         To talk to you about hope&lt;br /&gt;
+         And to sing life&lt;br /&gt;
+         And I swear&lt;br /&gt;
+         When the blood will dry&lt;br /&gt;
+         That I will rebuild my city&lt;br /&gt;
+         More beautiful than before&lt;br /&gt;
+         &lt;br /&gt;
+         But don’t forget
+      </esc:lyrics>
+      <esc:lyrics>
+         Il ne me reste que des larmes&lt;br /&gt;
+         Ces quelques notes venues d'autrefois&lt;br /&gt;
+         Et le chant de nos prières&lt;br /&gt;
+         Nos cœurs qui espèrent&lt;br /&gt;
+         Et le vide sous mes pas&lt;br /&gt;
+         &lt;br /&gt;
+         Il ne me reste que les cendres &lt;br /&gt;
+         De mon village plongé dans le silence &lt;br /&gt;
+         Je ne suis qu'une blessure&lt;br /&gt;
+         Un cœur sans armure&lt;br /&gt;
+         Comment survivre après ça. &lt;br /&gt;
+         &lt;br /&gt;
+         Mais je suis là, je n’oublie pas&lt;br /&gt;
+         Dans mon village balayé par l’histoire&lt;br /&gt;
+         Et je vis là, n’oubliez pas&lt;br /&gt;
+         Effacé des cartes et des mémoires&lt;br /&gt;
+         &lt;br /&gt;
+         Je me souviens du rire des enfants&lt;br /&gt;
+         La voix des hommes quand ils partaient au champ&lt;br /&gt;
+         Les fêtes des moissons&lt;br /&gt;
+         L’odeur dans les maisons&lt;br /&gt;
+         Les éclats d’amour et de joie&lt;br /&gt;
+         &lt;br /&gt;
+         Mais je suis là, n’oubliez pas&lt;br /&gt;
+         Effacé des cartes et des mémoires&lt;br /&gt;
+         &lt;br /&gt;
+         Quand ils sont arrivés&lt;br /&gt;
+         Cachés derrière leurs armes&lt;br /&gt;
+         Ils étaient des milliers&lt;br /&gt;
+         Ils riaient de nos larmes&lt;br /&gt;
+         &lt;br /&gt;
+         Ils ont voulu détruire&lt;br /&gt;
+         Nos croyances et nos âmes&lt;br /&gt;
+         Avec des mots de haine&lt;br /&gt;
+         Que l'on n'connaissait pas.&lt;br /&gt;
+         &lt;br /&gt;
+         Je suis ici ce soir&lt;br /&gt;
+         Au milieu de ces ruines&lt;br /&gt;
+         Pour vous parler d'espoir&lt;br /&gt;
+         Et vous chanter la vie&lt;br /&gt;
+         Et je fais le serment&lt;br /&gt;
+         Quand séchera le sang&lt;br /&gt;
+         De reconstruire ma ville&lt;br /&gt;
+         Bien plus belle qu'avant.&lt;br /&gt;
+         &lt;br /&gt;
+         Mais n’oubliez pas.
+      </esc:lyrics>
+      <esc:preface>
+         &lt;p&gt;Gifted with a powerful voice, Lisa Angell is extremely "proud and happy" to represent her country in Vienna. On stage, the French participant will perform &lt;em&gt;N'oubliez Pas&lt;/em&gt; - a song of "hope and peace, of courage and solidarity".&lt;/p&gt;
+      </esc:preface>
+      <esc:song>
+         N'oubliez Pas
+      </esc:song>
+      <ebucore:identifier>033896ec-24d2-4785-82a7-fd3b686078c0</ebucore:identifier>
+      <ebucore:hasRelatedResource rdf:resource="http://repository-server/BMEssence/2083_00_25_32"/>
+   </rdf:Description>
+   
+</rdf:RDF>

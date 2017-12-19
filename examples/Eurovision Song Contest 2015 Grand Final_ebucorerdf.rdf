@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:ebucore="http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#" xmlns:fims="http://fims.tv#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:esc="http://www.eurovision.com#" xmlns:esc2015_p="http://www.eurovision.com/2015/performer#" xmlns:ebu="http://ebu.org/nar-extensions/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:default="urn:ebu:metadata-schema:ebuCore_2012" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <rdf:Description rdf:about="http://repository-server/BMContent/2083">
+      <rdf:type rdf:resource="http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#BMContent"/>
+      <rdfs:label>Eurovision</rdfs:label>
+      <rdfs:label>Song contest</rdfs:label>
+      <rdfs:label>2015</rdfs:label>
+      <ebucore:dateCreated rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2015-05-23T21:00:00</ebucore:dateCreated>
+      <ebucore:dateModified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2015-05-23T21:00:00</ebucore:dateModified>
+      <ebucore:identifier>2083</ebucore:identifier>
+      <ebucore:title xml:lang="">Eurovision Song Contest 2015 Grand Final</ebucore:title>
+      <esc:orderOk>
+      1
+    </esc:orderOk>
+      <esc:resultsKnown>
+      1
+    </esc:resultsKnown>
+      <esc:votingRules>
+      Televoters and a professional jury in each country have a 50% stake in the outcome. The votes are revealed by spokespeople from all participating countries.
+    </esc:votingRules>
+      <ebucore:date rdf:datatype="xsd:dateTime">2015-05-23T21:00:00</ebucore:date>
+      <ebucore:hasRelatedLink rdf:resource="http://www.Eurovision.tv/page/contest-details?event=2083"/>
+      <ebucore:hasPart rdf:resource="http://repository-server/BMContent/2083_32613"/>
+      <!-- HAS MORE PARTs -->
+   </rdf:Description>
+   <rdf:Description rdf:about="http://repository-server/BMContent/2083_00_25_32">
+      <rdf:type rdf:resource="http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#BMContentPart"/>
+      <rdfs:label>N'oubliez Pas</rdfs:label>
+      <ebucore:startTimecode>00:25:32:00</ebucore:startTimecode>
+      <ebucore:durationTimecode>00:03:10:00</ebucore:durationTimecode>
+      <rdfs:label>N'oubliez Pas</rdfs:label>
+      <esc:runningOrder>2</esc:runningOrder>
+      <esc:isPerformer rdf:resource="http://www.eurovision.com/2015/performer#2"/>
+      <esc:rank>25</esc:rank>
+      <esc:points>4</esc:points>
+      <esc:about>
+        &lt;p&gt;Lisa Angell grew up with a dream of becoming a singer. One day, the young singer took a decision to live from music, performing in piano bars across the French Riviera. Afterwards she recorded her single &lt;em&gt;Des Ann&amp;eacute;es Apr&amp;egrave;s&lt;/em&gt; written by Didier Barbelivien (2001). In 2009 invited by the magician Dani Lary on his show, Lisa met Patrick S&amp;eacute;bastien, a very popular showman who produced and wrote songs for her first album &lt;em&gt;Les Divines&lt;/em&gt; (2011).&lt;/p&gt;
+&lt;p&gt;Lisa's second album &lt;em&gt;Des Mots&amp;hellip;&lt;/em&gt; (2013) was introduced by the single &lt;em&gt;Je Saurai T&amp;rsquo;aimer&lt;/em&gt;, a cover of the song by Melanie Cohl which itself is the French adaptation of &lt;em&gt;The Power Of Love&lt;/em&gt; by Celine Dion. In the same year, Lisa joined the recurring singers of the show &lt;em&gt;Les Chansons D&amp;rsquo;abord&lt;/em&gt;, hosted by Natasha St-Pier on France 3.&lt;/p&gt;
+&lt;p&gt;Before paying tribute to the songstresses from the 30s, 40s and 50s with her third album&lt;em&gt; Frou-Frou&lt;/em&gt; (2014), Lisa and Tony Carreira duetted the song &lt;em&gt;L&amp;rsquo;oiseau Et L&amp;rsquo;enfant&lt;/em&gt; for his album.&lt;/p&gt;
+&lt;h3 class="article-split"&gt;Things you should know about Lisa Angell&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Three most impressive facts about Lisa Angell&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;At the age of eight, Lisa went with her parents to a piano bar, where she was offered to sing in front of public - Lisa's dream came true! The little girl performed &lt;em&gt;O Sole Mio&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;When Lisa Angell went to Moscow to perform at a private party, she discovered that she was going to sing at the Luzhniki Stadium, in front of nearly 50,000 people!&lt;/li&gt;
+&lt;li&gt;The proposal to record her first album changed Lisa&amp;rsquo;s plans to leave France and to settle in China.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Lisa&amp;rsquo;s lucky routine before she goes on stage&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;When her daughter is with her, Lisa kisses her on her forehead and the child kisses her back. If Lisa&amp;rsquo;s daughter is not backstage, Lisa has a picture of her. In Vienna, Lisa Angell will sing for her daughter.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why is the Eurovision Song Contest important for Lisa?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The Eurovision Song Contest was always Lisa' dream. When she was a little girl, she used to sing in front of TV for her family, pretending to be a star. In the age of 11, she sang &lt;em&gt;L'oiseau Et L'Enfant&lt;/em&gt; (the French winning entry in the 1977 Eurovision Song Contest) during her first regional song contest.&lt;/p&gt;
+      </esc:about>
+      <esc:lyrics xml:lang="en">
+        All that remains to me are tears&lt;br /&gt;
+These few notes that come from long ago&lt;br /&gt;
+And the song of our prayers&lt;br /&gt;
+Our hearts that hope&lt;br /&gt;
+And the emptiness under my steps&lt;br /&gt;
+&lt;br /&gt;
+All that remains to me are ashes&lt;br /&gt;
+Of my village plunged into silence&lt;br /&gt;
+I am but a wound &lt;br /&gt;
+A heart without an armour&lt;br /&gt;
+How do I survive after this&lt;br /&gt;
+&lt;br /&gt;
+But I am here, I don’t forget&lt;br /&gt;
+In my village swept away by history&lt;br /&gt;
+And I live here, don’t you forget&lt;br /&gt;
+Erased from maps and memories&lt;br /&gt;
+&lt;br /&gt;
+I remember the laughter of children&lt;br /&gt;
+The voices of men when they left for the field&lt;br /&gt;
+The harvest festivals&lt;br /&gt;
+The smell in the houses&lt;br /&gt;
+The bursts of love and joy&lt;br /&gt;
+&lt;br /&gt;
+But I am here, I don’t forget&lt;br /&gt;
+In my village swept away by history&lt;br /&gt;
+&lt;br /&gt;
+When they arrived&lt;br /&gt;
+Hidden behind their weapons&lt;br /&gt;
+They were thousands&lt;br /&gt;
+They laughed at our tears&lt;br /&gt;
+&lt;br /&gt;
+They wished to destroy&lt;br /&gt;
+Our beliefs and our souls&lt;br /&gt;
+With words of hatred&lt;br /&gt;
+That we did not know&lt;br /&gt;
+&lt;br /&gt;
+I am here tonight&lt;br /&gt;
+In the middle of these ruins&lt;br /&gt;
+To talk to you about hope&lt;br /&gt;
+And to sing life&lt;br /&gt;
+And I swear&lt;br /&gt;
+When the blood will dry&lt;br /&gt;
+That I will rebuild my city&lt;br /&gt;
+More beautiful than before&lt;br /&gt;
+&lt;br /&gt;
+But don’t forget
+      </esc:lyrics>
+      <esc:lyrics>
+        Il ne me reste que des larmes&lt;br /&gt;
+Ces quelques notes venues d'autrefois&lt;br /&gt;
+Et le chant de nos prières&lt;br /&gt;
+Nos cœurs qui espèrent&lt;br /&gt;
+Et le vide sous mes pas&lt;br /&gt;
+&lt;br /&gt;
+Il ne me reste que les cendres &lt;br /&gt;
+De mon village plongé dans le silence &lt;br /&gt;
+Je ne suis qu'une blessure&lt;br /&gt;
+Un cœur sans armure&lt;br /&gt;
+Comment survivre après ça. &lt;br /&gt;
+&lt;br /&gt;
+Mais je suis là, je n’oublie pas&lt;br /&gt;
+Dans mon village balayé par l’histoire&lt;br /&gt;
+Et je vis là, n’oubliez pas&lt;br /&gt;
+Effacé des cartes et des mémoires&lt;br /&gt;
+&lt;br /&gt;
+Je me souviens du rire des enfants&lt;br /&gt;
+La voix des hommes quand ils partaient au champ&lt;br /&gt;
+Les fêtes des moissons&lt;br /&gt;
+L’odeur dans les maisons&lt;br /&gt;
+Les éclats d’amour et de joie&lt;br /&gt;
+&lt;br /&gt;
+Mais je suis là, n’oubliez pas&lt;br /&gt;
+Effacé des cartes et des mémoires&lt;br /&gt;
+&lt;br /&gt;
+Quand ils sont arrivés&lt;br /&gt;
+Cachés derrière leurs armes&lt;br /&gt;
+Ils étaient des milliers&lt;br /&gt;
+Ils riaient de nos larmes&lt;br /&gt;
+&lt;br /&gt;
+Ils ont voulu détruire&lt;br /&gt;
+Nos croyances et nos âmes&lt;br /&gt;
+Avec des mots de haine&lt;br /&gt;
+Que l'on n'connaissait pas.&lt;br /&gt;
+&lt;br /&gt;
+Je suis ici ce soir&lt;br /&gt;
+Au milieu de ces ruines&lt;br /&gt;
+Pour vous parler d'espoir&lt;br /&gt;
+Et vous chanter la vie&lt;br /&gt;
+Et je fais le serment&lt;br /&gt;
+Quand séchera le sang&lt;br /&gt;
+De reconstruire ma ville&lt;br /&gt;
+Bien plus belle qu'avant.&lt;br /&gt;
+&lt;br /&gt;
+Mais n’oubliez pas.
+      </esc:lyrics>
+      <esc:preface>
+        &lt;p&gt;Gifted with a powerful voice, Lisa Angell is extremely "proud and happy" to represent her country in Vienna. On stage, the French participant will perform &lt;em&gt;N'oubliez Pas&lt;/em&gt; - a song of "hope and peace, of courage and solidarity".&lt;/p&gt;
+      </esc:preface>
+      <esc:song>
+        N'oubliez Pas
+      </esc:song>
+      <ebucore:identifier>033896ec-24d2-4785-82a7-fd3b686078c0</ebucore:identifier>
+   </rdf:Description>
+   <rdf:Description rdf:about="http://repository-server/BMContent/2083_32613">
+      <rdf:type rdf:resource="http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#BMContentPart"/>
+      <rdfs:label>N'oubliez Pas</rdfs:label>
+   </rdf:Description>
+   <rdf:Description rdf:about="http://repository-server/BMContent/2083_33193">
+      <rdf:type rdf:resource="http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#BMContentPart"/>
+      <rdfs:label>Golden Boy</rdfs:label>
+      <rdfs:label>part definition</rdfs:label>
+      <ebucore:startTimecode>00:29:33:00</ebucore:startTimecode>
+      <ebucore:durationTimecode>00:03:16:00</ebucore:durationTimecode>
+   </rdf:Description>
+   <rdf:Description rdf:about="http://repository-server/BMContent/2083_33193">
+      <rdf:type rdf:resource="http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#BMContentPart"/>
+      <rdfs:label>Golden Boy</rdfs:label>
+      <rdfs:label>descriptive metadata</rdfs:label>
+      <esc:runningOrder>3</esc:runningOrder>
+      <esc:isPerformer rdf:resource="http://www.eurovision.com/2015/performer#3"/>
+      <esc:isWinner>0</esc:isWinner>
+      <esc:rank>9</esc:rank>
+      <esc:points>97</esc:points>
+      <esc:about>
+        &lt;p&gt;Born in Paris and raised in Israel, Nadav recently won the TV talent show, &lt;em&gt;The Rising Star&lt;/em&gt; - Israel&amp;rsquo;s most viewed singing competition. Here his prize was being given the honour of representing Israel at the Eurovision Song Contest in Vienna. Nadav wants to bring a powerful combination of European and Mediterranean sounds to the show.&lt;/p&gt;
+&lt;p&gt;Besides being a teenager and high school student, Nadav loves listening to a plethora of pop artists whilst also enjoying music from different genres such as Hip hop, electronic, R&amp;amp;B, Soul and orther young Israeli artists. &lt;/p&gt;
+&lt;p&gt; With a unique voice and an energetic performance, Israel's &lt;em&gt;Golden Boy&lt;/em&gt; is planning to enjoy the ride and is looking forward to having some fun in Vienna.&lt;/p&gt;
+&lt;p&gt;As a fresh and aspiring artist, Nadav sees no limits to the music that inspires him, tapping his feet to both worldwide trends as well as local influences.&lt;/p&gt;
+&lt;h3 class="article-split"&gt;What else do you need to know about him?&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;What are the three most interesting aspects about your entry?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It's celebrating the inspiring freedom of Tel-Aviv&lt;/li&gt;
+&lt;li&gt;The first time I heard it I knew it would be the song for the Eurovision Song Contest&lt;/li&gt;
+&lt;li&gt;The song ends with original lyrics:"ok we gotta go, 3 minutes, bye bye" because of the time limit laws of the contest&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;What are the three most impressive facts about you?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I'm only 16 year's old - one of the youngest singer in this year's Eurovision Song Contest&lt;/li&gt;
+&lt;li&gt;I won the &lt;em&gt;Rising Star&lt;/em&gt; singing show in Israel this year and the ticket to the Eurovision Song Contest was actually my prize.&lt;/li&gt;
+&lt;li&gt;I was born in France and moved to Israel.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Do you have a (lucky) routine before you go on stage?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I don&amp;rsquo;t have a lucky routine before I go on stage. I'm just thinking how much I love it, and it all goes sweet from that point&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why is the Eurovision Song Contest important for you?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The Eurovision song contest is important to me because it's an amazing venue for a performer. The stage, the talents, this is what we are here for, isn&amp;rsquo;t it? To reach out to the people around the world and make them hear us.&lt;/p&gt;
+      </esc:about>
+      <esc:lyrics xml:lang="fr">
+        Maman, quelqu’un m’a encore brisé le cœur&lt;br /&gt;
+Dis-lui que c’est la dernière fois&lt;br /&gt;
+Maman, quelqu’un m’a encore brisé le cœur&lt;br /&gt;
+Je vais danser, tout mettre derrière moi&lt;br /&gt;
+&lt;br /&gt;
+Sors-moi, pas envie d’une peine de cœur&lt;br /&gt;
+Ce soir je danse pour l’oublier&lt;br /&gt;
+Elle ne sait pas que mes move font un malheur&lt;br /&gt;
+Ladies, c’est moi que vous cherchez ? &lt;br /&gt;
+&lt;br /&gt;
+Serre-moi baby, je suis ta dynamite&lt;br /&gt;
+Tu sais que notre amour est plus fort&lt;br /&gt;
+Love, love, love (love, love, love)&lt;br /&gt;
+Rendu fou par ces gros beat&lt;br /&gt;
+J’ai juste le feu au corps&lt;br /&gt;
+Check me out (3-2-1 hey !)&lt;br /&gt;
+&lt;br /&gt;
+Un mec en or&lt;br /&gt;
+Venu ici pour kiffer&lt;br /&gt;
+Je suis le roi du fun&lt;br /&gt;
+J’te montre comment c’est fait&lt;br /&gt;
+Un mec en or&lt;br /&gt;
+Venu ici pour kiffer&lt;br /&gt;
+Et avant que j’esquive&lt;br /&gt;
+Je te montre Tel-Aviv&lt;br /&gt;
+&lt;br /&gt;
+Tiens-moi fort, on ne rentre pas&lt;br /&gt;
+Oh yeah, tu aimes quand je danse, Europe&lt;br /&gt;
+Serre-moi fort, je suis ta dynamite&lt;br /&gt;
+Tu sais que notre amour est plus fort&lt;br /&gt;
+Check me out (3-2-1 hey !)&lt;br /&gt;
+&lt;br /&gt;
+Un mec en or&lt;br /&gt;
+Venu ici pour kiffer&lt;br /&gt;
+Je suis le roi du fun&lt;br /&gt;
+J’te montre comment c’est fait&lt;br /&gt;
+Un mec en or&lt;br /&gt;
+Venu ici pour kiffer&lt;br /&gt;
+Et avant que j’esquive&lt;br /&gt;
+Je te montre Tel-Aviv&lt;br /&gt;
+&lt;br /&gt;
+C’est comme ça qu’on fait ici…
+      </esc:lyrics>
+      <esc:lyrics>
+        Mama, someone broke my heart again&lt;br /&gt;
+Tell her I don't think I can take it anymore&lt;br /&gt;
+Mama, someone broke my heart again&lt;br /&gt;
+Now I'm gonna ease my pain, &lt;br /&gt;
+Dancing on the floor&lt;br /&gt;
+&lt;br /&gt;
+Take me out, &lt;br /&gt;
+I'm not in the mood for a broken heart&lt;br /&gt;
+Gonna dance tonight, forget her&lt;br /&gt;
+No, she doesn’t know &lt;br /&gt;
+What I'm doing on the floor&lt;br /&gt;
+Did you say hello, my ladies?&lt;br /&gt;
+&lt;br /&gt;
+Pull me baby, I'm your trigger&lt;br /&gt;
+You know that my love is bigger&lt;br /&gt;
+Love, Love, Love &lt;br /&gt;
+Let the rhythm take us higher &lt;br /&gt;
+You know when I'm on fire&lt;br /&gt;
+Check me out (3-2-1- hey!)&lt;br /&gt;
+&lt;br /&gt;
+I'm a golden boy&lt;br /&gt;
+Come here to enjoy&lt;br /&gt;
+I'm the king of fun&lt;br /&gt;
+Let me show you how we do it&lt;br /&gt;
+I'm a golden boy&lt;br /&gt;
+Come here to enjoy&lt;br /&gt;
+And before I leave&lt;br /&gt;
+Let me show you Tel Aviv&lt;br /&gt;
+&lt;br /&gt;
+Hold me tight, &lt;br /&gt;
+We're not going home tonight &lt;br /&gt;
+Oh yeah, do you like my dancing? &lt;br /&gt;
+Pull me baby, I'm your trigger&lt;br /&gt;
+You know that my love is bigger&lt;br /&gt;
+Check me out (3-2-1- hey!)&lt;br /&gt;
+&lt;br /&gt;
+I'm a golden boy&lt;br /&gt;
+Come here to enjoy&lt;br /&gt;
+I'm the king of fun&lt;br /&gt;
+Let me show you how we do it&lt;br /&gt;
+I'm a golden boy&lt;br /&gt;
+Come here to enjoy&lt;br /&gt;
+And before I leave&lt;br /&gt;
+Let me show you Tel Aviv&lt;br /&gt;
+&lt;br /&gt;
+This is how we do it…
+      </esc:lyrics>
+      <esc:preface>
+        &lt;p&gt;Nadav Guedj, 16, is a French-Israeli singer and the Israeli representative for the 2015 Eurovision Song Contest. A fresh and exciting new talent, he will be performing &lt;em&gt;Golden Boy &lt;/em&gt;in Vienna.&lt;/p&gt;
+      </esc:preface>
+      <esc:song>
+        Golden Boy
+      </esc:song>
+      <ebucore:identifier>0048b3eb-0071-44ee-b3b4-f8af014a94eb</ebucore:identifier>
+      <ebucore:hasRelatedResource rdf:resource="http://repository-server/BMEssence/2083_00_25_32"/>
+   </rdf:Description>
+   
+   <rdf:Description rdf:about="http://repository-server/BMEssence/2083_00_25_32">
+      <rdf:type rdf:resource="http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#BMEssence"/>
+      <rdfs:label>Essence of "N'oubliez pas"</rdfs:label>
+      <ebucore:conformsTo rdf:resource="http://fims.tv#Essencetemplate1"/>
+   </rdf:Description>
+   
+   
+   <rdf:Description rdf:about="http://fims.tv#Essencetemplate1">
+      <rdf:type rdf:resource="http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#BMEssence"/>
+      <rdfs:label>technical metadata / essence template definition</rdfs:label>
+      <ebucore:hasContainerFormat>MP4</ebucore:hasContainerFormat>
+      <ebucore:bitRateOverall>5 Mbps</ebucore:bitRateOverall>
+      <ebucore:hasVideoEncodingFormat>MP4 HD 1280x720p 25fps</ebucore:hasVideoEncodingFormat>
+      <ebucore:videoEncodingLevel/>
+      <ebucore:videoEncodingProfile/>
+      <ebucore:frameRate/>
+      <ebucore:videoBitRate/>
+      <ebucore:videoBitRateMode/>
+      <ebucore:bitDepth/>
+      <ebucore:frameHeight>720</ebucore:frameHeight>
+      <ebucore:frameHeightUnit>line</ebucore:frameHeightUnit>
+      <ebucore:frameWidth>1280</ebucore:frameWidth>
+      <ebucore:frameWidthUnit>pixel</ebucore:frameWidthUnit>
+      <ebucore:scanningFormat>progressive</ebucore:scanningFormat>
+      <ebucore:hasAudioEncodingFormat>AAC 320 48KHz Stereo</ebucore:hasAudioEncodingFormat>
+      <ebucore:audioEncodingLevel/>
+      <ebucore:audioEncodingProfile/>
+      <ebucore:audioBitRate/>
+      <ebucore:audioBitRateMode/>
+      <ebucore:sampleRate>48KHz</ebucore:sampleRate>
+      <ebucore:sampleSize/>
+      <ebucore:aspectRatio>16:9</ebucore:aspectRatio>
+      <ebucore:audioTrackConfiguration>stereo, etc.</ebucore:audioTrackConfiguration>
+   </rdf:Description>
+</rdf:RDF>

@@ -1,0 +1,292 @@
+{
+	"ebucore:ebuCoreMain": {
+		"@version": "1.8",
+		"@writingLibraryName": "MediaInfoLib",
+		"@writingLibraryVersion": "17.10",
+		"@dateLastModified": "2017-12-19",
+		"@timeLastModified": "09:25:19Z",
+		"ebucore:coreMetadata": [
+			{
+				"ebucore:format": [
+					{
+						"ebucore:videoFormat": [
+							{
+								"@videoFormatName": "AVC",
+								"ebucore:width": [
+									{
+										"@unit": "pixel",
+										"#value": "1280"
+									}
+								],
+								"ebucore:height": [
+									{
+										"@unit": "pixel",
+										"#value": "720"
+									}
+								],
+								"ebucore:frameRate": [
+									{
+										"#value": "25"
+									}
+								],
+								"ebucore:aspectRatio": [
+									{
+										"@typeLabel": "display",
+										"ebucore:factorNumerator": [
+											{
+												"#value": "16"
+											}
+										],
+										"ebucore:factorDenominator": [
+											{
+												"#value": "9"
+											}
+										]
+									}
+								],
+								"ebucore:videoEncoding": [
+									{
+										"@typeLabel": "High@L3.1"
+									}
+								],
+								"ebucore:codec": [
+									{
+										"ebucore:codecIdentifier": [
+											{
+												"dc:identifier": [
+													{
+														"#value": "avc1"
+													}
+												]
+											}
+										]
+									}
+								],
+								"ebucore:bitRate": [
+									{
+										"#value": "4945544"
+									}
+								],
+								"ebucore:bitRateMax": [
+									{
+										"#value": "4999936"
+									}
+								],
+								"ebucore:bitRateMode": [
+									{
+										"#value": "variable"
+									}
+								],
+								"ebucore:scanningFormat": [
+									{
+										"#value": "progressive"
+									}
+								],
+								"ebucore:videoTrack": [
+									{
+										"@trackId": "1"
+									}
+								],
+								"ebucore:technicalAttributeString": [
+									{
+										"@typeLabel": "Standard",
+										"#value": "PAL"
+									},
+									{
+										"@typeLabel": "ColorSpace",
+										"#value": "YUV"
+									},
+									{
+										"@typeLabel": "ChromaSubsampling",
+										"#value": "4:2:0"
+									},
+									{
+										"@typeLabel": "colour_primaries",
+										"#value": "BT.709"
+									},
+									{
+										"@typeLabel": "transfer_characteristics",
+										"#value": "BT.709"
+									},
+									{
+										"@typeLabel": "matrix_coefficients",
+										"#value": "BT.709"
+									},
+									{
+										"@typeLabel": "colour_range",
+										"#value": "Limited"
+									}
+								],
+								"ebucore:technicalAttributeInteger": [
+									{
+										"@typeLabel": "StreamSize",
+										"@unit": "byte",
+										"#value": "123638609"
+									},
+									{
+										"@typeLabel": "BitDepth",
+										"@unit": "bit",
+										"#value": "8"
+									}
+								],
+								"ebucore:technicalAttributeBoolean": [
+									{
+										"@typeLabel": "CABAC",
+										"#value": "true"
+									},
+									{
+										"@typeLabel": "MBAFF",
+										"#value": "false"
+									}
+								]
+							}
+						],
+						"ebucore:audioFormat": [
+							{
+								"@audioFormatName": "AAC",
+								"ebucore:audioEncoding": [
+									{
+										"@typeLabel": "LC"
+									}
+								],
+								"ebucore:codec": [
+									{
+										"ebucore:codecIdentifier": [
+											{
+												"dc:identifier": [
+													{
+														"#value": "mp4a-40-2"
+													}
+												]
+											}
+										]
+									}
+								],
+								"ebucore:samplingRate": [
+									{
+										"#value": "48000"
+									}
+								],
+								"ebucore:bitRate": [
+									{
+										"#value": "317375"
+									}
+								],
+								"ebucore:bitRateMax": [
+									{
+										"#value": "439500"
+									}
+								],
+								"ebucore:bitRateMode": [
+									{
+										"#value": "variable"
+									}
+								],
+								"ebucore:audioTrack": [
+									{
+										"@trackId": "2",
+										"@trackLanguage": "en"
+									}
+								],
+								"ebucore:channels": [
+									{
+										"#value": "2"
+									}
+								],
+								"ebucore:technicalAttributeString": [
+									{
+										"@typeLabel": "ChannelPositions",
+										"#value": "Front: L R"
+									},
+									{
+										"@typeLabel": "ChannelLayout",
+										"#value": "L R"
+									}
+								],
+								"ebucore:technicalAttributeInteger": [
+									{
+										"@typeLabel": "StreamSize",
+										"@unit": "byte",
+										"#value": "7934554"
+									}
+								]
+							}
+						],
+						"ebucore:containerFormat": [
+							{
+								"@containerFormatName": "MPEG-4",
+								"ebucore:containerEncoding": [
+									{
+										"@formatLabel": "MPEG-4"
+									}
+								],
+								"ebucore:codec": [
+									{
+										"ebucore:codecIdentifier": [
+											{
+												"dc:identifier": [
+													{
+														"#value": "mp42"
+													}
+												]
+											}
+										]
+									}
+								],
+								"ebucore:technicalAttributeString": [
+									{
+										"@typeLabel": "FormatProfile",
+										"#value": "Base Media / Version 2"
+									}
+								]
+							}
+						],
+						"ebucore:duration": [
+							{
+								"ebucore:normalPlayTime": [
+									{
+										"#value": "PT3M20.000S"
+									}
+								]
+							}
+						],
+						"ebucore:fileSize": [
+							{
+								"#value": "131678854"
+							}
+						],
+						"ebucore:fileName": [
+							{
+								"#value": "2015_GF_ORF_00_25_32_conv.mp4"
+							}
+						],
+						"ebucore:locator": [
+							{
+								"#value": "D:\\Users\\Evain\\Documents\\ESC_2015_all_metadata_and_content\\2015_GF_ORF_00_25_32_conv.mp4"
+							}
+						],
+						"ebucore:technicalAttributeInteger": [
+							{
+								"@typeLabel": "OverallBitRate",
+								"@unit": "bps",
+								"#value": "5267154"
+							}
+						],
+						"ebucore:dateCreated": [
+							{
+								"@startDate": "2017-02-06",
+								"@startTime": "11:12:38Z"
+							}
+						],
+						"ebucore:dateModified": [
+							{
+								"@startDate": "2017-02-06",
+								"@startTime": "11:12:39Z"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}
