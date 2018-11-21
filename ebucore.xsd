@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ebucore="urn:ebu:metadata-schema:ebucore"
 	xmlns:dc="http://purl.org/dc/elements/1.1/" targetNamespace="urn:ebu:metadata-schema:ebucore"
-	elementFormDefault="qualified" version="1.8">
+	elementFormDefault="qualified" version="1.9">
 	<import namespace="http://www.w3.org/XML/1998/namespace"
 		schemaLocation="http://www.w3.org/2001/xml.xsd"/>
 	<import namespace="http://purl.org/dc/elements/1.1/"
@@ -16,22 +16,29 @@
 			point for browsing the documentation!</documentation>
 	</annotation>
 	<annotation>
-		<documentation> What is new in version 1.8 ?</documentation>
+		<documentation> What is new in version 1.9 ?</documentation>
 		<documentation> GENERAL ENRICHMENT </documentation>
-		<documentation> New Audio and Video Encoding Profiles and levels</documentation>
-		<documentation> New AcquisitionData element for exporting extracting dynamic
-			metadata</documentation>
-		<documentation> Alignment with EBUCore RDF: artefact, props, costumes, food, textLine, emotions, actions, etc.</documentation>
-		<documentation> New writingLibraryName and writingLibraryVersion to provide a name and
-			version of a tool used to generate data. </documentation>
-		<documentation> Changed import declarations for xml.xsd and simpledc now pointing at respective source locations. </documentation>
-		<documentation> new static HDR metadata in videoFormat - aligned with movie labs' common metadata definitions and SMPTE ST2086. See masteredColorVolume and LightLevel.</documentation>
-		<documentation> AUDIO DATA MODEL - ALIGNMENT WITH ITU</documentation>
-		<documentation> Update of objectDivergence and Zone under audioBlockFormat</documentation>
-		<documentation> Update of audioPackFormat</documentation>
-		<documentation> Change pre-existing audioFormatExtendedVersion attribute to "version".
-			Attribute name changed by ITU</documentation>
-		<documentation> refined definitions</documentation>
+		<documentation> add additionalInformation element to artefact</documentation>
+		<documentation> add artefact/artefactWeight</documentation>
+		<documentation> Add a contentFormat element under type</documentation>
+		<documentation> Add agentFee </documentation>
+		<documentation> Add regex pattern for IDs in ADM</documentation>
+		<documentation> New timecode format for audioProgramme supporting regular timecode or
+			frames</documentation>
+		<documentation>New complexType HDRMetadata under the format element.</documentation>
+		<documentation>Add relationSource to the relation element.</documentation>
+
+		<documentation> CORRECTIONS </documentation>
+		<documentation> Additional information is an extension of elementType with a typeGroup </documentation>
+		<documentation> currency is now optional </documentation>
+		<documentation> artefact date of purchase is now optional</documentation>
+		<documentation> timestamp is now optional</documentation>
+		<documentation> costumeSize is now a string </documentation>
+		<documentation> adjusted cardinalities in ADM (1 to many audioContentIDRef in
+			audioProgramme, 1 to many audioObjectIDRef in audioContent, 1 to many
+			audioTrackFormatIDRef in audioStreamFormat)</documentation>
+		<documentation> adjusted regex patterns for timecode with unlimited digits after the
+			coma</documentation>
 	</annotation>
 
 	<element name="ebuCoreMain" type="ebucore:ebuCoreMainType"/>
@@ -577,7 +584,7 @@
 						rights with respect to the resource.</documentation>
 				</annotation>
 			</element>
-			<element name="version" minOccurs="0" maxOccurs="unbounded" type="ebucore:versionType">
+			<element name="version" type="ebucore:versionType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation xml:lang="en">UK Version, US Version, home video version, etc.
 						Mapping to Dublin Core would be made using a description element. There can
@@ -640,7 +647,7 @@
 				</annotation>
 				<complexType>
 					<complexContent>
-						<extension base="ebucore:artefactType"> </extension>
+						<extension base="ebucore:artefactType"/>
 					</complexContent>
 				</complexType>
 			</element>
@@ -653,12 +660,14 @@
 			</element>
 			<element name="emotion" type="ebucore:emotionType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
-					<documentation> To identify emotions associated with a person or character within a scene or a part. </documentation>
+					<documentation> To identify emotions associated with a person or character
+						within a scene or a part. </documentation>
 				</annotation>
 			</element>
 			<element name="action" type="ebucore:actionType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
-					<documentation> To identify actions associated with a person or character within a scene or a part. </documentation>
+					<documentation> To identify actions associated with a person or character within
+						a scene or a part. </documentation>
 				</annotation>
 			</element>
 			<element name="part" type="ebucore:partType" minOccurs="0" maxOccurs="unbounded">
@@ -669,69 +678,56 @@
 			</element>
 		</sequence>
 	</complexType>
-
 	<complexType name="emotionType">
 		<sequence>
 			<annotation>
-				<documentation>
-					To describe an emotion and establish a link to a person/character.
+				<documentation> To describe an emotion and establish a link to a person/character.
 				</documentation>
 			</annotation>
 			<element name="relatedAgent" type="ebucore:entityType">
 				<annotation>
-					<documentation>
-						To identify the person/character associated with the emotion.
+					<documentation> To identify the person/character associated with the emotion.
 					</documentation>
 				</annotation>
 			</element>
 			<element name="timestamp" type="ebucore:timeType">
 				<annotation>
-					<documentation>
-						A timestamp to precisely define a time point when the emotion was expressed..
-					</documentation>
+					<documentation> A timestamp to precisely define a time point when the emotion
+						was expressed.. </documentation>
 				</annotation>
 			</element>
 		</sequence>
 		<attributeGroup ref="ebucore:typeGroup">
 			<annotation>
-				<documentation>
-					To identify the type of emotion.
-				</documentation>
+				<documentation> To identify the type of emotion. </documentation>
 			</annotation>
 		</attributeGroup>
 	</complexType>
-
 	<complexType name="actionType">
 		<sequence>
 			<annotation>
-				<documentation>
-					To describe an action and establish a link to a person/character.
+				<documentation> To describe an action and establish a link to a person/character.
 				</documentation>
 			</annotation>
 			<element name="relatedAgent" type="ebucore:entityType">
 				<annotation>
-					<documentation>
-						To identify the person/character associated with the ACtion.
+					<documentation> To identify the person/character associated with the ACtion.
 					</documentation>
 				</annotation>
 			</element>
 			<element name="timestamp" type="ebucore:timeType">
 				<annotation>
-					<documentation>
-						A timestamp to precisely define a time point when the action happened..
-					</documentation>
+					<documentation> A timestamp to precisely define a time point when the action
+						happened.. </documentation>
 				</annotation>
 			</element>
 		</sequence>
 		<attributeGroup ref="ebucore:typeGroup">
 			<annotation>
-				<documentation>
-					To identify the type of action.
-				</documentation>
+				<documentation> To identify the type of action. </documentation>
 			</annotation>
 		</attributeGroup>
 	</complexType>
-	
 	<complexType name="textLineType">
 		<sequence>
 			<element name="text" type="string">
@@ -742,37 +738,30 @@
 			<element name="relatedAgent" type="ebucore:entityType"/>
 			<element name="timestamp" type="ebucore:timeType">
 				<annotation>
-					<documentation>
-						A timestamp to precisely define a time point when the text was used.
-					</documentation>
+					<documentation> A timestamp to precisely define a time point when the text was
+						used. </documentation>
 				</annotation>
 			</element>
 		</sequence>
 		<attribute name="textLineId" type="string">
 			<annotation>
-				<documentation>
-					An Id attributed to the text line
-				</documentation>
+				<documentation> An Id attributed to the text line </documentation>
 			</annotation>
 		</attribute>
 		<attribute name="order" type="string">
 			<annotation>
-				<documentation>
-					The order in which text appears in the content/part/scene.
+				<documentation> The order in which text appears in the content/part/scene.
 				</documentation>
 			</annotation>
 		</attribute>
 		<attribute ref="xml:lang">
 			<annotation>
-				<documentation>
-					The language used for the text line
-				</documentation>
+				<documentation> The language used for the text line </documentation>
 			</annotation>
 		</attribute>
 		<attributeGroup ref="ebucore:typeGroup">
 			<annotation>
-				<documentation>
-					To define the type / source of text e.g. speech to text
+				<documentation> To define the type / source of text e.g. speech to text
 				</documentation>
 			</annotation>
 		</attributeGroup>
@@ -806,12 +795,13 @@
 				</complexType>
 			</element>
 			<element name="artefactColour" type="string" minOccurs="0"/>
+			<element name="artefactWeight" type="string" minOccurs="0"/>
 			<element name="artefactReference" type="string" minOccurs="0"/>
 			<element name="artefactPrice" minOccurs="0" maxOccurs="unbounded">
 				<complexType>
 					<sequence>
 						<element name="value" type="float"/>
-						<element name="currency">
+						<element name="currency" minOccurs="0">
 							<complexType>
 								<attributeGroup ref="ebucore:typeGroup"/>
 							</complexType>
@@ -820,7 +810,7 @@
 				</complexType>
 			</element>
 			<element name="artefactWebsite" type="anyURI" minOccurs="0"/>
-			<element name="artefactDateOfPurchase" type="date"/>
+			<element name="artefactDateOfPurchase" type="date" minOccurs="0"/>
 			<element name="artefactDateOfSell" type="date" minOccurs="0"/>
 			<element name="artefactDateOfCreation" type="date" minOccurs="0"/>
 			<element name="artefactDateOfAcquisition" type="date" minOccurs="0"/>
@@ -844,12 +834,24 @@
 			<element name="maker" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
 			<element name="owner" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
 			<element name="contact" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="timestamp" type="ebucore:timeType">
+			<element name="timestamp" type="ebucore:timeType" minOccurs="0">
 				<annotation>
-					<documentation>
-						A timestamp to precisely define a time point when the artefact is used..
-					</documentation>
+					<documentation> A timestamp to precisely define a time point when the artefact
+						is used.. </documentation>
 				</annotation>
+			</element>
+			<element name="additionalInformation" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>To provide additional custom information about an
+						artefact.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="ebucore:elementType">
+							<attributeGroup ref="ebucore:typeGroup"/>
+						</extension>
+					</simpleContent>
+				</complexType>
 			</element>
 		</sequence>
 		<attribute name="artefactid" type="string">
@@ -858,17 +860,15 @@
 			</annotation>
 		</attribute>
 	</complexType>
-
 	<complexType name="propsType">
 		<annotation>
 			<documentation> A complexType to describe props (artefacts used during the production of
 				a media resource).</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="ebucore:artefactType"> </extension>
+			<extension base="ebucore:artefactType"/>
 		</complexContent>
 	</complexType>
-
 	<complexType name="costumeType">
 		<annotation>
 			<documentation> A complexType to describe props (artefacts used during the production of
@@ -885,7 +885,7 @@
 										<attributeGroup ref="ebucore:typeGroup"/>
 									</complexType>
 								</element>
-								<element name="costumeSize" type="float"/>
+								<element name="costumeSize" type="string"/>
 								<element name="geographicalArea" minOccurs="0">
 									<complexType>
 										<attributeGroup ref="ebucore:typeGroup"/>
@@ -911,7 +911,6 @@
 			</extension>
 		</complexContent>
 	</complexType>
-
 	<complexType name="foodType">
 		<annotation>
 			<documentation> A complexType to describe food and derived products shown in a media
@@ -940,17 +939,14 @@
 							<attributeGroup ref="ebucore:typeGroup"/>
 						</complexType>
 					</element>
-					<element name="dishName" type="string" minOccurs="0">
-						<!-- use text element with lang --> </element>
+					<element name="dishName" type="ebucore:elementType" minOccurs="0"/>
 					<element name="dishDescription" type="ebucore:elementType" minOccurs="0"> </element>
-					<element name="foodIngredient" type="ebucore:elementType" minOccurs="0"> </element>
-
+					<element name="foodIngredient" type="ebucore:elementType" minOccurs="0"
+					> </element>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
-
-
 	<complexType name="partType">
 		<annotation>
 			<documentation> To describe e.g. editorial segment / fragments (to be identified or
@@ -1026,8 +1022,6 @@
 			</extension>
 		</complexContent>
 	</complexType>
-
-
 	<complexType name="titleType">
 		<annotation>
 			<documentation> The name given to a resource e.g. a media item, media object, sequence.
@@ -1317,6 +1311,25 @@
 						system. The group of type attributes is used to define the classification
 						purpose. </documentation>
 				</annotation>
+			</element>
+			<element name="contentFormat" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>A type element specifically dedicated to the description of a
+						content format e.g. documentary</documentation>
+				</annotation>
+				<complexType>
+					<attributeGroup ref="ebucore:typeGroup">
+						<annotation>
+							<documentation>To define the Type reference data.</documentation>
+						</annotation>
+					</attributeGroup>
+					<attribute name="level">
+						<annotation>
+							<documentation> To provide an optional ranking position in case multiple
+								formats are associated with the content. </documentation>
+						</annotation>
+					</attribute>
+				</complexType>
 			</element>
 		</sequence>
 		<attributeGroup ref="ebucore:typeGroup">
@@ -1644,12 +1657,18 @@
 					<documentation>To indicate the altutude at a given location.</documentation>
 				</annotation>
 			</element>
-			<element name="additionalInformation" type="ebucore:elementType" minOccurs="0"
-				maxOccurs="unbounded">
+			<element name="additionalInformation" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation>To provide additional custom information about a
 						location.</documentation>
 				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="ebucore:elementType">
+							<attributeGroup ref="ebucore:typeGroup"/>
+						</extension>
+					</simpleContent>
+				</complexType>
 			</element>
 		</sequence>
 		<attributeGroup ref="ebucore:typeGroup">
@@ -1886,25 +1905,28 @@
 				identification number or ID where the related item can be obtained or found.
 			</documentation>
 		</annotation>
-		<choice>
-			<element ref="dc:relation">
-				<annotation>
-					<documentation> The EBU core metadata set is built as a refinement of the Dublin
-						Core. A title would be given using this element.</documentation>
-				</annotation>
-			</element>
-			<element name="relationIdentifier" type="ebucore:identifierType">
-				<annotation>
-					<documentation> An identifier would be given using this element.
-					</documentation>
-				</annotation>
-			</element>
-			<element name="relationLink" type="anyURI">
-				<annotation>
-					<documentation> A link to related material. </documentation>
-				</annotation>
-			</element>
-		</choice>
+		<sequence>
+			<choice>
+				<element ref="dc:relation">
+					<annotation>
+						<documentation> The EBU core metadata set is built as a refinement of the Dublin
+							Core. A title would be given using this element.</documentation>
+					</annotation>
+				</element>
+				<element name="relationIdentifier" type="ebucore:identifierType">
+					<annotation>
+						<documentation> An identifier would be given using this element.
+						</documentation>
+					</annotation>
+				</element>
+				<element name="relationLink" type="anyURI">
+					<annotation>
+						<documentation> A link to related material. </documentation>
+					</annotation>
+				</element>
+			</choice>
+			<element name="relationSource" type="ebucore:entityType"/>
+		</sequence>
 		<attributeGroup ref="ebucore:typeGroup">
 			<annotation>
 				<documentation>To show the type of relation to another resource, e.g. identifies
@@ -2517,6 +2539,229 @@
 					</sequence>
 				</complexType>
 			</element>
+			<!-- ################################################### -->
+			<element name="hdrMetadata" minOccurs="0">
+				<annotation>
+					<documentation> The hdrMetadata will be used in IMF as a separate specific
+						side-car metadata file under the structure
+						ebuCoreMain/coreMetadata/format/hdrmetadata. There should therefore be no
+						conflict with e.g. the videoFormat/height and videoFormat/width as this data
+						shouldn't coexist in the same metadata instance file. </documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element name="width" type="integer">
+							<annotation>
+								<documentation>To define the width of the image. Please check
+									consistency with the videoFormat/width.</documentation>
+							</annotation>
+						</element>
+						<element name="heigth" type="integer">
+							<annotation>
+								<documentation>To define the heigth of the image. Please check
+									consistency with the videoFormat/height.</documentation>
+							</annotation>
+						</element>
+						<element name="activeArea" minOccurs="0">
+							<annotation>
+								<documentation> To define the active area within the image as the
+									ratio between the width and the height centered knowing that the
+									center of the active active area corrsponds to the centre of the
+									image.. </documentation>
+							</annotation>
+							<complexType>
+								<attribute name="factorNumerator" type="positiveInteger" default="1">
+									<annotation>
+										<documentation>The numerator of the expression corresponding
+											to the width of the active area of the image in
+											pixels.</documentation>
+									</annotation>
+								</attribute>
+								<attribute name="factorDenominator" type="positiveInteger"
+									default="1">
+									<annotation>
+										<documentation>The denominator of the expression
+											corresponding to the heigth of the active area of the
+											image in pixels.</documentation>
+									</annotation>
+								</attribute>
+							</complexType>
+						</element>
+						<element name="masteredColorVolume" minOccurs="0">
+							<annotation>
+								<documentation> To establish the parameters of the master display
+									color volume as defined in SMPTE 2086. </documentation>
+							</annotation>
+							<complexType>
+								<sequence>
+									<element name="primaryRChromaticity">
+										<annotation>
+											<documentation>Red Chromaticity.</documentation>
+										</annotation>
+										<complexType>
+											<sequence>
+												<element name="ChromaticityCIEx">
+												<annotation>
+												<documentation>X coordinates</documentation>
+												</annotation>
+												<simpleType>
+												<restriction base="float">
+												<pattern value="(([0])([.])([4][0-9]))"/>
+												</restriction>
+												</simpleType>
+												</element>
+												<element name="ChromaticityCIEy">
+												<annotation>
+												<documentation>Y coordinates</documentation>
+												</annotation>
+												<simpleType>
+												<restriction base="float">
+												<pattern value="(([0])([.])([4][0-9]))"/>
+												</restriction>
+												</simpleType>
+												</element>
+											</sequence>
+										</complexType>
+									</element>
+									<element name="primaryGChromaticity">
+										<annotation>
+											<documentation>Green Chromaticity.</documentation>
+										</annotation>
+										<complexType>
+											<sequence>
+												<element name="ChromaticityCIEx">
+												<annotation>
+												<documentation>X coordinates</documentation>
+												</annotation>
+												<simpleType>
+												<restriction base="float">
+												<pattern value="(([0])([.])([4][0-9]))"/>
+												</restriction>
+												</simpleType>
+												</element>
+												<element name="ChromaticityCIEy">
+												<annotation>
+												<documentation>Y coordinates</documentation>
+												</annotation>
+												<simpleType>
+												<restriction base="float">
+												<pattern value="(([0])([.])([4][0-9]))"/>
+												</restriction>
+												</simpleType>
+												</element>
+											</sequence>
+										</complexType>
+									</element>
+									<element name="primaryBChromaticity">
+										<annotation>
+											<documentation>Blue Chromaticity.</documentation>
+										</annotation>
+										<complexType>
+											<sequence>
+												<element name="ChromaticityCIEx">
+												<annotation>
+												<documentation>X coordinates</documentation>
+												</annotation>
+												<simpleType>
+												<restriction base="float">
+												<pattern value="(([0])([.])([4][0-9]))"/>
+												</restriction>
+												</simpleType>
+												</element>
+												<element name="ChromaticityCIEy">
+												<annotation>
+												<documentation>Y coordinates</documentation>
+												</annotation>
+												<simpleType>
+												<restriction base="float">
+												<pattern value="(([0])([.])([4][0-9]))"/>
+												</restriction>
+												</simpleType>
+												</element>
+											</sequence>
+										</complexType>
+									</element>
+									<element name="whitePointChromaticity">
+										<annotation>
+											<documentation>White point Chromaticity.</documentation>
+										</annotation>
+										<complexType>
+											<sequence>
+												<element name="ChromaticityCIEx">
+												<annotation>
+												<documentation>X coordinates</documentation>
+												</annotation>
+												<simpleType>
+												<restriction base="float">
+												<pattern value="(([0])([.])([4][0-9]))"/>
+												</restriction>
+												</simpleType>
+												</element>
+												<element name="ChromaticityCIEy">
+												<annotation>
+												<documentation>Y coordinates</documentation>
+												</annotation>
+												<simpleType>
+												<restriction base="float">
+												<pattern value="(([0])([.])([4][0-9]))"/>
+												</restriction>
+												</simpleType>
+												</element>
+											</sequence>
+										</complexType>
+									</element>
+									<element name="luminanceMin">
+										<annotation>
+											<documentation>Minimum luminance in cd/m2 on a monitor
+												on a black point within the active
+												area.</documentation>
+										</annotation>
+										<simpleType>
+											<restriction base="float">
+												<pattern value="(([0])([.])([4][0-9]))"/>
+											</restriction>
+										</simpleType>
+									</element>
+									<element name="luminanceMax">
+										<annotation>
+											<documentation>Maximum luminance in cd/m2 on a monitor
+												on a white point within the active
+												area.</documentation>
+										</annotation>
+										<simpleType>
+											<restriction base="float">
+												<pattern value="(([1])([4][0]))"/>
+											</restriction>
+										</simpleType>
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+						<element name="lightLevel">
+							<annotation>
+								<documentation> To set the parameters of the light level as
+									specified in "CEA-861.3 Annex A". </documentation>
+							</annotation>
+							<complexType>
+								<sequence>
+									<element name="maxCLL" type="integer">
+										<annotation>
+											<documentation> To define the maximum content light
+												level. </documentation>
+										</annotation>
+									</element>
+									<element name="maxFall" type="integer">
+										<annotation>
+											<documentation> To define the maximum frame-average
+												light level. </documentation>
+										</annotation>
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
 			<element name="start" type="ebucore:timeType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation>The beginning point for playback of a time-based media item, such
@@ -2944,6 +3189,23 @@
 						an entity.</documentation>
 				</annotation>
 			</element>
+			<element name="agentFee" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation> to provide the fees of an agent e.g. per type of prestation.
+					</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element name="value" type="float"/>
+						<element name="currency" minOccurs="0">
+							<complexType>
+								<attributeGroup ref="ebucore:typeGroup"/>
+							</complexType>
+						</element>
+					</sequence>
+					<attributeGroup ref="ebucore:typeGroup"/>
+				</complexType>
+			</element>
 		</sequence>
 		<attribute name="entityId" type="anyURI">
 			<annotation>
@@ -3111,9 +3373,12 @@
 				</annotation>
 			</element>
 			<element name="additionalInformation" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>To provide additional information about an agent.</documentation>
+				</annotation>
 				<complexType>
 					<simpleContent>
-						<extension base="string">
+						<extension base="ebucore:elementType">
 							<attributeGroup ref="ebucore:typeGroup"/>
 						</extension>
 					</simpleContent>
@@ -4057,12 +4322,14 @@
 			</element>
 			<element name="flag_360" type="boolean" minOccurs="0">
 				<annotation>
-					<documentation> A flag to indicate if the visual content is 360°. </documentation>
+					<documentation> A flag to indicate if the visual content is 360°.
+					</documentation>
 				</annotation>
 			</element>
 			<element name="flag_multiview" type="boolean" minOccurs="0">
 				<annotation>
-					<documentation> A flag to indicate if the visual content is multi-view. </documentation>
+					<documentation> A flag to indicate if the visual content is multi-view.
+					</documentation>
 				</annotation>
 			</element>
 			<element name="filter" type="ebucore:filterType" minOccurs="0" maxOccurs="unbounded">
@@ -4070,18 +4337,17 @@
 					<documentation> To identify a filter e.g. a noise filter. </documentation>
 				</annotation>
 			</element>
-			<element name="masteredColorVolume" type="ebucore:digitalAssetColorVolumeType" minOccurs="0">
+			<element name="masteredColorVolume" type="ebucore:digitalAssetColorVolumeType"
+				minOccurs="0">
 				<annotation>
-					<documentation>
-						HDR (High Dynamic Range) static metadata.
-					</documentation>
+					<documentation> HDR (High Dynamic Range) static metadata. </documentation>
 				</annotation>
 			</element>
-			<element name="lightLevel" type="ebucore:digitalAssetVideoPictureLightLevelType" minOccurs="0">
+			<element name="lightLevel" type="ebucore:digitalAssetVideoPictureLightLevelType"
+				minOccurs="0">
 				<annotation>
-					<documentation>
-						To indicate the light level. Aligned wit MovieLabs' common metadata set.
-					</documentation>
+					<documentation> To indicate the light level. Aligned wit MovieLabs' common
+						metadata set. </documentation>
 				</annotation>
 			</element>
 			<group ref="ebucore:technicalAttributes">
@@ -4138,10 +4404,11 @@
 			</annotation>
 		</attribute>
 	</complexType>
-	
+
 	<complexType name="digitalAssetColorVolumeType">
 		<annotation>
-			<documentation>HDR (High Dynamic Range) static metadata. Naming similar to MovieLabs' common metadata set and SMPTE 2086.</documentation>
+			<documentation>HDR (High Dynamic Range) static metadata. Naming similar to MovieLabs'
+				common metadata set and SMPTE 2086.</documentation>
 		</annotation>
 		<sequence>
 			<element name="primaryRChromaticity" type="ebucore:digitalAssetChromaticityType"/>
@@ -4150,9 +4417,7 @@
 			<element name="whitePointChromaticity" type="ebucore:digitalAssetChromaticityType"/>
 			<element name="luminanceMin">
 				<annotation>
-					<documentation>
-						Minimum luminance is expressed in cd/m2.
-					</documentation>
+					<documentation> Minimum luminance is expressed in cd/m2. </documentation>
 				</annotation>
 				<simpleType>
 					<restriction base="decimal">
@@ -4165,9 +4430,7 @@
 			</element>
 			<element name="luminanceMax">
 				<annotation>
-					<documentation>
-						Maximum luminance is expressed in cd/m2.
-					</documentation>
+					<documentation> Maximum luminance is expressed in cd/m2. </documentation>
 				</annotation>
 				<simpleType>
 					<restriction base="decimal">
@@ -5069,6 +5332,97 @@
 	<!-- ################ -->
 	<!-- AUDIO FORMAT EXTENDED -->
 	<!-- ################ -->
+
+	<!-- IDs, IDREFs -->
+	<!-- audio programme -->
+	<simpleType name="aprID">
+		<restriction base="ID">
+			<pattern value="APR_[0-9a-fA-F]{4}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="aprIDREF">
+		<restriction base="IDREF">
+			<pattern value="APR_[0-9a-fA-F]{4}"/>
+		</restriction>
+	</simpleType>
+	<!-- audio content -->
+	<simpleType name="acoID">
+		<restriction base="ID">
+			<pattern value="ACO_[0-9a-fA-F]{4}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="acoIDREF">
+		<restriction base="IDREF">
+			<pattern value="ACO_[0-9a-fA-F]{4}"/>
+		</restriction>
+	</simpleType>
+	<!-- audio object -->
+	<simpleType name="aoID">
+		<restriction base="ID">
+			<pattern value="AO_[0-9a-fA-F]{4}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="aoIDREF">
+		<restriction base="IDREF">
+			<pattern value="AO_[0-9a-fA-F]{4}"/>
+		</restriction>
+	</simpleType>
+	<!-- audio pack format -->
+	<simpleType name="apID">
+		<restriction base="ID">
+			<pattern value="AP_[0-9a-fA-F]{4}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="apIDREF">
+		<restriction base="IDREF">
+			<pattern value="AP_[0-9a-fA-F]{4}"/>
+		</restriction>
+	</simpleType>
+	<!-- audio channel -->
+	<simpleType name="acID">
+		<restriction base="ID">
+			<pattern value="AC_[0-9a-fA-F]{4}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="acIDREF">
+		<restriction base="IDREF">
+			<pattern value="AC_[0-9a-fA-F]{4}"/>
+		</restriction>
+	</simpleType>
+	<!-- audio track -->
+	<simpleType name="atID">
+		<restriction base="ID">
+			<pattern value="AT_[0-9a-fA-F]{4}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="atIDREF">
+		<restriction base="IDREF">
+			<pattern value="AT_[0-9a-fA-F]{4}"/>
+		</restriction>
+	</simpleType>
+	<!-- audio stream -->
+	<simpleType name="asID">
+		<restriction base="ID">
+			<pattern value="AS_[0-9a-fA-F]{4}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="asIDREF">
+		<restriction base="IDREF">
+			<pattern value="AS_[0-9a-fA-F]{4}"/>
+		</restriction>
+	</simpleType>
+	<!-- audio block format -->
+	<simpleType name="abID">
+		<restriction base="ID">
+			<pattern value="AB_[0-9a-fA-F]{4}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="abIDREF">
+		<restriction base="IDREF">
+			<pattern value="AB_[0-9a-fA-F]{4}"/>
+		</restriction>
+	</simpleType>
+	<!-- AUDIO FORMAT EXTENDED -->
 	<complexType name="audioFormatExtendedType">
 		<annotation>
 			<documentation>A container with all definitions related to the audioContents and
@@ -5165,7 +5519,7 @@
 	</element>
 	<complexType name="audioProgrammeType">
 		<sequence>
-			<element name="audioContentIDRef" type="IDREF" minOccurs="0" maxOccurs="unbounded">
+			<element name="audioContentIDRef" type="IDREF" minOccurs="1" maxOccurs="unbounded">
 				<annotation>
 					<documentation>A list of reference to audioContents, each defining one component
 						of an audioProgramme (e.g. background music), its association with an
@@ -5190,7 +5544,7 @@
 				</annotation>
 			</element>
 		</sequence>
-		<attribute name="audioProgrammeID" type="ID" use="required">
+		<attribute name="audioProgrammeID" type="ebucore:aprID" use="required">
 			<annotation>
 				<documentation>An unique ID for the programme.</documentation>
 			</annotation>
@@ -5205,7 +5559,7 @@
 				<documentation>The dialogue language used in this audioProgramme.</documentation>
 			</annotation>
 		</attribute>
-		<attribute name="start" type="ebucore:timecodeStringType">
+		<attribute name="start" type="ebucore:timecodeStringFrameType">
 			<annotation>
 				<documentation> Start time for the programme. </documentation>
 			</annotation>
@@ -5216,12 +5570,12 @@
 				</documentation>
 			</annotation>
 		</attribute>
-		<attribute name="end" type="ebucore:timecodeStringType">
+		<attribute name="end" type="ebucore:timecodeStringFrameType">
 			<annotation>
 				<documentation> End time for the programme. </documentation>
 			</annotation>
 		</attribute>
-		<attribute name="dropframe" type="boolean">
+		<!--attribute name="dropframe" type="boolean">
 			<annotation>
 				<documentation> A flag to indicate whether the start and end timecodes are drop
 					frame when set to "true". </documentation>
@@ -5238,7 +5592,7 @@
 				<documentation> The denominator of a correcting factor for the start and end
 					timecodes. </documentation>
 			</annotation>
-		</attribute>
+		</attribute-->
 		<attributeGroup ref="ebucore:typeGroup">
 			<annotation>
 				<documentation>To optionally define a type of audioProgramme.</documentation>
@@ -5280,40 +5634,40 @@
 		</sequence>
 	</complexType>
 	<complexType name="screenCentrePositionType">
-		<simpleContent>
-			<extension base="float">
-				<attribute name="azimuth" type="float">
-					<annotation>
-						<documentation>Azimuth angle for the centre of the screen.</documentation>
-					</annotation>
-				</attribute>
-				<attribute name="elevation" type="float">
-					<annotation>
-						<documentation>Elevation angle for the centre of the screen.</documentation>
-					</annotation>
-				</attribute>
-				<attribute name="distance" type="float">
-					<annotation>
-						<documentation>Distance to the centre of the screen.</documentation>
-					</annotation>
-				</attribute>
-				<attribute name="X" type="float">
-					<annotation>
-						<documentation>X-coordinate for the centre of the screen.</documentation>
-					</annotation>
-				</attribute>
-				<attribute name="Y" type="float">
-					<annotation>
-						<documentation>Y-coordinate for the centre of the screen.</documentation>
-					</annotation>
-				</attribute>
-				<attribute name="Z" type="float">
-					<annotation>
-						<documentation>Z-coordinate for the centre of the screen.</documentation>
-					</annotation>
-				</attribute>
-			</extension>
-		</simpleContent>
+		<!--simpleContent-->
+		<!--extension base="float"-->
+		<attribute name="azimuth" type="float">
+			<annotation>
+				<documentation>Azimuth angle for the centre of the screen.</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="elevation" type="float">
+			<annotation>
+				<documentation>Elevation angle for the centre of the screen.</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="distance" type="float">
+			<annotation>
+				<documentation>Distance to the centre of the screen.</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="X" type="float">
+			<annotation>
+				<documentation>X-coordinate for the centre of the screen.</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="Y" type="float">
+			<annotation>
+				<documentation>Y-coordinate for the centre of the screen.</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="Z" type="float">
+			<annotation>
+				<documentation>Z-coordinate for the centre of the screen.</documentation>
+			</annotation>
+		</attribute>
+		<!--/extension-->
+		<!--/simpleContent-->
 	</complexType>
 	<complexType name="screenWidthType">
 		<simpleContent>
@@ -5342,7 +5696,7 @@
 	</element>
 	<complexType name="audioContentType">
 		<sequence>
-			<element name="audioObjectIDRef" type="IDREF" minOccurs="0" maxOccurs="unbounded">
+			<element name="audioObjectIDRef" type="IDREF" minOccurs="1" maxOccurs="unbounded">
 				<annotation>
 					<documentation> A set of references to audio objects. </documentation>
 				</annotation>
@@ -5360,7 +5714,7 @@
 				</annotation>
 			</element>
 		</sequence>
-		<attribute name="audioContentID" type="ID">
+		<attribute name="audioContentID" type="ebucore:acoID">
 			<annotation>
 				<documentation>An unique ID for the audioContent.</documentation>
 			</annotation>
@@ -5469,7 +5823,7 @@
 				</annotation>
 			</element>
 		</sequence>
-		<attribute name="audioObjectID" type="ID">
+		<attribute name="audioObjectID" type="ebucore:aoID">
 			<annotation>
 				<documentation> A unique ID for this audioObject, </documentation>
 			</annotation>
@@ -5502,7 +5856,7 @@
 				<documentation> End time for the programme. </documentation>
 			</annotation>
 		</attribute>
-		<attribute name="dropframe" type="boolean">
+		<!--attribute name="dropframe" type="boolean">
 			<annotation>
 				<documentation> A flag to indicate whether the start and duration timecodes are drop
 					frame when set to "true". </documentation>
@@ -5519,7 +5873,7 @@
 				<documentation> The denominator of a correcting factor for the start and duration
 					timecodes. </documentation>
 			</annotation>
-		</attribute>
+		</attribute-->
 		<attribute name="dialogue" default="0">
 			<annotation>
 				<documentation>1 if object is dialogue, 0 if not, 2 if mixed. Default =
@@ -5721,7 +6075,7 @@
 				</sequence>
 			</choice>
 		</sequence>
-		<attribute name="audioPackFormatID" type="ID">
+		<attribute name="audioPackFormatID" type="ebucore:apID">
 			<annotation>
 				<documentation>A unique ID for an audio pack.</documentation>
 			</annotation>
@@ -5834,7 +6188,7 @@
 				<documentation>A unique human readable name for the audio channel</documentation>
 			</annotation>
 		</attribute>
-		<attribute name="audioChannelFormatID" type="ID">
+		<attribute name="audioChannelFormatID" type="ebucore:acID">
 			<annotation>
 				<documentation>A unique ID for the audio channel</documentation>
 			</annotation>
@@ -5981,8 +6335,8 @@
 						</element>
 						<element ref="ebucore:position" minOccurs="0" maxOccurs="3">
 							<annotation>
-								<documentation>A set of user defined parameters to define a location in
-									space.</documentation>
+								<documentation>A set of user defined parameters to define a location
+									in space.</documentation>
 							</annotation>
 						</element>
 						<element name="gain" type="float" default="1.0" minOccurs="0">
@@ -6069,6 +6423,7 @@
 							</annotation>
 						</element>
 					</sequence>
+
 					<sequence>
 						<annotation>
 							<documentation>If audioChannelFormat.typeDefinition ==
@@ -6120,7 +6475,7 @@
 				</annotation>
 			</sequence>
 		</choice>
-		<attribute name="audioBlockFormatID" type="ID">
+		<attribute name="audioBlockFormatID" type="ebucore:abID">
 			<annotation>
 				<documentation> A unique ID for the audio block. </documentation>
 			</annotation>
@@ -6146,7 +6501,7 @@
 				<documentation> End time for the programme. </documentation>
 			</annotation>
 		</attribute>
-		<attribute name="dropframe" type="boolean">
+		<!--attribute name="dropframe" type="boolean">
 			<annotation>
 				<documentation> A flag to indicate whether the start and duration timecodes are drop
 					frame when set to "true". </documentation>
@@ -6163,8 +6518,9 @@
 				<documentation> The denominator of a correcting factor for the start and duration
 					timecodes. </documentation>
 			</annotation>
-		</attribute>
+		</attribute-->
 	</complexType>
+
 	<!-- audioBlockFormat elements and types -->
 	<element name="speakerLabel" type="string"/>
 	<element name="matrix" type="ebucore:matrixType"/>
@@ -6370,13 +6726,13 @@
 					<documentation> A set of references to audio packs </documentation>
 				</annotation>
 			</element>
-			<element name="audioTrackFormatIDRef" type="IDREF" minOccurs="0" maxOccurs="unbounded">
+			<element name="audioTrackFormatIDRef" type="IDREF" minOccurs="1" maxOccurs="unbounded">
 				<annotation>
 					<documentation> A set of references to audio tracks </documentation>
 				</annotation>
 			</element>
 		</sequence>
-		<attribute name="audioStreamFormatID" type="ID" use="required">
+		<attribute name="audioStreamFormatID" type="ebucore:asID" use="required">
 			<annotation>
 				<documentation> A unique ID for the audio stream. </documentation>
 			</annotation>
@@ -6411,7 +6767,7 @@
 				</annotation>
 			</element>
 		</sequence>
-		<attribute name="audioTrackFormatID" type="ID">
+		<attribute name="audioTrackFormatID" type="ebucore:atID">
 			<annotation>
 				<documentation>A unique ID for the audio track</documentation>
 			</annotation>
@@ -6423,6 +6779,7 @@
 		</attribute>
 		<attributeGroup ref="ebucore:formatGroup"/>
 	</complexType>
+
 	<!-- AUDIO TRACK UID -->
 	<element name="audioTrackUID" type="ebucore:audioTrackUIDType"/>
 	<complexType name="audioTrackUIDType">
@@ -6552,8 +6909,19 @@
 				ST12-1:2008</documentation>
 		</annotation>
 		<restriction base="string">
+			<pattern value="(([0-1][0-9])|([2][0-3])):[0-5][0-9]:[0-5][0-9](([.,])|([:;]))[0-9]{2,}"
+			/>
+		</restriction>
+	</simpleType>
+	<simpleType name="timecodeStringFrameType">
+		<annotation>
+			<documentation>The pattern to express the time using timecode compliant with SMPTE
+				ST12-1:2008</documentation>
+		</annotation>
+		<restriction base="string">
 			<pattern
-				value="(([0-1][0-9])|([2][0-3])):[0-5][0-9]:[0-5][0-9](([.,])|([:;]))[0-9]{2,6}"/>
+				value="([0-1][0-9]|[2][0-3]):[0-5][0-9]:[0-5][0-9]([:;][0-5][0-9]|[:;][0-5][0-9][.,][0-9]{5,})"
+			/>
 		</restriction>
 	</simpleType>
 
@@ -6575,6 +6943,26 @@
 			</extension>
 		</simpleContent>
 	</complexType>
+	<complexType name="timecodeFrameType">
+		<simpleContent>
+			<extension base="ebucore:timecodeStringFrameType">
+				<attribute name="editRate" type="integer"/>
+				<attribute name="dropframe" type="boolean"/>
+				<attribute name="factorNumerator" type="positiveInteger" default="1">
+					<annotation>
+						<documentation> The numerator of a correcting factor. </documentation>
+					</annotation>
+				</attribute>
+				<attribute name="factorDenominator" type="positiveInteger" default="1">
+					<annotation>
+						<documentation> The denominator of a correcting factor. </documentation>
+					</annotation>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+
+
 	<!-- ############################## -->
 	<!-- TECHNICAL ATTRIBUTES GROUP       -->
 	<!-- ############################## -->
