@@ -5334,6 +5334,61 @@
 	<!-- ################ -->
 
 	<!-- IDs, IDREFs -->
+	<!-- audio pack format -->
+	<simpleType name="apID">
+		<restriction base="ID">
+			<pattern value="AP_([0-9a-fA-F]{4})([0-9a-fA-F]{4})"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="apIDREF">
+		<restriction base="IDREF">
+			<pattern value="AP_([0-9a-fA-F]{4})([0-9a-fA-F]{4})"/>
+		</restriction>
+	</simpleType>
+	<!-- audio channel -->
+	<simpleType name="acID">
+		<restriction base="ID">
+			<pattern value="AC_([0-9a-fA-F]{4})([0-9a-fA-F]{4})"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="acIDREF">
+		<restriction base="IDREF">
+			<pattern value="AC_([0-9a-fA-F]{4})([0-9a-fA-F]{4})"/>
+		</restriction>
+	</simpleType>
+	<!-- audio block format -->
+	<simpleType name="abID">
+		<restriction base="ID">
+			<pattern value="AB_([0-9a-fA-F]{4})([0-9a-fA-F]{4})_([0-9a-fA-F]{8})"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="abIDREF">
+		<restriction base="IDREF">
+			<pattern value="AB_([0-9a-fA-F]{4})([0-9a-fA-F]{4})_([0-9a-fA-F]{8})"/>
+		</restriction>
+	</simpleType>
+	<!-- audio stream -->
+	<simpleType name="asID">
+		<restriction base="ID">
+			<pattern value="AS_[0-9a-fA-F]{4}([0-9a-fA-F]{4})"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="asIDREF">
+		<restriction base="IDREF">
+			<pattern value="AC_([0-9a-fA-F]{4})([0-9a-fA-F]{4})"/>
+		</restriction>
+	</simpleType>
+	<!-- audio track -->
+	<simpleType name="atID">
+		<restriction base="ID">
+			<pattern value="AT_([0-9a-fA-F]{4})([0-9a-fA-F]{4})_([0-9a-fA-F]{2})"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="atIDREF">
+		<restriction base="IDREF">
+			<pattern value="AT_([0-9a-fA-F]{4})([0-9a-fA-F]{4})_([0-9a-fA-F]{2})"/>
+		</restriction>
+	</simpleType>
 	<!-- audio programme -->
 	<simpleType name="aprID">
 		<restriction base="ID">
@@ -5367,68 +5422,25 @@
 			<pattern value="AO_[0-9a-fA-F]{4}"/>
 		</restriction>
 	</simpleType>
-	<!-- audio pack format -->
-	<simpleType name="apID">
+	<!-- audio track unit -->
+	<simpleType name="atuID">
 		<restriction base="ID">
-			<pattern value="AP_[0-9a-fA-F]{4}"/>
+			<pattern value="ATU_[0-9a-fA-F]{8}"/>
 		</restriction>
 	</simpleType>
-	<simpleType name="apIDREF">
+	<simpleType name="atuIDREF">
 		<restriction base="IDREF">
-			<pattern value="AP_[0-9a-fA-F]{4}"/>
+			<pattern value="ATU_[0-9a-fA-F]{8}"/>
 		</restriction>
 	</simpleType>
-	<!-- audio channel -->
-	<simpleType name="acID">
-		<restriction base="ID">
-			<pattern value="AC_[0-9a-fA-F]{4}"/>
-		</restriction>
-	</simpleType>
-	<simpleType name="acIDREF">
-		<restriction base="IDREF">
-			<pattern value="AC_[0-9a-fA-F]{4}"/>
-		</restriction>
-	</simpleType>
-	<!-- audio track -->
-	<simpleType name="atID">
-		<restriction base="ID">
-			<pattern value="AT_[0-9a-fA-F]{4}"/>
-		</restriction>
-	</simpleType>
-	<simpleType name="atIDREF">
-		<restriction base="IDREF">
-			<pattern value="AT_[0-9a-fA-F]{4}"/>
-		</restriction>
-	</simpleType>
-	<!-- audio stream -->
-	<simpleType name="asID">
-		<restriction base="ID">
-			<pattern value="AS_[0-9a-fA-F]{4}"/>
-		</restriction>
-	</simpleType>
-	<simpleType name="asIDREF">
-		<restriction base="IDREF">
-			<pattern value="AS_[0-9a-fA-F]{4}"/>
-		</restriction>
-	</simpleType>
-	<!-- audio block format -->
-	<simpleType name="abID">
-		<restriction base="ID">
-			<pattern value="AB_[0-9a-fA-F]{4}"/>
-		</restriction>
-	</simpleType>
-	<simpleType name="abIDREF">
-		<restriction base="IDREF">
-			<pattern value="AB_[0-9a-fA-F]{4}"/>
-		</restriction>
-	</simpleType>
+	
 	<!-- AUDIO FORMAT EXTENDED -->
 	<complexType name="audioFormatExtendedType">
 		<annotation>
 			<documentation>A container with all definitions related to the audioContents and
 				associated components contained in the material.</documentation>
 		</annotation>
-		<sequence>
+		<choice minOccurs="0" maxOccurs="unbounded">
 			<element ref="ebucore:audioProgramme" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation>One set of content associated with the material.</documentation>
@@ -5479,7 +5491,7 @@
 					<documentation>The UID of a track in the file. </documentation>
 				</annotation>
 			</element>
-		</sequence>
+		</choice>
 		<attribute name="audioFormatExtendedID" type="ID">
 			<annotation>
 				<documentation>An unique ID for the extended audio format</documentation>
@@ -5809,7 +5821,7 @@
 						this one (i.e. only one of them can be used at a time).</documentation>
 				</annotation>
 			</element>
-			<element name="audioTrackUIDRef" type="IDREF" minOccurs="0" maxOccurs="unbounded">
+			<element name="audioTrackUIDRef" type="ebucore:atuIDREF" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation> Reference to an audioTrackUID that is listed in the 'chna'
 						chunk. </documentation>
