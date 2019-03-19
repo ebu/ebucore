@@ -20,6 +20,7 @@
 		<documentation> GENERAL ENRICHMENT </documentation>
 		<documentation> add additionalInformation element to artefact</documentation>
 		<documentation> add artefact/artefactWeight</documentation>
+		<documentation> add artefact/ @typeGroup</documentation>
 		<documentation> Add a contentFormat element under type</documentation>
 		<documentation> Add agentFee </documentation>
 		<documentation> Add regex pattern for IDs in ADM</documentation>
