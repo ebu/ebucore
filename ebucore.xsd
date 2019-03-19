@@ -27,6 +27,7 @@
 			frames</documentation>
 		<documentation>New complexType HDRMetadata under the format element.</documentation>
 		<documentation>Add relationSource to the relation element.</documentation>
+		<documentation>Add offsetNormalPlayTime element in timeType</documentation>
 
 		<documentation> CORRECTIONS </documentation>
 		<documentation> Additional information is an extension of elementType with a typeGroup </documentation>
@@ -34,9 +35,7 @@
 		<documentation> artefact date of purchase is now optional</documentation>
 		<documentation> timestamp is now optional</documentation>
 		<documentation> costumeSize is now a string </documentation>
-		<documentation> adjusted cardinalities in ADM (1 to many audioContentIDRef in
-			audioProgramme, 1 to many audioObjectIDRef in audioContent, 1 to many
-			audioTrackFormatIDRef in audioStreamFormat)</documentation>
+		<documentation> adjusted cardinalities and patterns in ADM</documentation>
 		<documentation> adjusted regex patterns for timecode with unlimited digits after the
 			coma</documentation>
 	</annotation>
@@ -859,6 +858,7 @@
 				<documentation>The id attributed to an artefact.</documentation>
 			</annotation>
 		</attribute>
+		<attributeGroup ref="ebucore:typeGroup"/>
 	</complexType>
 	<complexType name="propsType">
 		<annotation>
@@ -941,8 +941,8 @@
 					</element>
 					<element name="dishName" type="ebucore:elementType" minOccurs="0"/>
 					<element name="dishDescription" type="ebucore:elementType" minOccurs="0"> </element>
-					<element name="foodIngredient" type="ebucore:elementType" minOccurs="0"
-					> </element>
+					<element name="foodIngredient" type="ebucore:elementType" minOccurs="0">
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -1925,7 +1925,7 @@
 					</annotation>
 				</element>
 			</choice>
-			<element name="relationSource" type="ebucore:entityType"/>
+			<element name="relationSource" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
 		</sequence>
 		<attributeGroup ref="ebucore:typeGroup">
 			<annotation>
@@ -3315,11 +3315,11 @@
 						the stage name will be the fictitious character's name</documentation>
 				</annotation>
 				<complexType>
-					<complexContent>
+					<simpleContent>
 						<extension base="ebucore:elementType">
 							<attributeGroup ref="ebucore:typeGroup"/>
 						</extension>
-					</complexContent>
+					</simpleContent>
 				</complexType>
 			</element>
 			<element name="guest" type="boolean" minOccurs="0">
@@ -3499,7 +3499,7 @@
 		</attribute>
 	</complexType>
 	<complexType name="organisationDepartmentType">
-		<complexContent>
+		<simpleContent>
 			<extension base="ebucore:elementType">
 				<attribute name="departmentId" type="anyURI">
 					<annotation>
@@ -3508,7 +3508,7 @@
 					</annotation>
 				</attribute>
 			</extension>
-		</complexContent>
+		</simpleContent>
 	</complexType>
 	<complexType name="detailsType">
 		<annotation>
@@ -3604,7 +3604,7 @@
 				defined by the formatGroup attributes. For use for contact and organisation names.
 			</documentation>
 		</annotation>
-		<complexContent>
+		<simpleContent>
 			<extension base="ebucore:elementType">
 				<attributeGroup ref="ebucore:typeGroup">
 					<annotation>
@@ -3619,7 +3619,7 @@
 					</annotation>
 				</attributeGroup>
 			</extension>
-		</complexContent>
+		</simpleContent>
 	</complexType>
 	<complexType name="affiliationType">
 		<annotation>
@@ -5139,8 +5139,12 @@
 			</element>
 			<element name="normalPlayTime" type="time">
 				<annotation>
-					<documentation>To express the start time as a number of second in the form
-						HH:MM:SS.S</documentation>
+					<documentation>To express the start time in the form HH:MM:SS.S</documentation>
+				</annotation>
+			</element>
+			<element name="offsetNormalPlayTime" type="duration">
+				<annotation>
+					<documentation>To express a time offset as a duration in the iso duration format PnYnMnDTnHnMnS e.g. PT1M40.1S</documentation>
 				</annotation>
 			</element>
 			<element name="editUnitNumber" type="ebucore:editUnitNumberType">
@@ -5187,7 +5191,8 @@
 			</element>
 			<element name="normalPlayTime" type="duration">
 				<annotation>
-					<documentation>To express the duration in the format HH:MM:SS.S</documentation>
+					<documentation>To express the duration in compliance with ISO8601: PnYnMnDTnHnMnS e.g. PT1M40.1S
+					for a duration of 1 minute 40.1 seconds</documentation>
 				</annotation>
 			</element>
 			<element name="editUnitNumber" type="ebucore:editUnitNumberType">
@@ -5433,7 +5438,7 @@
 			<pattern value="ATU_[0-9a-fA-F]{8}"/>
 		</restriction>
 	</simpleType>
-	
+
 	<!-- AUDIO FORMAT EXTENDED -->
 	<complexType name="audioFormatExtendedType">
 		<annotation>
@@ -5821,7 +5826,8 @@
 						this one (i.e. only one of them can be used at a time).</documentation>
 				</annotation>
 			</element>
-			<element name="audioTrackUIDRef" type="ebucore:atuIDREF" minOccurs="0" maxOccurs="unbounded">
+			<element name="audioTrackUIDRef" type="ebucore:atuIDREF" minOccurs="0"
+				maxOccurs="unbounded">
 				<annotation>
 					<documentation> Reference to an audioTrackUID that is listed in the 'chna'
 						chunk. </documentation>
@@ -7343,7 +7349,7 @@
 			<documentation> A complex Type defining the structure of a technical attribute ot type
 				rational. </documentation>
 		</annotation>
-		<complexContent>
+		<simpleContent>
 			<extension base="ebucore:rationalType">
 				<attributeGroup ref="ebucore:typeGroup">
 					<annotation>
@@ -7351,7 +7357,7 @@
 					</annotation>
 				</attributeGroup>
 			</extension>
-		</complexContent>
+		</simpleContent>
 	</complexType>
 	<!-- -->
 	<!-- -->
@@ -7375,7 +7381,7 @@
 			<documentation> A complex type to define a version associated with the type of version
 				being referred to. </documentation>
 		</annotation>
-		<complexContent>
+		<simpleContent>
 			<extension base="ebucore:elementType">
 				<attributeGroup ref="ebucore:typeGroup">
 					<annotation>
@@ -7383,10 +7389,10 @@
 					</annotation>
 				</attributeGroup>
 			</extension>
-		</complexContent>
+		</simpleContent>
 	</complexType>
 	<complexType name="elementType">
-		<complexContent>
+		<simpleContent>
 			<extension base="dc:elementType">
 				<!--attribute name="charset" type="string">
 					<annotation>
@@ -7413,7 +7419,7 @@
 					</annotation>
 				</attribute-->
 			</extension>
-		</complexContent>
+		</simpleContent>
 	</complexType>
 	<!-- DYNAMIC METADATA -->
 	<complexType name="parameterSegmentDataOutputType">
@@ -7569,7 +7575,7 @@
 			<documentation> To provide additional contextual information. </documentation>
 		</annotation>
 		<complexType>
-			<complexContent>
+			<simpleContent>
 				<extension base="ebucore:elementType">
 					<attributeGroup ref="ebucore:typeGroup">
 						<annotation>
@@ -7578,7 +7584,7 @@
 						</annotation>
 					</attributeGroup>
 				</extension>
-			</complexContent>
+			</simpleContent>
 		</complexType>
 	</element>
 </schema>
