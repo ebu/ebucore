@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ebucore="urn:ebu:metadata-schema:ebucore"
 	xmlns:dc="http://purl.org/dc/elements/1.1/" targetNamespace="urn:ebu:metadata-schema:ebucore"
-	elementFormDefault="qualified" version="1.9">
+	elementFormDefault="qualified" version="1.10">
 	<import namespace="http://www.w3.org/XML/1998/namespace"
 		schemaLocation="http://www.w3.org/2001/xml.xsd"/>
 	<import namespace="http://purl.org/dc/elements/1.1/"
 		schemaLocation="http://dublincore.org/schemas/xmls/simpledc20021212.xsd"/>
+	<!--import namespace="http://www.w3.org/XML/1998/namespace"
+		schemaLocation="xml.xsd"/>
+	<import namespace="http://purl.org/dc/elements/1.1/"
+		schemaLocation="simpledc20021212.xsd"/-->
 	<annotation>
 		<documentation> The following Creative Commons Rights apply to the use of this EBU resource:
 			http://creativecommons.org/licenses/by-nc-sa/3.0/ Owner: EBU Technical Department
@@ -16,29 +20,32 @@
 			point for browsing the documentation!</documentation>
 	</annotation>
 	<annotation>
-		<documentation> What is new in version 1.9 ?</documentation>
+		<documentation> What is new in version 1.10 ?</documentation>
 		<documentation> GENERAL ENRICHMENT </documentation>
-		<documentation> add additionalInformation element to artefact</documentation>
-		<documentation> add artefact/artefactWeight</documentation>
-		<documentation> add artefact/ @typeGroup</documentation>
-		<documentation> Add a contentFormat element under type</documentation>
-		<documentation> Add agentFee </documentation>
-		<documentation> Add regex pattern for IDs in ADM</documentation>
-		<documentation> New timecode format for audioProgramme supporting regular timecode or
-			frames</documentation>
-		<documentation>New complexType HDRMetadata under the format element.</documentation>
-		<documentation>Add relationSource to the relation element.</documentation>
-		<documentation>Add offsetNormalPlayTime element in timeType</documentation>
+		<documentation> - change sequence into choice as a structure for coreMetadata and format to allow any order for the elements</documentation>
+		<documentation> - add publicationDuration to publicationEvent for better TV-Anytime mapping</documentation>
+		<documentation> - clarify the equivalence between gopSize and iFrameSize in VideoFormat</documentation>
+		<documentation> - change cardinality of date released to unbounded</documentation>
+		<documentation> - change cardinality of elements under location</documentation>
+		<documentation> - add year, date and time to the date attribute group</documentation>
+		<documentation> - add new hasManifestation element for the purpose of complying with FIAF guidelines and mapping to EN 15744</documentation>
+		<documentation> - add a characterName element to the ContactDetails element, typically for use when the Role is of type Actor/Actress. This is also more specific and clearer than StageName</documentation>
+		<documentation> - add a new date "deleted"</documentation>
+		<documentation> - add a new date "produced"</documentation>
+		<documentation> - add new technicalAttributeTimecode</documentation>
+		<documentation> - add relations hasTrackPart and isTrackPartOf. This applies also to timeline track parts with the appropriate track type.</documentation>
+		<documentation> - add a relation isDerivedFrom to define a relation to a parent resource for content provenance purposes.</documentation>
+		<documentation> - add hasRelatedPublicationEvent to publicationEvent.</documentation>
+		<documentation> - add two new topic and theme elements.</documentation>
+		<documentation> - add date/planned for better mapping to other schemas</documentation>
+		<documentation> - add element textLineBoxPosition to the textLine element to define the position of a textLine in a picture</documentation>
+		<documentation> - add element artefactBoxPosition to the artefact element to define the position of an artefact in a picture</documentation>
+		<documentation> - add a rightsEncoding elements to the rights element</documentation>
+		
 
 		<documentation> CORRECTIONS </documentation>
-		<documentation> Additional information is an extension of elementType with a typeGroup </documentation>
-		<documentation> currency is now optional </documentation>
-		<documentation> artefact date of purchase is now optional</documentation>
-		<documentation> timestamp is now optional</documentation>
-		<documentation> costumeSize is now a string </documentation>
-		<documentation> adjusted cardinalities and patterns in ADM</documentation>
-		<documentation> adjusted regex patterns for timecode with unlimited digits after the
-			coma</documentation>
+		<documentation> Corrected mispelling of heigth to height.</documentation>
+
 	</annotation>
 
 	<element name="ebuCoreMain" type="ebucore:ebuCoreMainType"/>
@@ -129,7 +136,7 @@
 			<documentation>The document containing all the core descriptive information regarding
 				the resource</documentation>
 		</annotation>
-		<sequence>
+		<choice minOccurs="0" maxOccurs="unbounded">
 			<element name="title" type="ebucore:titleType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation>A Title is the ‘main’ name given to a resource e.g. a media item,
@@ -177,7 +184,7 @@
 			</element>
 			<element name="subject" type="ebucore:subjectType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
-					<documentation> The topic covered by the intellectual content of the resource.
+					<documentation> The subject addressed by the intellectual content of the resource.
 						Typically, a subject is expressed by keywords, key phrases. Free text,
 						controlled vocabularies, authorities, or formal classification schemes
 						(codes) may be employed when selecting descriptive subject terms. Persons as
@@ -185,6 +192,16 @@
 						defined under element “ebucore:type/ebucore:genre” </documentation>
 					<documentation>dc:subject is used to express the subject in the form of free
 						text optionally in different languages.</documentation>
+				</annotation>
+			</element>
+			<element name="topic" type="ebucore:topicType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation> The topic covered by the intellectual content of the resource.</documentation>
+				</annotation>
+			</element>
+			<element name="theme" type="ebucore:themeType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation> The topic covered by the intellectual content of the resource.</documentation>
 				</annotation>
 			</element>
 			<element name="description" type="ebucore:descriptionType" minOccurs="0"
@@ -382,8 +399,8 @@
 			<element name="hasTrackPart" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation> An element to identify a part of a track by a title, a start
-						time and an end time in both the media source and media destination
-					</documentation>
+						time and an end time in both the media source and media destination. 
+						A timeline track part is a specific type of track part.</documentation>
 				</annotation>
 				<complexType>
 					<complexContent>
@@ -437,12 +454,63 @@
 					</complexContent>
 				</complexType>
 			</element>
-			<element name="isReferencedBy" type="ebucore:relationType" minOccurs="0"
-				maxOccurs="unbounded">
+			<element name="isTrackPartOf" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
-					<documentation> A reference to a resource that references the current resource
-					</documentation>
+					<documentation> An element to identify a part of a track by a title, a start
+						time and an end time in both the media source and media destination. 
+						A timeline track part is a specific type of track part.</documentation>
 				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="ebucore:relationType">
+							<sequence>
+								<element name="trackPartTitle" type="ebucore:alternativeTitleType">
+									<annotation>
+										<documentation> To provide a title for a track part.
+										</documentation>
+									</annotation>
+								</element>
+								<element name="destinationId" type="anyURI" minOccurs="0">
+									<annotation>
+										<documentation> Tor provide an identifier associated with
+											the target resource. </documentation>
+									</annotation>
+								</element>
+								<element name="destinationStart" type="ebucore:timeType"
+									minOccurs="0">
+									<annotation>
+										<documentation> To provide a reference start time in the
+											target resource. </documentation>
+									</annotation>
+								</element>
+								<element name="destinationEnd" type="ebucore:timeType" minOccurs="0">
+									<annotation>
+										<documentation> To provide a reference end time in the
+											target resource. </documentation>
+									</annotation>
+								</element>
+								<element name="sourceId" type="anyURI" minOccurs="0">
+									<annotation>
+										<documentation> Tor provide an identifier associated with
+											the source. </documentation>
+									</annotation>
+								</element>
+								<element name="sourceStart" type="ebucore:timeType" minOccurs="0">
+									<annotation>
+										<documentation> To provide a reference start time at the
+											source. </documentation>
+									</annotation>
+								</element>
+								<element name="sourceEnd" type="ebucore:timeType" minOccurs="0">
+									<annotation>
+										<documentation> To provide a reference end time at the
+											source. </documentation>
+									</annotation>
+								</element>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
 			</element>
 			<element name="references" type="ebucore:relationType" minOccurs="0"
 				maxOccurs="unbounded">
@@ -560,6 +628,20 @@
 					<documentation> A reference to a resource derived from a Master </documentation>
 				</annotation>
 			</element>
+			<element name="isDerivedFrom" type="ebucore:relationType" minOccurs="0"
+				maxOccurs="unbounded">
+				<annotation>
+					<documentation> A reference to a parent resource from which the current resource was derived. This can be used for provenance purposes. </documentation>
+				</annotation>
+			</element>
+			<element name="hasManifestation" type="ebucore:manifestationType" minOccurs="0"
+				maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						A manifestation is the physical embodiment of work e.g. a tape, a file... 
+					</documentation>
+				</annotation>
+			</element>
 			<element name="coverage" type="ebucore:coverageType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation>Coverage is used to show various time and place aspects of the
@@ -603,7 +685,7 @@
 					<documentation> To provide a planning. </documentation>
 				</annotation>
 			</element>
-			<element name="rating" type="ebucore:ratingType" minOccurs="0" maxOccurs="unbounded">
+			<element minOccurs="0" maxOccurs="unbounded" ref="dc:contributor">
 				<annotation>
 					<documentation> An element to provide rating values attributed by reviewers to
 						evaluate the media resource. </documentation>
@@ -626,6 +708,11 @@
 				<annotation>
 					<documentation> To identify and describe artefacts present in a media resource
 						or part of a media resource. </documentation>
+				</annotation>
+			</element>
+			<element name="animal" type="ebucore:animalType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation> To identify and describe animals associated with a media resource. </documentation>
 				</annotation>
 			</element>
 			<element name="props" type="ebucore:propsType" minOccurs="0" maxOccurs="unbounded">
@@ -676,7 +763,22 @@
 						http://www.movielabs.com/md/ratings/v2.2.5/html/Summary.html</documentation>
 				</annotation>
 			</element>
+		</choice>
+	</complexType>
+	<complexType name="manifestationType">
+		<sequence>
+			<element name="manifestationTitle" type="ebucore:titleType" minOccurs="0"
+				maxOccurs="unbounded"/>
+			<element name="manifestationId" type="ebucore:identifierType" minOccurs="0"
+				maxOccurs="unbounded"/>
+			<element name="manifestationDate" type="ebucore:dateType" minOccurs="0"
+				maxOccurs="unbounded"/>
+			<element name="manifestationPublicationHistory" type="ebucore:publicationHistoryType"
+				minOccurs="0" maxOccurs="unbounded"/>
 		</sequence>
+		<attributeGroup ref="ebucore:typeGroup"/>
+		<attributeGroup ref="ebucore:formatGroup"/>
+		<attribute name="manifestationId"/>
 	</complexType>
 	<complexType name="emotionType">
 		<sequence>
@@ -730,17 +832,67 @@
 	</complexType>
 	<complexType name="textLineType">
 		<sequence>
+			<element name="textLink" type="anyURI">
+				<annotation>
+					<documentation> A link to an external web resource containing the text.</documentation>
+				</annotation>
+			</element>
 			<element name="text" type="string">
 				<annotation>
 					<documentation> The text content.</documentation>
 				</annotation>
 			</element>
-			<element name="relatedAgent" type="ebucore:entityType"/>
+			<element name="relatedAgent" type="ebucore:entityType">
+				<annotation>
+					<documentation>
+						A description of an agent referenced or associated with the text.
+					</documentation>
+				</annotation>
+			</element>
 			<element name="timestamp" type="ebucore:timeType">
 				<annotation>
 					<documentation> A timestamp to precisely define a time point when the text was
 						used. </documentation>
 				</annotation>
+			</element>
+			<element name="textLineBoxartefacttyPosition" minOccurs="0">
+				<annotation>
+					<documentation>
+						to describe the position of text on the screen.
+					</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element name="leftTopCornerLineNumber" type="nonNegativeInteger" minOccurs="0">
+							<annotation>
+								<documentation>
+									To define the line number of the left top corner position of the text box. 
+								</documentation>
+							</annotation>
+						</element>
+						<element name="leftTopCornerPixelNumber" type="nonNegativeInteger" minOccurs="0">
+							<annotation>
+								<documentation>
+									To define the pixel number of the left top corner position of the text box. 
+								</documentation>
+							</annotation>
+						</element>
+						<element name="height" type="nonNegativeInteger" minOccurs="0">
+							<annotation>
+								<documentation>
+									The line number defining the height of the text box. 
+								</documentation>
+							</annotation>
+						</element>
+						<element name="width" type="nonNegativeInteger" minOccurs="0">
+							<annotation>
+								<documentation>
+									The pixel number defining the width of the text box. 
+								</documentation>
+							</annotation>
+						</element>
+					</sequence>
+				</complexType>
 			</element>
 		</sequence>
 		<attribute name="textLineId" type="string">
@@ -772,11 +924,34 @@
 		</annotation>
 		<sequence>
 			<element name="artefactName" type="ebucore:elementType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<element name="artefactModel" type="string" minOccurs="0"/>
+				maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						To provide a name for the artefact.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="artefactModel" type="string" minOccurs="0">
+				<annotation>
+					<documentation>
+						To provide the model of the artefact.
+					</documentation>
+				</annotation>
+			</element>
 			<element name="artefactDescription" type="ebucore:elementType" minOccurs="0"
-				maxOccurs="unbounded"/>
+				maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						To provide a description of the artefact.
+					</documentation>
+				</annotation>
+			</element>
 			<element name="artefactBrand" minOccurs="0">
+				<annotation>
+					<documentation>
+						To provide the brand of the artefact.
+					</documentation>
+				</annotation>
 				<complexType>
 					<simpleContent>
 						<extension base="string">
@@ -786,6 +961,11 @@
 				</complexType>
 			</element>
 			<element name="artefacttype" minOccurs="0">
+				<annotation>
+					<documentation>
+						To provide the type of an artefact.
+					</documentation>
+				</annotation>
 				<complexType>
 					<simpleContent>
 						<extension base="string">
@@ -794,10 +974,33 @@
 					</simpleContent>
 				</complexType>
 			</element>
-			<element name="artefactColour" type="string" minOccurs="0"/>
-			<element name="artefactWeight" type="string" minOccurs="0"/>
-			<element name="artefactReference" type="string" minOccurs="0"/>
+			<element name="artefactColour" type="string" minOccurs="0">
+				<annotation>
+					<documentation>
+						To provide the colour of the artefact.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="artefactWeight" type="string" minOccurs="0">
+				<annotation>
+					<documentation>
+						To provide the weight of the artefact.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="artefactReference" type="string" minOccurs="0">
+				<annotation>
+					<documentation>
+						To provide the reference associated with the artefact.
+					</documentation>
+				</annotation>
+			</element>
 			<element name="artefactPrice" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						To provide the price of the artefact.
+					</documentation>
+				</annotation>
 				<complexType>
 					<sequence>
 						<element name="value" type="float"/>
@@ -809,31 +1012,183 @@
 					</sequence>
 				</complexType>
 			</element>
-			<element name="artefactWebsite" type="anyURI" minOccurs="0"/>
-			<element name="artefactDateOfPurchase" type="date" minOccurs="0"/>
-			<element name="artefactDateOfSell" type="date" minOccurs="0"/>
-			<element name="artefactDateOfCreation" type="date" minOccurs="0"/>
-			<element name="artefactDateOfAcquisition" type="date" minOccurs="0"/>
-			<element name="artefactDateOfDestruction" type="date" minOccurs="0"/>
-			<element name="artefactAvailability" type="boolean" minOccurs="0"/>
-			<element name="artefactLocation" type="string" minOccurs="0"/>
+			<element name="artefactWebsite" type="anyURI" minOccurs="0">				
+				<annotation>
+					<documentation>
+						To provide a website associated with the artefact.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="artefactDateOfPurchase" type="date" minOccurs="0">
+				<annotation>
+					<documentation>
+						To provide the date of purchase of the artefact.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="artefactDateOfSell" type="date" minOccurs="0">
+				<annotation>
+					<documentation>
+						To provide the date of sell of the artefact.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="artefactDateOfCreation" type="date" minOccurs="0">
+				<annotation>
+					<documentation>
+						To provide the date of creation of the artefact.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="artefactDateOfAcquisition" type="date" minOccurs="0">
+				<annotation>
+					<documentation>
+						To provide the date of acquisition of the artefact.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="artefactDateOfDestruction" type="date" minOccurs="0">
+				<annotation>
+					<documentation>
+						To provide the date of destruction of the artefact.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="artefactAvailability" type="boolean" minOccurs="0">
+				<annotation>
+					<documentation>
+						To indicate the availability of the artefact.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="artefactLocation" type="string" minOccurs="0">
+				<annotation>
+					<documentation>
+						To locate the physical position of the artefact.
+					</documentation>
+				</annotation>
+			</element>
 			<element name="artefactUsageHistory" type="ebucore:elementType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<element name="artefactStyle" type="ebucore:elementType" minOccurs="0"/>
+				maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						To provide information of the usage history of the artefact.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="artefactStyle" type="ebucore:elementType" minOccurs="0">
+				<annotation>
+					<documentation>
+						To provide information on the style of the artefact.
+					</documentation>
+				</annotation>
+			</element>
 			<element name="artefactPeriod" minOccurs="0">
+				<annotation>
+					<documentation>
+						To provide information on the period associated with the artefact.
+					</documentation>
+				</annotation>
 				<complexType>
 					<attributeGroup ref="ebucore:dateGroup"/>
 				</complexType>
 			</element>
+			<element name="artefactBoxPosition" minOccurs="0">
+				<annotation>
+					<documentation>
+						to describe the position of text on the screen.
+					</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element name="leftTopCornerLineNumber" type="nonNegativeInteger" minOccurs="0">
+							<annotation>
+								<documentation>
+									To define the line number of the left top corner position of the box around the artefact. 
+								</documentation>
+							</annotation>
+						</element>
+						<element name="leftTopCornerPixelNumber" type="nonNegativeInteger" minOccurs="0">
+							<annotation>
+								<documentation>
+									To define the pixel number of the left top corner position of of the box around the artefact. 
+								</documentation>
+							</annotation>
+						</element>
+						<element name="height" type="nonNegativeInteger" minOccurs="0">
+							<annotation>
+								<documentation>
+									The line number defining the height of the box around the artefact. 
+								</documentation>
+							</annotation>
+						</element>
+						<element name="width" type="nonNegativeInteger" minOccurs="0">
+							<annotation>
+								<documentation>
+									The pixel number defining the width of the box around the artefact. 
+								</documentation>
+							</annotation>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
 			<element name="relatedAgent" type="ebucore:entityType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<element name="supplier" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="retailer" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="buyer" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="creator" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="maker" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="owner" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="contact" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
+				maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						To identify agents related to the artefact.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="supplier" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						To identify the supplier of the artefact.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="retailer" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						To identify the retailer of the artefact.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="buyer" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						To identify the buyer of the artefact.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="creator" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						To identify the creator of the artefact.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="maker" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						To identify the maker of the artefact.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="owner" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						To identify the owner of the artefact.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="contact" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						To identify a contact associated with the artefact.
+					</documentation>
+				</annotation>
+			</element>
 			<element name="timestamp" type="ebucore:timeType" minOccurs="0">
 				<annotation>
 					<documentation> A timestamp to precisely define a time point when the artefact
@@ -1191,7 +1546,7 @@
 	</complexType>
 	<complexType name="subjectType">
 		<annotation>
-			<documentation>The generalised topic of that represents the intellectual content of the
+			<documentation>The generalised topic that represents the intellectual content of the
 				resource. Typically, a subject is expressed by keywords, key phrases, or even
 				specific classification codes. Controlled vocabularies, authorities, or formal
 				classification schemes may be employed when selecting descriptive subject terms. It
@@ -1238,6 +1593,58 @@
 				<documentation>To define the source of reference for subject such as a reference
 					document or classification scheme or the framework within which a tag has been
 					attributed.</documentation>
+			</annotation>
+		</attributeGroup>
+		<attribute name="note" type="string">
+			<annotation>
+				<documentation> Optional additional contextual information. </documentation>
+			</annotation>
+		</attribute>
+	</complexType>
+	<complexType name="topicType">
+		<annotation>
+			<documentation>A topic that represents the intellectual content of the
+				resource. </documentation>
+		</annotation>
+		<sequence>
+			<element name="attributor" type="ebucore:entityType" minOccurs="0">
+				<annotation>
+					<documentation>To identify the source of attribution of the
+						topic.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+		<attributeGroup ref="ebucore:typeGroup">
+			<annotation>
+				<documentation>To define the source of reference for a topic such as a reference
+					document or classification scheme or the framework within which a topic has been
+					defined.</documentation>
+			</annotation>
+		</attributeGroup>
+		<attribute name="note" type="string">
+			<annotation>
+				<documentation> Optional additional contextual information. </documentation>
+			</annotation>
+		</attribute>
+	</complexType>
+	<complexType name="themeType">
+		<annotation>
+			<documentation>A theme covered in the intellectual content of the
+				resource. </documentation>
+		</annotation>
+		<sequence>
+			<element name="attributor" type="ebucore:entityType" minOccurs="0">
+				<annotation>
+					<documentation>To identify the source of attribution of the
+						theme.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+		<attributeGroup ref="ebucore:typeGroup">
+			<annotation>
+				<documentation>To define the source of reference for a theme such as a reference
+					document or classification scheme or the framework within which a theme has been
+					defined.</documentation>
 			</annotation>
 		</attributeGroup>
 		<attribute name="note" type="string">
@@ -1596,7 +2003,7 @@
 				complement to Description.</documentation>
 		</annotation>
 		<sequence>
-			<element name="name">
+			<element name="name" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation>Any location name in free text plus type</documentation>
 				</annotation>
@@ -1608,7 +2015,8 @@
 					</simpleContent>
 				</complexType>
 			</element>
-			<element name="description" type="ebucore:elementType" minOccurs="0">
+			<element name="description" type="ebucore:elementType" minOccurs="0"
+				maxOccurs="unbounded">
 				<annotation>
 					<documentation>A description of a location name in free text</documentation>
 				</annotation>
@@ -1641,13 +2049,20 @@
 					</attributeGroup>
 				</complexType>
 			</element>
-			<element name="code" type="anyURI" minOccurs="0">
+			<element name="code" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation>A location identified by a code from a predefined list of
 						locations.</documentation>
 				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="anyURI">
+							<attributeGroup ref="ebucore:typeGroup"/>
+						</extension>
+					</simpleContent>
+				</complexType>
 			</element>
-			<element name="region" type="ebucore:regionType" minOccurs="0">
+			<element name="region" type="ebucore:regionType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation> A location specifically defined as a region, i.e. a country or
 						countryRegion </documentation>
@@ -1820,6 +2235,22 @@
 					</documentation>
 				</annotation>
 			</element>
+			<element name="rightsEncoding" minOccurs="0">
+				<annotation>
+					<documentation>
+						To define the type/encoding of rights e.g. mpeg-21 ODRL...
+					</documentation>
+				</annotation>
+				<complexType>
+					<attributeGroup ref="ebucore:typeGroup">
+						<annotation>
+							<documentation>
+								To define the type.
+							</documentation>
+						</annotation>
+					</attributeGroup>
+				</complexType>
+			</element>
 		</sequence>
 		<attributeGroup ref="ebucore:typeGroup">
 			<annotation>
@@ -1926,7 +2357,8 @@
 					</annotation>
 				</element>
 			</choice>
-			<element name="relationSource" type="ebucore:entityType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="relationSource" type="ebucore:entityType" minOccurs="0"
+				maxOccurs="unbounded"/>
 		</sequence>
 		<attributeGroup ref="ebucore:typeGroup">
 			<annotation>
@@ -2007,7 +2439,7 @@
 				<complexType>
 					<attributeGroup ref="ebucore:dateGroup">
 						<annotation>
-							<documentation> A set of attributes to express a date or a date period.
+							<documentation> A set of attributes to express a date, time or a period.
 							</documentation>
 						</annotation>
 					</attributeGroup>
@@ -2024,7 +2456,7 @@
 				<complexType>
 					<attributeGroup ref="ebucore:dateGroup">
 						<annotation>
-							<documentation> A set of attributes to express a date or a date period.
+							<documentation> A set of attributes to express a date, time or a period.
 							</documentation>
 						</annotation>
 					</attributeGroup>
@@ -2038,7 +2470,7 @@
 				<complexType>
 					<attributeGroup ref="ebucore:dateGroup">
 						<annotation>
-							<documentation> A set of attributes to express a date or a date period.
+							<documentation> A set of attributes to express a date, time or a period.
 							</documentation>
 						</annotation>
 					</attributeGroup>
@@ -2052,13 +2484,13 @@
 				<complexType>
 					<attributeGroup ref="ebucore:dateGroup">
 						<annotation>
-							<documentation> A set of attributes to express a date or a date period.
+							<documentation> A set of attributes to express a date, time or a period.
 							</documentation>
 						</annotation>
 					</attributeGroup>
 				</complexType>
 			</element>
-			<element name="released" minOccurs="0">
+			<element name="released" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation>The date and optionally time when the resource was
 						released</documentation>
@@ -2066,7 +2498,7 @@
 				<complexType>
 					<attributeGroup ref="ebucore:dateGroup">
 						<annotation>
-							<documentation> A set of attributes to express a date or a date period.
+							<documentation> A set of attributes to express a date, time or a period.
 							</documentation>
 						</annotation>
 					</attributeGroup>
@@ -2080,7 +2512,7 @@
 				<complexType>
 					<attributeGroup ref="ebucore:dateGroup">
 						<annotation>
-							<documentation> A set of attributes to express a date or a date period.
+							<documentation> A set of attributes to express a date, time or a period.
 							</documentation>
 						</annotation>
 					</attributeGroup>
@@ -2094,7 +2526,7 @@
 				<complexType>
 					<attributeGroup ref="ebucore:dateGroup">
 						<annotation>
-							<documentation> A set of attributes to express a date or a date period.
+							<documentation> A set of attributes to express a date, time or a period.
 							</documentation>
 						</annotation>
 					</attributeGroup>
@@ -2115,7 +2547,7 @@
 				<complexType>
 					<attributeGroup ref="ebucore:dateGroup">
 						<annotation>
-							<documentation> A set of attributes to express a date or a date period.
+							<documentation> A set of attributes to express a date, time or a period.
 							</documentation>
 						</annotation>
 					</attributeGroup>
@@ -2129,7 +2561,49 @@
 				<complexType>
 					<attributeGroup ref="ebucore:dateGroup">
 						<annotation>
-							<documentation> A set of attributes to express a date or a date period.
+							<documentation> A set of attributes to express a date, time or a period.
+							</documentation>
+						</annotation>
+					</attributeGroup>
+				</complexType>
+			</element>
+			<element name="deleted" minOccurs="0">
+				<annotation>
+					<documentation>The date and optionally time when the resource has been
+						deleted.</documentation>
+				</annotation>
+				<complexType>
+					<attributeGroup ref="ebucore:dateGroup">
+						<annotation>
+							<documentation> A set of attributes to express a date, time or a period.
+							</documentation>
+						</annotation>
+					</attributeGroup>
+				</complexType>
+			</element>
+			<element name="produced" minOccurs="0">
+				<annotation>
+					<documentation>The date and optionally time when the resource has been
+						produced.</documentation>
+				</annotation>
+				<complexType>
+					<attributeGroup ref="ebucore:dateGroup">
+						<annotation>
+							<documentation> A set of attributes to express a date, time or a period.
+							</documentation>
+						</annotation>
+					</attributeGroup>
+				</complexType>
+			</element>
+			<element name="planned" minOccurs="0">
+				<annotation>
+					<documentation>The date and optionally time when the creation of the resource has been
+						planned.</documentation>
+				</annotation>
+				<complexType>
+					<attributeGroup ref="ebucore:dateGroup">
+						<annotation>
+							<documentation> A set of attributes to express a date, time or a period.
 							</documentation>
 						</annotation>
 					</attributeGroup>
@@ -2208,12 +2682,17 @@
 		<sequence>
 			<element name="publicationDate" type="date" minOccurs="0">
 				<annotation>
-					<documentation>The first transmission date</documentation>
+					<documentation>The first publication date</documentation>
 				</annotation>
 			</element>
 			<element name="publicationTime" type="time" minOccurs="0">
 				<annotation>
-					<documentation>The transmission time</documentation>
+					<documentation>The publication time</documentation>
+				</annotation>
+			</element>
+			<element name="publicationDuration" type="duration" minOccurs="0">
+				<annotation>
+					<documentation>The publication duration</documentation>
 				</annotation>
 			</element>
 			<element name="scheduleDate" type="date" minOccurs="0">
@@ -2244,6 +2723,14 @@
 				maxOccurs="unbounded">
 				<annotation>
 					<documentation> To identify the region where the resource has been distributed.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="relatedPublicationEvent" type="ebucore:publicationEventType"
+				minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						To list publication events related to the current publication event
 					</documentation>
 				</annotation>
 			</element>
@@ -2402,7 +2889,7 @@
 				drive. Format may be used to determine the software, hardware or other equipment
 				needed to display or operate the resource. </documentation>
 		</annotation>
-		<sequence>
+		<choice minOccurs="0" maxOccurs="unbounded">
 			<element ref="dc:format" minOccurs="0">
 				<annotation>
 					<documentation> The EBU core metadata set is built as a refinement of the Dublin
@@ -2557,9 +3044,9 @@
 									consistency with the videoFormat/width.</documentation>
 							</annotation>
 						</element>
-						<element name="heigth" type="integer">
+						<element name="height" type="integer">
 							<annotation>
-								<documentation>To define the heigth of the image. Please check
+								<documentation>To define the height of the image. Please check
 									consistency with the videoFormat/height.</documentation>
 							</annotation>
 						</element>
@@ -2582,7 +3069,7 @@
 									default="1">
 									<annotation>
 										<documentation>The denominator of the expression
-											corresponding to the heigth of the active area of the
+											corresponding to the height of the active area of the
 											image in pixels.</documentation>
 									</annotation>
 								</attribute>
@@ -2816,7 +3303,7 @@
 					<attributeGroup ref="ebucore:dateGroup"/>
 				</complexType>
 			</element>
-		</sequence>
+		</choice>
 		<attribute name="formatId" type="anyURI">
 			<annotation>
 				<documentation> To uniquely identify a format. </documentation>
@@ -3098,6 +3585,21 @@
 		</attribute>
 	</complexType>
 	<attributeGroup name="dateGroup">
+		<attribute name="year" type="gYear">
+			<annotation>
+				<documentation> To express the date as a year</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="date" type="date">
+			<annotation>
+				<documentation> To express the date as a date</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="time" type="time">
+			<annotation>
+				<documentation> To express the time as a time</documentation>
+			</annotation>
+		</attribute>
 		<attribute name="startYear" type="gYear">
 			<annotation>
 				<documentation> To indicate the starting year of a period of time, a year of
@@ -3214,6 +3716,94 @@
 			</annotation>
 		</attribute>
 	</complexType>
+	<complexType name="animalType">
+		<sequence>
+			<element name="animalName" type="ebucore:elementType" minOccurs="0"
+				maxOccurs="unbounded">
+				<annotation>
+					<documentation>To name an animal.</documentation>
+				</annotation>
+			</element>
+			<element name="animalDescription" type="ebucore:elementType" minOccurs="0"
+				maxOccurs="unbounded">
+				<annotation>
+					<documentation>To describe an animal.</documentation>
+				</annotation>
+			</element>
+			<element name="animalCode" type="ebucore:elementType" minOccurs="0"
+				maxOccurs="unbounded">
+				<annotation>
+					<documentation>To associate a code with an animal.</documentation>
+				</annotation>
+			</element>
+			<element name="animalGender" type="ebucore:elementType" minOccurs="0">
+				<annotation>
+					<documentation>To give the gender of an animal.</documentation>
+				</annotation>
+			</element>
+			<element name="animalBirthYear" type="date" minOccurs="0">
+				<annotation>
+					<documentation>To give the birth year of an animal.</documentation>
+				</annotation>
+			</element>
+			<element name="animalPassport" type="ebucore:elementType" minOccurs="0">
+				<annotation>
+					<documentation>To give the passport (pet identity, markings, vaccination records...) of an animal.</documentation>
+				</annotation>
+			</element>
+			<element name="animalColourCode" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>To associate a colour code with an animal.</documentation>
+				</annotation>
+				<complexType>
+					<attributeGroup ref="ebucore:typeGroup"/>
+				</complexType>
+			</element>
+			<element name="animalBreedCode" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>To associate a breed code with an animal.</documentation>
+				</annotation>
+				<complexType>
+					<attributeGroup ref="ebucore:typeGroup"/>
+				</complexType>
+			</element>
+			<element name="animalOwner" type="ebucore:entityType" minOccurs="0"
+				maxOccurs="unbounded">
+				<annotation>
+					<documentation>To identify the owner of an animal.</documentation>
+				</annotation>
+			</element>
+			<element name="animalgroom" type="ebucore:entityType" minOccurs="0"
+				maxOccurs="unbounded">
+				<annotation>
+					<documentation>To identify the groom / care keeper of an animal.</documentation>
+				</annotation>
+			</element>
+			<element name="animalRoleCode" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>To associate a role with an animal.</documentation>
+				</annotation>
+				<complexType>
+					<attributeGroup ref="ebucore:typeGroup"/>
+				</complexType>
+			</element>
+			<element name="animalCharacterName" type="ebucore:elementType" minOccurs="0">
+				<annotation>
+					<documentation>To give a fictitious character name to an animal.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+		<attribute name="animalId" type="anyURI">
+			<annotation>
+				<documentation>To associate an id with an animal.</documentation>
+			</annotation>
+		</attribute>
+		<attributeGroup ref="ebucore:typeGroup">
+			<annotation>
+				<documentation>To identify a type of animal.</documentation>
+			</annotation>
+		</attributeGroup>
+	</complexType>
 	<complexType name="contactDetailsType">
 		<annotation>
 			<documentation> To provide all the information necessary to contact and locate a person.
@@ -3314,6 +3904,18 @@
 				<annotation>
 					<documentation>For example, in the case a contact is a performing actor/actress,
 						the stage name will be the fictitious character's name</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="ebucore:elementType">
+							<attributeGroup ref="ebucore:typeGroup"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="characterName" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>An attribute to provide the name of a character/fictional entity typically associated with an Actor/Actress role</documentation>
 				</annotation>
 				<complexType>
 					<simpleContent>
@@ -4351,6 +4953,11 @@
 						metadata set. </documentation>
 				</annotation>
 			</element>
+			<element name="iFrameInterval" minOccurs="0" type="integer" default="1">
+				<annotation>
+					<documentation> The distance between two full images (I-frames), also referred to as the GOP size.</documentation>
+				</annotation>
+			</element>
 			<group ref="ebucore:technicalAttributes">
 				<annotation>
 					<documentation> A point of extension for customisation using technical
@@ -5318,8 +5925,8 @@
 			</element>
 			<element name="hash" type="ebucore:hashType" minOccurs="0">
 				<annotation>
-					<documentation>A hash code to verify the integrity of an essence
-						file</documentation>
+					<documentation>A hash code to verify the integrity of an essence file. 
+						This can also be used as a fixity checksum.</documentation>
 				</annotation>
 			</element>
 			<element name="overallBitRate" type="ebucore:dimensionType" minOccurs="0">
@@ -7078,6 +7685,13 @@
 						customisation/extension. </documentation>
 				</annotation>
 			</element>
+			<element name="technicalAttributeTimecode" type="ebucore:technicalAttributeTimecodeType"
+				minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation> A technical attribute ot type anyURI for user
+						customisation/extension. </documentation>
+				</annotation>
+			</element>
 		</sequence>
 	</group>
 	<!-- ######################################### -->
@@ -7372,6 +7986,21 @@
 				<attributeGroup ref="ebucore:typeGroup">
 					<annotation>
 						<documentation> The type of URI. </documentation>
+					</annotation>
+				</attributeGroup>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="technicalAttributeTimecodeType">
+		<annotation>
+			<documentation> A complex Type defining the structure of a technical attribute ot type
+				rational. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="ebucore:timecodeType">
+				<attributeGroup ref="ebucore:typeGroup">
+					<annotation>
+						<documentation> The type of rational. </documentation>
 					</annotation>
 				</attributeGroup>
 			</extension>
