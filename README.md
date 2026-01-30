@@ -9,8 +9,7 @@ Github is used to collaboratively edit the next publishable version of EBUCore.
 The latest approved version of the specification is always published here: https://tech.ebu.ch/docs/tech/tech3293.pdf 
 with links to the server from where the corresponding schemas can be downloaded.
 
-EBUCore also exists as an ontology https://www.ebu.ch/metadata/ontologies/ebucore/ebucore (documentation) and 
-https://www.ebu.ch/metadata/ontologies/ebucore/ebucore.rdf (rdf/xml ontology). The ontology will also be moved 
-to github with a new simpler approach for the documentation.
+EBUCore also exists as an ontology https://tech-metadata.ebu-it-tools.ch/ontologies/ebucore/index.html (documentation) and 
+https://www.ebu.ch/metadata/ontologies/ebucore/ebucore.rdf (rdf/xml ontology). 
 
 Before doing anything, please read the editing guidelines in CONTRIBUTING.md.
